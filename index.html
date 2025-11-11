@@ -1,280 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Silent Hustle Academy | Learn to Earn Online</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Silent Hustle Academy — Yahya</title>
+  <meta name="description" content="Turn Your Skills into Income — Live Classes by Yahya. Learn Dropshipping, Affiliate Marketing, YouTube growth and how to get Fiverr orders. ₹99 trial." />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+    :root{
+      --bg:#ffffff;
+      --muted:#666666;
+      --card:#fbfbfd;
+      --accent:#ff5a3c; /* orange-red */
+      --accent-2:#ffb36b;
+      --shadow: 0 8px 30px rgba(15,20,30,0.06);
+      --radius:14px;
+      --maxw:1100px;
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#f7fbff 0%,#ffffff 100%);
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
     }
 
-    body {
-      background-color: #121212;
-      color: #f5f5f5;
-      line-height: 1.7;
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px;}
+
+    /* header */
+    header{padding:18px 0;position:sticky;top:0;background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid #f0f2f5;}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;
+      box-shadow:var(--shadow);
+    }
+    .brand h1{font-size:18px;margin:0}
+    nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{background:linear-gradient(90deg,var(--accent),#ff7a55);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(255,90,60,0.18)}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:52px 0}
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
+    .hero-card{background:linear-gradient(180deg,#ffffff,#fffaf8);padding:28px;border-radius:18px;box-shadow:var(--shadow);border:1px solid #fff0ec}
+    .hero h2{font-size:34px;margin:6px 0 8px}
+    .hero p{color:var(--muted);font-size:16px}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff7a55);color:white;padding:12px 20px;border-radius:12px;text-decoration:none;font-weight:700;display:inline-block}
+    .btn-ghost{background:transparent;border:1px solid #eee;padding:10px 16px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600}
+
+    /* features */
+    .grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:14px}
+    .feature{background:linear-gradient(180deg,#fff,#fff);padding:18px;border-radius:12px;border:1px solid #f6f7fb;box-shadow:0 6px 18px rgba(15,20,30,0.03)}
+    .feature h4{margin:8px 0;color:#0f1724}
+    .feature p{color:var(--muted);font-size:14px}
+
+    /* stats */
+    .stats{display:flex;gap:18px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+    .stat{background:linear-gradient(90deg,#fff,#fff);padding:18px;border-radius:12px;min-width:150px;text-align:center;border:1px solid #f3f5f9}
+    .stat h3{color:var(--accent);margin:0;font-size:22px}
+    .stat p{margin:4px 0 0;color:var(--muted);font-weight:600}
+
+    /* reviews */
+    .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:22px}
+    .review{background:#fff;padding:18px;border-radius:12px;border:1px solid #f3f5f9;box-shadow:0 6px 20px rgba(20,24,31,0.03)}
+    .review p{color:var(--muted);font-size:14px}
+    .review strong{display:block;margin-top:10px;color:#111827}
+
+    /* faq */
+    .faq{max-width:900px;margin:18px auto 0;text-align:left}
+    .faq-item{background:#fff;border-radius:12px;padding:14px 18px;margin-bottom:10px;border:1px solid #f3f5f9}
+    .faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700}
+    .faq-a{margin-top:8px;color:var(--muted);display:none}
+
+    /* about */
+    .about{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;margin-top:18px}
+    .about p{color:var(--muted);font-size:15px;max-width:900px}
+
+    /* join */
+    .join{background:linear-gradient(90deg,#fff7f3,#fff);padding:22px;border-radius:14px;border:1px solid #fff0ec;margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .join .left{max-width:760px}
+    .join h3{margin:0;color:#0f1724}
+    .join p{margin:8px 0 0;color:var(--muted)}
+
+    /* footer */
+    footer{text-align:center;padding:28px 0;color:var(--muted);font-size:14px;margin-top:38px;border-top:1px solid #f3f5f9}
+
+    /* responsive */
+    @media(min-width:880px){
+      .hero-grid{grid-template-columns:1fr 420px;align-items:center}
+      .about{grid-template-columns:1fr 420px}
     }
 
-    header {
-      background: #1b1b1b;
-      padding: 25px 40px;
-      border-bottom: 3px solid #e50914;
-      text-align: center;
-    }
-
-    header h1 {
-      color: #fff;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(135deg, #1a1a1a, #292929);
-    }
-
-    .hero h2 {
-      font-size: 2.8rem;
-      color: #fff;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      color: #ddd;
-      max-width: 800px;
-      margin: 0 auto 35px auto;
-    }
-
-    .btn {
-      background-color: #e50914;
-      color: #fff;
-      padding: 14px 36px;
-      border-radius: 8px;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: 0.3s;
-      box-shadow: 0 0 10px rgba(229,9,20,0.4);
-    }
-
-    .btn:hover {
-      background-color: #b00710;
-      box-shadow: 0 0 18px rgba(229,9,20,0.6);
-    }
-
-    section {
-      padding: 70px 25px;
-      max-width: 1100px;
-      margin: auto;
-      text-align: center;
-    }
-
-    h3 {
-      color: #e50914;
-      font-size: 2rem;
-      margin-bottom: 25px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: #1e1e1e;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(255,255,255,0.05);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(229,9,20,0.3);
-    }
-
-    .card h4 {
-      color: #fff;
-      margin-bottom: 15px;
-      font-size: 1.3rem;
-    }
-
-    .card p {
-      color: #ccc;
-      font-size: 1rem;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-top: 40px;
-    }
-
-    .stat {
-      background: #1a1a1a;
-      padding: 25px 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(229,9,20,0.25);
-    }
-
-    .stat h2 {
-      color: #e50914;
-      font-size: 2rem;
-      margin-bottom: 5px;
-    }
-
-    .stat p {
-      color: #bbb;
-      font-size: 1rem;
-    }
-
-    .reviews {
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .review {
-      background: #1b1b1b;
-      border-left: 4px solid #e50914;
-      padding: 20px;
-      border-radius: 10px;
-      color: #ddd;
-      text-align: left;
-    }
-
-    .review strong {
-      display: block;
-      margin-top: 10px;
-      color: #fff;
-    }
-
-    .about {
-      background: #1a1a1a;
-      padding: 70px 25px;
-      border-top: 3px solid #e50914;
-    }
-
-    .about p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.05rem;
-      color: #ccc;
-    }
-
-    footer {
-      background: #111;
-      padding: 30px 10px;
-      text-align: center;
-      border-top: 3px solid #e50914;
-      color: #aaa;
-    }
-
-    footer a {
-      color: #e50914;
-      text-decoration: none;
-      margin: 0 6px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    /* animation */
+    .fade-up{opacity:0;transform:translateY(14px);transition:all 600ms cubic-bezier(.2,.9,.3,1)}
+    .in-view{opacity:1;transform:none}
+    .mini{font-size:13px;color:var(--muted)}
+    .badge{display:inline-block;background:linear-gradient(90deg,#fff3f1,#fff7f2);padding:6px 10px;border-radius:999px;border:1px solid #fff0ec;color:var(--accent);font-weight:700}
+    .small{font-size:13px;color:var(--muted)}
   </style>
 </head>
 <body>
+  <!-- header -->
   <header>
-    <h1>Silent Hustle Academy</h1>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">SH</div>
+        <div>
+          <h1>Silent Hustle Academy</h1>
+          <div class="mini">Turn Your Skills into Income — Live Classes by Yahya</div>
+        </div>
+      </div>
+
+      <div>
+        <a class="small" href="#about">About</a>
+        <a class="small" href="#what">What you'll learn</a>
+        <a class="small" href="#reviews">Reviews</a>
+        <a class="cta" href="#" id="waTop">Join ₹99 Trial</a>
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <h2>Learn How to Earn Online</h2>
-    <p>Welcome to <strong>Silent Hustle Academy</strong> — your step-by-step guide to real online earning.  
-      Whether you’re a student, working professional, or beginner, Yahya will teach you practical ways to build an income through <strong>Dropshipping, Affiliate Marketing, and YouTube Growth</strong>.  
-      Start small, learn consistently, and grow your own digital business from home.</p>
-    <a href="#" class="btn">Join ₹99 Trial Now</a>
-  </section>
+  <!-- hero -->
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-card fade-up">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="badge">LIVE</div>
+            <div class="small">Live classes + recorded replays</div>
+          </div>
+          <h2>Turn Your Skills into Income — Live Classes by Yahya</h2>
+          <p>
+            Join practical live classes where Yahya teaches step-by-step methods to start making money online.
+            You’ll learn Dropshipping, Affiliate Marketing, YouTube growth, and how to get real orders on Fiverr — even with no prior experience.
+            Trial access: <strong>₹99</strong>.
+          </p>
 
-  <section>
-    <h3>What You’ll Learn</h3>
-    <div class="cards">
-      <div class="card">
-        <h4>🛍️ Dropshipping</h4>
-        <p>Learn how to start your own online store without buying stock. Yahya will guide you in choosing trending products, building your store, and running ads effectively — the same methods used by top eCommerce sellers.</p>
-      </div>
-      <div class="card">
-        <h4>🤝 Affiliate Marketing</h4>
-        <p>Discover how to earn commissions by promoting genuine products. You’ll learn how affiliate links work, how to find profitable offers, and how to promote them through social media and YouTube organically.</p>
-      </div>
-      <div class="card">
-        <h4>🎥 YouTube Growth</h4>
-        <p>Learn how to create content that grows fast and brings real income. From choosing your niche to monetization, Yahya will share his personal experience and strategies for consistent channel growth.</p>
-      </div>
-    </div>
-  </section>
+          <div class="hero-cta">
+            <!-- Replace YOUR_WA_LINK_HERE with https://wa.me/91XXXXXXXXXX -->
+            <a href="YOUR_WA_LINK_HERE" class="btn-primary" id="joinBtn">Join ₹99 Trial Now</a>
+            <a href="#faq" class="btn-ghost">See FAQ</a>
+          </div>
 
-  <section>
-    <h3>Results & Proof</h3>
-    <div class="stats">
-      <div class="stat">
-        <h2>350+</h2>
-        <p>Students Mentored</p>
-      </div>
-      <div class="stat">
-        <h2>1200+</h2>
-        <p>Orders Completed</p>
-      </div>
-      <div class="stat">
-        <h2>4.9★</h2>
-        <p>Average Student Rating</p>
-      </div>
-    </div>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+            <div class="small">📅 Weekly live class</div>
+            <div class="small">💬 WhatsApp support group</div>
+            <div class="small">🔁 Replay available</div>
+          </div>
+        </div>
 
-    <div class="reviews">
-      <div class="review">
-        “This program changed the way I see online earning. Within weeks, I learned how to start my own store and make real sales!”
-        <strong>— Amaan Khan</strong>
+        <aside class="fade-up" style="padding:12px">
+          <div style="background:linear-gradient(180deg,#fff,#fff6f4);padding:16px;border-radius:12px;border:1px solid #fff0ec;box-shadow:0 10px 28px rgba(255,110,80,0.08)">
+            <h4 style="margin:0 0 6px">Fast facts</h4>
+            <p class="mini" style="margin:0 0 8px">Practical, no-fluff training — join the live session and get step-by-step support.</p>
+            <div class="stats" style="justify-content:flex-start;margin-top:8px">
+              <div class="stat" style="min-width:110px">
+                <h3>500+</h3><p>Students</p>
+              </div>
+              <div class="stat" style="min-width:110px">
+                <h3>1800+</h3><p>Orders Completed</p>
+              </div>
+              <div class="stat" style="min-width:110px">
+                <h3>4.8★</h3><p>Avg Rating</p>
+              </div>
+            </div>
+            <div style="margin-top:12px;font-size:13px;color:var(--muted)">Secure & transparent — trial ₹99 then decide to continue.</div>
+          </div>
+        </aside>
       </div>
-      <div class="review">
-        “I’ve joined many courses before, but Yahya’s guidance is clear and practical. The ₹99 trial gave me real knowledge, not fake promises.”
-        <strong>— Saniya Shaikh</strong>
+    </section>
+
+    <!-- what you'll learn -->
+    <section id="what" class="fade-up">
+      <h3>What you'll learn</h3>
+      <div class="grid-4">
+        <div class="feature">
+          <h4>🛍️ Dropshipping & Store Setup</h4>
+          <p>From product research to store launch — learn how to set up a profitable store, choose suppliers, write listings that convert, and run your first ads or organic funnels with low budget.</p>
+        </div>
+        <div class="feature">
+          <h4>🤝 Affiliate Marketing</h4>
+          <p>Understand affiliate networks, pick high-converting offers, craft content that converts on social platforms, and create simple funnels to turn clicks into commissions.</p>
+        </div>
+        <div class="feature">
+          <h4>🎥 YouTube Growth & Monetization</h4>
+          <p>Find niches, plan video content, optimize titles & thumbnails, use shorts for viral growth, and monetize through ads, sponsorships, and channel affiliate links.</p>
+        </div>
+        <div class="feature">
+          <h4>🧰 Fiverr Orders — Get Real Clients</h4>
+          <p>Build Fiverr gigs that sell: niche your services, write persuasive gig descriptions, use demo samples, price strategically, and promote gigs using social proof & SEO to get your first orders fast.</p>
+        </div>
       </div>
-      <div class="review">
-        “The YouTube growth part was amazing! I’ve gained 2k+ subscribers in just one month using his strategy.”
-        <strong>— Ahmed R.</strong>
+
+      <div style="margin-top:18px;text-align:left">
+        <h4 style="margin-bottom:8px">How we help you get Fiverr orders</h4>
+        <p class="mini" style="margin:0">You’ll get step-by-step guidance: choosing in-demand services, creating convincing gig images & videos, writing message templates for buyers, using Fiverr tags & SEO, cross-promoting on social platforms, and converting buyers into 5-star clients to grow quickly.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="about">
-    <h3>About Yahya</h3>
-    <p>Yahya is a young digital entrepreneur, mentor, and content creator who believes that anyone — with the right mindset and guidance — can build a source of income online.  
-      Through <strong>Silent Hustle Academy</strong>, he has helped hundreds of beginners understand online business models, earn their first income, and build confidence to grow further.  
-      This academy is not about shortcuts — it’s about understanding, learning, and applying the real methods that work.</p>
-  </section>
+    <!-- reviews -->
+    <section id="reviews" class="fade-up">
+      <h3>Proof & Student Reviews</h3>
 
-  <section>
-    <h3>Join the ₹99 Trial Today</h3>
-    <p>Start your journey with a small step. The ₹99 trial gives you direct access to beginner training, mentorship from Yahya, and real guidance to begin earning online.  
-      No big investment, no complex setup — just your phone, internet, and determination.</p>
-    <a href="#" class="btn">Join ₹99 Trial Now</a>
-  </section>
+      <div class="reviews">
+        <div class="review">
+          <p>“I joined the ₹99 trial and in 2 weeks I got my first Fiverr order. Yahya's Fiverr templates and messaging helped me convert the client.”</p>
+          <strong>— Aisha R.</strong>
+        </div>
 
-  <footer>
-    <p>© 2025 Silent Hustle Academy | Founded by Yahya</p>
-    <p>
-      <a href="#">Instagram</a> |
-      <a href="#">YouTube</a> |
-      <a href="#">Contact</a>
-    </p>
-  </footer>
+        <div class="review">
+          <p>“Dropshipping module is simple and actionable. I launched within 10 days and got my first sale in two weeks.”</p>
+          <strong>— Omar K.</strong>
+        </div>
+
+        <div class="review">
+          <p>“YouTube strategy is very practical — the short-form plan gave my channel 2k subscribers in 3 weeks.”</p>
+          <strong>— Faizan M.</strong>
+        </div>
+
+        <div class="review">
+          <p>“Live classes + community support = biggest value. Clear teacher, direct answers.”</p>
+          <strong>— Saniya S.</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- about -->
+    <section id="about" class="about fade-up">
+      <div>
+        <h3>About Yahya</h3>
+        <p>
+          Yahya is a digital entrepreneur who started with small freelance gigs and grew into running successful dropshipping stores and YouTube channels.
+          He trains students with clear, step-by-step methods — emphasizing repeatable systems over get-rich-quick promises.
+          The academy focuses on practical work: launch, test, improve, and scale. Live classes include Q&A, assignments, and demo walkthroughs.
+        </p>
+      </div>
+
+      <div>
+        <div style="background:#fff;padding:18px;border-radius:12px;border:1px solid #fff0ec;box-shadow:var(--shadow)">
+          <h4 style="margin:0 0 8px">What you get in the ₹99 trial</h4>
+          <ul style="color:var(--muted);margin:8px 0 0 18px">
+            <li>Access to one live class + replay</li>
+            <li>Beginner toolkit: checklists, gig templates, product research sheet</li>
+            <li>WhatsApp group support for 7 days</li>
+            <li>Action plan: your first Fiverr gig or store launch</li>
+          </ul>
+          <div style="margin-top:12px">
+            <a class="btn-primary" href="YOUR_WA_LINK_HERE">Get Trial — ₹99</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="fade-up">
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-q">Is it really ₹99 for the trial? <span class="mini">Click</span></div>
+          <div class="faq-a">Yes — the trial is a small paid access to the first live class and starter materials. It helps filter serious learners and gives you instant value before bigger commitments.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Do I get live classes? <span class="mini">Click</span></div>
+          <div class="faq-a">Yes — live weekly classes with Q&amp;A. Replays are provided if you miss the session. Live sessions include walkthroughs and assignments.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Do I need money to start? <span class="mini">Click</span></div>
+          <div class="faq-a">You can begin with very low investment. For Fiverr and affiliate work, mostly time & effort are needed. For paid ads (dropshipping), small budgets are suggested after you validate a product.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Will I get 1-on-1 support? <span class="mini">Click</span></div>
+          <div class="faq-a">Support is provided through the WhatsApp group and live sessions. Advanced 1-on-1 mentoring is available as a paid upgrade after the trial.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How soon can I get Fiverr orders? <span class="mini">Click</span></div>
+          <div class="faq-a">Many students get their first Fiverr order within 1–4 weeks after applying the gig templates, optimizing their profile, and active promotion. We teach fast, repeatable steps to speed this up.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- join -->
+    <section class="fade-up">
+      <div class="join">
+        <div class="left">
+          <h3>Ready to start? Join the ₹99 trial</h3>
+          <p class="small">Get access to the next live class, starter materials, and the WhatsApp support group. Small fee — big value. Replace any doubts with action.</p>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center">
+          <a class="btn-primary" href="YOUR_WA_LINK_HERE" id="joinBottom">Join Trial — ₹99</a>
+          <a class="btn-ghost" href="#faq">See FAQ</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div style="margin-bottom:8px">Made with ❤️ by Yahya</div>
+        <div style="font-size:13px;color:var(--muted)">© 2025 Silent Hustle Academy — For educational purposes only</div>
+        <div style="margin-top:8px">
+          <a href="#" class="small">Instagram</a> |
+          <a href="#" class="small">YouTube</a> |
+          <a href="#" class="small">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Simple scroll in-view
+    const toObserve = document.querySelectorAll('.fade-up');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('in-view');
+      });
+    }, {threshold: 0.12});
+    toObserve.forEach(el=>io.observe(el));
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      item.querySelector('.faq-q').addEventListener('click', ()=>{
+        const ans = item.querySelector('.faq-a');
+        const open = ans.style.display === 'block';
+        document.querySelectorAll('.faq-a').forEach(a=>a.style.display='none');
+        ans.style.display = open ? 'none' : 'block';
+      });
+    });
+
+    // Replaceable: set all WA links easily if needed
+    const wa = 'YOUR_WA_LINK_HERE'; // replace with "https://wa.me/91XXXXXXXXXX"
+    document.querySelectorAll('a[href="YOUR_WA_LINK_HERE"]').forEach(a=>{
+      // leave as is for now; when you replace this string, JS will update anchors if needed
+      a.setAttribute('href', wa);
+    });
+
+    // Simple smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+  </script>
 </body>
 </html>
