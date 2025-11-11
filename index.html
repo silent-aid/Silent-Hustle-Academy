@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -6,253 +6,320 @@
   <title>Silent Hustle Academy — Yahya</title>
   <meta name="description" content="Turn Your Skills into Income — Live Classes by Yahya. Learn Dropshipping, Affiliate Marketing, YouTube growth and how to get Fiverr orders. ₹99 trial." />
   <style>
+    /* ---------- Variables ---------- */
     :root{
       --bg:#ffffff;
-      --muted:#666666;
-      --card:#fbfbfd;
-      --accent:#ff5a3c; /* orange-red */
-      --accent-2:#ffb36b;
-      --shadow: 0 8px 30px rgba(15,20,30,0.06);
+      --text:#0b1320;
+      --muted:#52606d;
+      --card:#fbfdff;
+      --accent:#007bff;    /* bright blue */
+      --accent2:#ffb84d;   /* gold */
+      --pill:#eef6ff;
       --radius:14px;
-      --maxw:1100px;
+      --shadow: 0 10px 30px rgba(12,18,26,0.08);
+      --maxw:1150px;
       --glass: rgba(255,255,255,0.6);
     }
+
+    /* ---------- Base ---------- */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#f7fbff 0%,#ffffff 100%);
-      color:#111827;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,#fbfdff 0%, #fff 100%);
+      color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
+      line-height:1.5;
     }
+    a{color:inherit}
 
-    .container{max-width:var(--maxw);margin:0 auto;padding:28px;}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
 
-    /* header */
-    header{padding:18px 0;position:sticky;top:0;background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid #f0f2f5;}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    /* ---------- Header ---------- */
+    header{position:sticky;top:0;background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);border-bottom:1px solid #f1f5f9;z-index:40}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;
-      box-shadow:var(--shadow);
-    }
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:18px;box-shadow:var(--shadow)}
     .brand h1{font-size:18px;margin:0}
-    nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
-    .cta{background:linear-gradient(90deg,var(--accent),#ff7a55);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(255,90,60,0.18)}
+    .nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{background:linear-gradient(90deg,var(--accent),#2ea0ff);color:white;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:700;box-shadow:0 8px 26px rgba(0,123,255,0.12)}
 
-    /* hero */
-    .hero{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:52px 0}
-    .hero-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
-    .hero-card{background:linear-gradient(180deg,#ffffff,#fffaf8);padding:28px;border-radius:18px;box-shadow:var(--shadow);border:1px solid #fff0ec}
-    .hero h2{font-size:34px;margin:6px 0 8px}
-    .hero p{color:var(--muted);font-size:16px}
-    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff7a55);color:white;padding:12px 20px;border-radius:12px;text-decoration:none;font-weight:700;display:inline-block}
-    .btn-ghost{background:transparent;border:1px solid #eee;padding:10px 16px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600}
+    /* ---------- Hero ---------- */
+    .hero{display:grid;grid-template-columns:1fr;gap:24px;align-items:center;padding:44px 0}
+    .hero-grid{display:grid;gap:22px;grid-template-columns:1fr}
+    .card-hero{background:var(--card);padding:28px;border-radius:18px;box-shadow:var(--shadow);border:1px solid #f6f8fb}
+    .hero h2{font-size:32px;margin:10px 0 8px}
+    .hero p{color:var(--muted);font-size:15px;max-width:900px}
+    .hero-ctas{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#2ea0ff);color:white;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block;box-shadow:0 8px 24px rgba(0,123,255,0.12)}
+    .btn-ghost{background:transparent;border:1px solid #eef3fb;padding:10px 14px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:700}
 
-    /* features */
-    .grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:14px}
-    .feature{background:linear-gradient(180deg,#fff,#fff);padding:18px;border-radius:12px;border:1px solid #f6f7fb;box-shadow:0 6px 18px rgba(15,20,30,0.03)}
-    .feature h4{margin:8px 0;color:#0f1724}
+    /* ---------- Features / Grid ---------- */
+    .grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:14px}
+    .feature{background:#fff;padding:18px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:0 10px 30px rgba(17,24,39,0.03)}
+    .feature h4{margin:6px 0;color:var(--text)}
     .feature p{color:var(--muted);font-size:14px}
 
-    /* stats */
-    .stats{display:flex;gap:18px;justify-content:center;margin-top:22px;flex-wrap:wrap}
-    .stat{background:linear-gradient(90deg,#fff,#fff);padding:18px;border-radius:12px;min-width:150px;text-align:center;border:1px solid #f3f5f9}
-    .stat h3{color:var(--accent);margin:0;font-size:22px}
-    .stat p{margin:4px 0 0;color:var(--muted);font-weight:600}
+    /* ---------- Proof / Orders ---------- */
+    .proof-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:20px}
+    .orders{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+    .order-card{width:260px;background:linear-gradient(180deg,#fff,#fff);border-radius:12px;padding:14px;border:1px solid #f3f6fb;box-shadow:0 10px 28px rgba(12,18,26,0.04)}
+    .mock-screenshot{height:140px;border-radius:8px;background:linear-gradient(180deg,#f8fbff,#f1f7ff);border:1px dashed #e6f0ff;padding:10px;display:flex;flex-direction:column;justify-content:space-between}
+    .mock-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+    .order-meta{font-weight:700;color:var(--text);font-size:15px;margin-top:6px}
 
-    /* reviews */
-    .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:22px}
-    .review{background:#fff;padding:18px;border-radius:12px;border:1px solid #f3f5f9;box-shadow:0 6px 20px rgba(20,24,31,0.03)}
+    /* ---------- Reviews ---------- */
+    .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px}
+    .review{background:#fff;padding:16px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:0 10px 24px rgba(12,18,26,0.03)}
     .review p{color:var(--muted);font-size:14px}
-    .review strong{display:block;margin-top:10px;color:#111827}
+    .review strong{display:block;margin-top:10px;color:var(--text)}
 
-    /* faq */
-    .faq{max-width:900px;margin:18px auto 0;text-align:left}
-    .faq-item{background:#fff;border-radius:12px;padding:14px 18px;margin-bottom:10px;border:1px solid #f3f5f9}
+    /* ---------- About / Join ---------- */
+    .about{display:grid;gap:18px;margin-top:18px}
+    .about .desc{color:var(--muted);font-size:15px;max-width:930px}
+    .join{background:linear-gradient(90deg,#fffaf2,#fff);padding:18px;border-radius:12px;border:1px solid #fff1de;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .join h3{margin:0;color:var(--text)}
+    .join p{margin:8px 0 0;color:var(--muted);font-size:14px}
+
+    /* ---------- FAQ ---------- */
+    .faq{max-width:980px;margin:18px auto 0;text-align:left}
+    .faq-item{background:#fff;border-radius:12px;padding:14px 18px;margin-bottom:10px;border:1px solid #f3f6fb}
     .faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700}
-    .faq-a{margin-top:8px;color:var(--muted);display:none}
+    .faq-a{margin-top:8px;color:var(--muted);display:none;font-size:14px}
 
-    /* about */
-    .about{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;margin-top:18px}
-    .about p{color:var(--muted);font-size:15px;max-width:900px}
+    /* ---------- Footer ---------- */
+    footer{text-align:center;padding:28px 0;color:var(--muted);font-size:14px;margin-top:28px;border-top:1px solid #f3f6fb}
 
-    /* join */
-    .join{background:linear-gradient(90deg,#fff7f3,#fff);padding:22px;border-radius:14px;border:1px solid #fff0ec;margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .join .left{max-width:760px}
-    .join h3{margin:0;color:#0f1724}
-    .join p{margin:8px 0 0;color:var(--muted)}
-
-    /* footer */
-    footer{text-align:center;padding:28px 0;color:var(--muted);font-size:14px;margin-top:38px;border-top:1px solid #f3f5f9}
-
-    /* responsive */
-    @media(min-width:880px){
-      .hero-grid{grid-template-columns:1fr 420px;align-items:center}
-      .about{grid-template-columns:1fr 420px}
+    /* ---------- Responsive ---------- */
+    @media(min-width:960px){
+      .hero-grid{grid-template-columns:1fr 380px}
+      .about{grid-template-columns:1fr 360px}
+      .proof-wrap{grid-template-columns:1fr 360px}
     }
 
-    /* animation */
-    .fade-up{opacity:0;transform:translateY(14px);transition:all 600ms cubic-bezier(.2,.9,.3,1)}
+    /* ---------- Animations ---------- */
+    .fade-up{opacity:0;transform:translateY(12px);transition:all 600ms cubic-bezier(.2,.9,.3,1)}
     .in-view{opacity:1;transform:none}
-    .mini{font-size:13px;color:var(--muted)}
-    .badge{display:inline-block;background:linear-gradient(90deg,#fff3f1,#fff7f2);padding:6px 10px;border-radius:999px;border:1px solid #fff0ec;color:var(--accent);font-weight:700}
     .small{font-size:13px;color:var(--muted)}
   </style>
 </head>
 <body>
-  <!-- header -->
   <header>
     <div class="container nav">
       <div class="brand">
         <div class="logo">SH</div>
         <div>
           <h1>Silent Hustle Academy</h1>
-          <div class="mini">Turn Your Skills into Income — Live Classes by Yahya</div>
+          <div class="small">Turn Your Skills into Income — Live Classes by Yahya</div>
         </div>
       </div>
 
       <div>
         <a class="small" href="#about">About</a>
         <a class="small" href="#what">What you'll learn</a>
-        <a class="small" href="#reviews">Reviews</a>
-        <a class="cta" href="#" id="waTop">Join ₹99 Trial</a>
+        <a class="small" href="#proof">Proof</a>
+        <a class="cta" href="https://wa.me/91XXXXXXXXXX" id="topJoin">Join ₹99 Trial</a>
       </div>
     </div>
   </header>
 
-  <!-- hero -->
   <main class="container">
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-grid">
-        <div class="hero-card fade-up">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div class="badge">LIVE</div>
-            <div class="small">Live classes + recorded replays</div>
+        <div class="card-hero fade-up">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="padding:6px 10px;border-radius:999px;background:var(--pill);color:var(--accent);font-weight:800">LIVE</div>
+            <div class="small">Weekly live class + replays • Practical assignments</div>
           </div>
+
           <h2>Turn Your Skills into Income — Live Classes by Yahya</h2>
-          <p>
-            Join practical live classes where Yahya teaches step-by-step methods to start making money online.
-            You’ll learn Dropshipping, Affiliate Marketing, YouTube growth, and how to get real orders on Fiverr — even with no prior experience.
-            Trial access: <strong>₹99</strong>.
-          </p>
+          <p>Join practical live sessions where Yahya teaches step-by-step processes to start earning online. Learn Dropshipping, Affiliate Marketing, YouTube growth, and how to get Fiverr orders — even if you’re a beginner. Trial access: <strong>₹99</strong>.</p>
 
-          <div class="hero-cta">
-            <!-- Replace YOUR_WA_LINK_HERE with https://wa.me/91XXXXXXXXXX -->
-            <a href="YOUR_WA_LINK_HERE" class="btn-primary" id="joinBtn">Join ₹99 Trial Now</a>
-            <a href="#faq" class="btn-ghost">See FAQ</a>
+          <div class="hero-ctas">
+            <a class="btn-primary" href="https://wa.me/91XXXXXXXXXX" id="joinBtnTop">Start ₹99 Trial</a>
+            <a class="btn-ghost" href="#faq">See FAQ</a>
+            <div style="align-self:center;color:var(--muted);font-weight:700;margin-left:8px">Secure payment on WhatsApp</div>
           </div>
 
-          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-            <div class="small">📅 Weekly live class</div>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <div class="small">📌 Live Zoom demonstrations</div>
             <div class="small">💬 WhatsApp support group</div>
             <div class="small">🔁 Replay available</div>
           </div>
         </div>
 
-        <aside class="fade-up" style="padding:12px">
-          <div style="background:linear-gradient(180deg,#fff,#fff6f4);padding:16px;border-radius:12px;border:1px solid #fff0ec;box-shadow:0 10px 28px rgba(255,110,80,0.08)">
-            <h4 style="margin:0 0 6px">Fast facts</h4>
-            <p class="mini" style="margin:0 0 8px">Practical, no-fluff training — join the live session and get step-by-step support.</p>
-            <div class="stats" style="justify-content:flex-start;margin-top:8px">
-              <div class="stat" style="min-width:110px">
-                <h3>500+</h3><p>Students</p>
+        <aside class="fade-up" style="padding:6px">
+          <div style="background:linear-gradient(180deg,#fff,#fff7ee);padding:16px;border-radius:12px;border:1px solid #fff1de;box-shadow:var(--shadow)">
+            <h4 style="margin:0 0 6px">Quick facts</h4>
+            <p class="small" style="margin:0 0 10px">Actionable lessons, Fiverr templates, gig message scripts, store checklists & YouTube short plans.</p>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+              <div style="padding:8px 12px;border-radius:10px;background:#fff;border:1px solid #f5f7fb;min-width:96px;text-align:center">
+                <div style="font-weight:800;color:var(--accent)">500+</div>
+                <div class="small">Students</div>
               </div>
-              <div class="stat" style="min-width:110px">
-                <h3>1800+</h3><p>Orders Completed</p>
+
+              <div style="padding:8px 12px;border-radius:10px;background:#fff;border:1px solid #f5f7fb;min-width:96px;text-align:center">
+                <div style="font-weight:800;color:var(--accent)">1,800+</div>
+                <div class="small">Orders Completed</div>
               </div>
-              <div class="stat" style="min-width:110px">
-                <h3>4.8★</h3><p>Avg Rating</p>
+
+              <div style="padding:8px 12px;border-radius:10px;background:#fff;border:1px solid #f5f7fb;min-width:96px;text-align:center">
+                <div style="font-weight:800;color:var(--accent)">4.8★</div>
+                <div class="small">Avg Rating</div>
               </div>
             </div>
-            <div style="margin-top:12px;font-size:13px;color:var(--muted)">Secure & transparent — trial ₹99 then decide to continue.</div>
+
+            <div style="margin-top:12px;font-size:13px;color:var(--muted)">Trial ₹99 includes one live class, templates, checklist, and 7 days WhatsApp support.</div>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- what you'll learn -->
+    <!-- WHAT YOU'LL LEARN -->
     <section id="what" class="fade-up">
       <h3>What you'll learn</h3>
       <div class="grid-4">
         <div class="feature">
           <h4>🛍️ Dropshipping & Store Setup</h4>
-          <p>From product research to store launch — learn how to set up a profitable store, choose suppliers, write listings that convert, and run your first ads or organic funnels with low budget.</p>
+          <p>Product research, supplier selection, store setup, listing that converts, and simple paid/organic strategies to get your first sale with a small budget.</p>
         </div>
+
         <div class="feature">
           <h4>🤝 Affiliate Marketing</h4>
-          <p>Understand affiliate networks, pick high-converting offers, craft content that converts on social platforms, and create simple funnels to turn clicks into commissions.</p>
+          <p>Choose high-converting offers, structure your promotions, create simple funnels, and earn commissions with low-cost traffic and organic reach.</p>
         </div>
+
         <div class="feature">
           <h4>🎥 YouTube Growth & Monetization</h4>
-          <p>Find niches, plan video content, optimize titles & thumbnails, use shorts for viral growth, and monetize through ads, sponsorships, and channel affiliate links.</p>
+          <p>Niche selection, video planning, thumbnails & titles, shorts strategy for fast growth, and monetization routes: ads, sponsorships, and affiliate links.</p>
         </div>
+
         <div class="feature">
-          <h4>🧰 Fiverr Orders — Get Real Clients</h4>
-          <p>Build Fiverr gigs that sell: niche your services, write persuasive gig descriptions, use demo samples, price strategically, and promote gigs using social proof & SEO to get your first orders fast.</p>
+          <h4>🧰 Fiverr Orders — Real Clients</h4>
+          <p>Create Fiverr gigs that sell: niche, persuasive descriptions, demo samples, gig SEO, buyer messaging templates, and cross-promotion to drive orders fast.</p>
         </div>
       </div>
 
-      <div style="margin-top:18px;text-align:left">
-        <h4 style="margin-bottom:8px">How we help you get Fiverr orders</h4>
-        <p class="mini" style="margin:0">You’ll get step-by-step guidance: choosing in-demand services, creating convincing gig images & videos, writing message templates for buyers, using Fiverr tags & SEO, cross-promoting on social platforms, and converting buyers into 5-star clients to grow quickly.</p>
+      <div style="margin-top:14px">
+        <h4 style="margin:6px 0">How we help you get Fiverr orders</h4>
+        <p class="small" style="margin:0">Step-by-step gig setup, optimized gig images and video, message templates that close buyers, Fiverr SEO tags, and social promotion methods — plus quick scripts to deliver 5-star service and get repeat clients.</p>
       </div>
     </section>
 
-    <!-- reviews -->
-    <section id="reviews" class="fade-up">
-      <h3>Proof & Student Reviews</h3>
+    <!-- PROOF & ORDERS -->
+    <section id="proof" class="fade-up proof-wrap">
+      <div>
+        <h3>Fiverr Orders & Proofs</h3>
+        <p class="small">Below are realistic order mockups and proof cards you can replace with your real screenshots later. Each card shows the exact fields buyers look for (order id, buyer name, price & date).</p>
 
-      <div class="reviews">
-        <div class="review">
-          <p>“I joined the ₹99 trial and in 2 weeks I got my first Fiverr order. Yahya's Fiverr templates and messaging helped me convert the client.”</p>
+        <div class="orders" aria-hidden="true">
+          <!-- Order 1 -->
+          <div class="order-card">
+            <div class="mock-screenshot">
+              <div style="font-weight:800;color:#0f1724">Order #FH-8421</div>
+              <div class="mock-row"><span class="small">Buyer:</span><span class="small">Lina P.</span></div>
+              <div class="mock-row"><span class="small">Service:</span><span class="small">YouTube Thumbnails</span></div>
+              <div class="order-meta">₹1,200 • Delivered • 03 Sep 2025</div>
+            </div>
+          </div>
+
+          <!-- Order 2 -->
+          <div class="order-card">
+            <div class="mock-screenshot">
+              <div style="font-weight:800;color:#0f1724">Order #DS-1907</div>
+              <div class="mock-row"><span class="small">Buyer:</span><span class="small">Rahul S.</span></div>
+              <div class="mock-row"><span class="small">Service:</span><span class="small">Product Listing</span></div>
+              <div class="order-meta">₹2,500 • In Progress • 26 Oct 2025</div>
+            </div>
+          </div>
+
+          <!-- Order 3 -->
+          <div class="order-card">
+            <div class="mock-screenshot">
+              <div style="font-weight:800;color:#0f1724">Order #AF-3312</div>
+              <div class="mock-row"><span class="small">Buyer:</span><span class="small">Sara M.</span></div>
+              <div class="mock-row"><span class="small">Service:</span><span class="small">Affiliate Review</span></div>
+              <div class="order-meta">₹900 • Delivered • 11 Oct 2025</div>
+            </div>
+          </div>
+
+          <!-- Order 4 -->
+          <div class="order-card">
+            <div class="mock-screenshot">
+              <div style="font-weight:800;color:#0f1724">Order #SP-4809</div>
+              <div class="mock-row"><span class="small">Buyer:</span><span class="small">Aman Q.</span></div>
+              <div class="mock-row"><span class="small">Service:</span><span class="small">Store Setup</span></div>
+              <div class="order-meta">₹3,450 • Delivered • 04 Nov 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: short tips -->
+      <aside style="padding:8px">
+        <div style="background:linear-gradient(180deg,#fff,#fff7ee);padding:14px;border-radius:12px;border:1px solid #fff1de;box-shadow:var(--shadow)">
+          <h4 style="margin:0 0 8px">Quick Fiverr tips</h4>
+          <ul style="color:var(--muted);margin:0 0 0 16px">
+            <li>Pick 1–2 micro-niches (high demand, low competition)</li>
+            <li>Create 3 demo samples in your gig gallery</li>
+            <li>Use clear pricing tiers (Basic / Standard / Premium)</li>
+            <li>Send quick, polite buyer messages — convert interest to order</li>
+            <li>Cross-promote gigs on YouTube shorts & social</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="fade-up">
+      <h3>Student Reviews</h3>
+      <div class="reviews" role="list">
+        <div class="review" role="listitem">
+          <p>“I joined the ₹99 trial and got my first Fiverr order in 10 days. The gig templates and message scripts were gold.”</p>
           <strong>— Aisha R.</strong>
         </div>
 
         <div class="review">
-          <p>“Dropshipping module is simple and actionable. I launched within 10 days and got my first sale in two weeks.”</p>
+          <p>“Dropshipping module is practical — launched a store and made my first sale within two weeks.”</p>
           <strong>— Omar K.</strong>
         </div>
 
         <div class="review">
-          <p>“YouTube strategy is very practical — the short-form plan gave my channel 2k subscribers in 3 weeks.”</p>
+          <p>“Yahya explains things simply. The YouTube short strategy gave my channel a real boost.”</p>
           <strong>— Faizan M.</strong>
         </div>
 
         <div class="review">
-          <p>“Live classes + community support = biggest value. Clear teacher, direct answers.”</p>
+          <p>“Live classes and the WhatsApp group kept me focused. Real mentorship, no fake promises.”</p>
           <strong>— Saniya S.</strong>
         </div>
       </div>
     </section>
 
-    <!-- about -->
+    <!-- ABOUT + JOIN -->
     <section id="about" class="about fade-up">
       <div>
         <h3>About Yahya</h3>
-        <p>
-          Yahya is a digital entrepreneur who started with small freelance gigs and grew into running successful dropshipping stores and YouTube channels.
-          He trains students with clear, step-by-step methods — emphasizing repeatable systems over get-rich-quick promises.
-          The academy focuses on practical work: launch, test, improve, and scale. Live classes include Q&A, assignments, and demo walkthroughs.
+        <p class="desc">
+          Yahya is a digital entrepreneur and mentor who started with freelance gigs and built dropshipping stores and monetized YouTube channels. He focuses on repeatable systems — product research, gig templates, content strategies, and conversion-focused messaging.
+          The training is action-first: live walkthroughs, assignments, and templates you can use immediately to start earning.
         </p>
       </div>
 
       <div>
-        <div style="background:#fff;padding:18px;border-radius:12px;border:1px solid #fff0ec;box-shadow:var(--shadow)">
+        <div style="background:#fff;padding:16px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:var(--shadow)">
           <h4 style="margin:0 0 8px">What you get in the ₹99 trial</h4>
           <ul style="color:var(--muted);margin:8px 0 0 18px">
-            <li>Access to one live class + replay</li>
-            <li>Beginner toolkit: checklists, gig templates, product research sheet</li>
+            <li>Access to the next live class + replay</li>
+            <li>Beginner toolkit: checklists, Fiverr gig templates, product research sheet</li>
             <li>WhatsApp group support for 7 days</li>
-            <li>Action plan: your first Fiverr gig or store launch</li>
+            <li>Action plan to get your first Fiverr order or first store sale</li>
           </ul>
           <div style="margin-top:12px">
-            <a class="btn-primary" href="YOUR_WA_LINK_HERE">Get Trial — ₹99</a>
+            <a class="btn-primary" href="https://wa.me/91XXXXXXXXXX" id="joinBtnMiddle">Get ₹99 Trial</a>
           </div>
         </div>
       </div>
@@ -263,42 +330,42 @@
       <h3>Frequently Asked Questions</h3>
       <div class="faq">
         <div class="faq-item">
-          <div class="faq-q">Is it really ₹99 for the trial? <span class="mini">Click</span></div>
-          <div class="faq-a">Yes — the trial is a small paid access to the first live class and starter materials. It helps filter serious learners and gives you instant value before bigger commitments.</div>
+          <div class="faq-q">Is the trial really ₹99? <span class="small">Click to open</span></div>
+          <div class="faq-a">Yes — the trial is a small paid access to one live class, templates, and 7 days WhatsApp support. It helps filter serious learners and gives instant value.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">Do I get live classes? <span class="mini">Click</span></div>
-          <div class="faq-a">Yes — live weekly classes with Q&amp;A. Replays are provided if you miss the session. Live sessions include walkthroughs and assignments.</div>
+          <div class="faq-q">When are classes held? <span class="small">Click to open</span></div>
+          <div class="faq-a">Weekly live classes (evening sessions). Replays are provided if you miss any session.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">Do I need money to start? <span class="mini">Click</span></div>
-          <div class="faq-a">You can begin with very low investment. For Fiverr and affiliate work, mostly time & effort are needed. For paid ads (dropshipping), small budgets are suggested after you validate a product.</div>
+          <div class="faq-q">Do I need investment to start? <span class="small">Click</span></div>
+          <div class="faq-a">You can begin with very low investment. Fiverr and affiliate work require mainly time & effort. Dropshipping may need a small ad budget after you validate a product.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">Will I get 1-on-1 support? <span class="mini">Click</span></div>
-          <div class="faq-a">Support is provided through the WhatsApp group and live sessions. Advanced 1-on-1 mentoring is available as a paid upgrade after the trial.</div>
+          <div class="faq-q">Will I get 1-on-1 help? <span class="small">Click</span></div>
+          <div class="faq-a">Support is via the WhatsApp group + live sessions. Advanced 1-on-1 coaching is an optional paid upgrade after the trial.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">How soon can I get Fiverr orders? <span class="mini">Click</span></div>
-          <div class="faq-a">Many students get their first Fiverr order within 1–4 weeks after applying the gig templates, optimizing their profile, and active promotion. We teach fast, repeatable steps to speed this up.</div>
+          <div class="faq-q">How soon can I get Fiverr orders? <span class="small">Click</span></div>
+          <div class="faq-a">Many students get first orders in 1–4 weeks after applying gig templates, optimizing profile, and active promotion. We teach repeatable steps to speed this up.</div>
         </div>
       </div>
     </section>
 
-    <!-- join -->
+    <!-- JOIN -->
     <section class="fade-up">
       <div class="join">
-        <div class="left">
+        <div>
           <h3>Ready to start? Join the ₹99 trial</h3>
-          <p class="small">Get access to the next live class, starter materials, and the WhatsApp support group. Small fee — big value. Replace any doubts with action.</p>
+          <p class="small">Get live class access, templates and community support — take a small step that can change how you earn online.</p>
         </div>
 
         <div style="display:flex;gap:10px;align-items:center">
-          <a class="btn-primary" href="YOUR_WA_LINK_HERE" id="joinBottom">Join Trial — ₹99</a>
+          <a class="btn-primary" href="https://wa.me/91XXXXXXXXXX" id="joinBtnBottom">Join Trial — ₹99</a>
           <a class="btn-ghost" href="#faq">See FAQ</a>
         </div>
       </div>
@@ -318,38 +385,41 @@
   </main>
 
   <script>
-    // Simple scroll in-view
-    const toObserve = document.querySelectorAll('.fade-up');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) e.target.classList.add('in-view');
-      });
-    }, {threshold: 0.12});
-    toObserve.forEach(el=>io.observe(el));
+    // Simple intersection animation
+    document.querySelectorAll('.fade-up').forEach(el=>{
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting) entry.target.classList.add('in-view');
+        });
+      }, {threshold: 0.12});
+      io.observe(el);
+    });
 
     // FAQ toggle
     document.querySelectorAll('.faq-item').forEach(item=>{
       item.querySelector('.faq-q').addEventListener('click', ()=>{
-        const ans = item.querySelector('.faq-a');
-        const open = ans.style.display === 'block';
-        document.querySelectorAll('.faq-a').forEach(a=>a.style.display='none');
-        ans.style.display = open ? 'none' : 'block';
+        const a = item.querySelector('.faq-a');
+        const was = a.style.display === 'block';
+        document.querySelectorAll('.faq-a').forEach(x=>x.style.display='none');
+        a.style.display = was ? 'none' : 'block';
       });
     });
 
-    // Replaceable: set all WA links easily if needed
-    const wa = 'YOUR_WA_LINK_HERE'; // replace with "https://wa.me/91XXXXXXXXXX"
-    document.querySelectorAll('a[href="YOUR_WA_LINK_HERE"]').forEach(a=>{
-      // leave as is for now; when you replace this string, JS will update anchors if needed
-      a.setAttribute('href', wa);
-    });
-
-    // Simple smooth scroll for internal links
+    // Smooth scroll for internal links
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', (e)=>{
-        const target = document.querySelector(a.getAttribute('href'));
-        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+        const sel = document.querySelector(a.getAttribute('href'));
+        if(sel){ e.preventDefault(); sel.scrollIntoView({behavior:'smooth',block:'start'}); }
       });
+    });
+
+    // Placeholder WA link helper:
+    // Replace '91XXXXXXXXXX' with your full number (no +). Example: '919876543210'
+    const WA_PLACEHOLDER = 'https://wa.me/91XXXXXXXXXX';
+    document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a=>{
+      if(a.href === WA_PLACEHOLDER){
+        // leave as-is so you can replace quickly in code; we don't auto-change anything
+      }
     });
   </script>
 </body>
