@@ -1,216 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Silent Hustle Academy — Yahya</title>
-<meta name="description" content="Turn Your Skills into Income — Live Classes by Yahya. Learn Dropshipping, Affiliate Marketing, Fiverr orders and YouTube growth. ₹99 trial." />
-<style>
-:root{
-  --bg:#ffffff;
-  --text:#0b1320;
-  --muted:#52606d;
-  --card:#ffffff;
-  --primary:#007bff;
-  --accent:#ffd700;
-  --radius:14px;
-  --shadow:0 10px 30px rgba(12,18,26,0.06);
-  --maxw:1100px;
-  --gap:18px;
-  --focus:3px solid rgba(0,123,255,0.18);
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Hustle Academy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
-*{box-sizing:border-box;scroll-behavior:smooth;}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter,"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-  background:linear-gradient(180deg,#fbfdff 0%,#fff 100%);
-  color:var(--text);
-  line-height:1.45;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
+    body {
+      background-color: #000;
+      color: #fff;
+    }
 
-/* Announcement Bar */
-.announce{
-  background:linear-gradient(90deg,#007bff,#2ea0ff);
-  color:#fff;
-  text-align:center;
-  padding:8px;
-  font-weight:600;
-  font-size:14px;
-  animation:slide 25s linear infinite;
-}
-@keyframes slide {
-  0%{transform:translateX(100%)}
-  100%{transform:translateX(-100%)}
-}
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 60px;
+      background: #000;
+      border-bottom: 2px solid #ff0000;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-/* Header */
-header{position:sticky;top:0;background:rgba(255,255,255,0.94);backdrop-filter:blur(8px);border-bottom:1px solid #eef2f7;z-index:80}
-.container{max-width:var(--maxw);margin:0 auto;padding:20px}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{
-  width:44px;height:44px;border-radius:10px;
-  background:linear-gradient(135deg,var(--primary),#2ea0ff);
-  display:flex;align-items:center;justify-content:center;
-  color:white;font-weight:800;font-size:16px;box-shadow:var(--shadow);
-}
-.brand h1{font-size:16px;margin:0}
-nav.desktop{display:none}
-.nav-links{display:flex;gap:12px;align-items:center}
-.nav-links a{font-weight:700;color:var(--muted);text-decoration:none;padding:8px;border-radius:8px;transition:.25s}
-.nav-links a:hover{color:var(--primary)}
-.cta{
-  background:linear-gradient(90deg,var(--primary),#2ea0ff);
-  color:white;padding:10px 14px;border-radius:10px;
-  text-decoration:none;font-weight:800;
-  box-shadow:0 8px 26px rgba(0,123,255,0.12);
-}
+    header img {
+      height: 70px;
+    }
 
-/* Hero */
-.hero{padding:28px 0;display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
-.hero-card{background:var(--card);padding:22px;border-radius:16px;box-shadow:var(--shadow);border:1px solid #f6f8fb}
-.hero h2{font-size:28px;margin:6px 0 8px}
-.hero p{color:var(--muted);font-size:15px;max-width:780px}
-.btn-primary{background:linear-gradient(90deg,var(--primary),#2ea0ff);color:white;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block;transition:.25s}
-.btn-primary:hover{transform:translateY(-2px)}
-.btn-ghost{background:transparent;border:1px solid #eef3fb;padding:10px 14px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:700;transition:.25s}
-.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+    nav a {
+      text-decoration: none;
+      color: white;
+      margin: 0 18px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
 
-/* Floating Join Button */
-.floating-btn{
-  position:fixed;bottom:18px;right:18px;
-  background:linear-gradient(90deg,var(--primary),#2ea0ff);
-  color:#fff;padding:12px 18px;border-radius:999px;
-  font-weight:700;box-shadow:0 8px 20px rgba(0,123,255,0.25);
-  text-decoration:none;z-index:99;display:none;
-  animation:floatIn .5s ease forwards;
-}
-@keyframes floatIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    nav a:hover {
+      color: #ff3c3c;
+    }
 
-/* Footer */
-footer{
-  background:#f9fbff;
-  text-align:center;
-  padding:20px 0;
-  color:var(--muted);
-  font-size:14px;
-  border-top:1px solid #eef2f7;
-}
-footer .socials{
-  display:flex;justify-content:center;gap:14px;margin:10px 0;
-}
-footer .socials a{
-  color:var(--primary);text-decoration:none;font-size:18px;
-  transition:.3s;
-}
-footer .socials a:hover{color:#0056d6}
+    .hero {
+      text-align: center;
+      padding: 130px 20px;
+      background: radial-gradient(circle at center, #111 0%, #000 100%);
+    }
 
-/* Responsive */
-@media(min-width:880px){
-  .hero{grid-template-columns:1fr 360px}
-  nav.desktop{display:block}
-  nav.mobile{display:none}
-}
-</style>
+    .hero h1 {
+      font-size: 3.5rem;
+      color: #ff3c3c;
+      letter-spacing: 2px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      color: #ddd;
+    }
+
+    .cta-btn {
+      background: linear-gradient(90deg, #ff0000, #b30000);
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 40px;
+      font-size: 1rem;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #ff3333, #ff0000);
+    }
+
+    section {
+      padding: 80px 60px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #ff3c3c;
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .feature-box {
+      background: #111;
+      border: 1px solid #222;
+      padding: 30px;
+      border-radius: 14px;
+      transition: transform 0.3s, border 0.3s;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-6px);
+      border: 1px solid #ff3c3c;
+    }
+
+    footer {
+      background: #111;
+      padding: 40px 60px;
+      border-top: 2px solid #ff0000;
+      text-align: center;
+      color: #bbb;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ff3c3c;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 25px;
+        flex-direction: column;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Announcement -->
-<div class="announce">🚀 Enroll now — Next Live Class starts Sunday 7 PM | Limited ₹99 seats available!</div>
-
-<header>
-  <div class="container nav">
-    <div class="brand">
-      <div class="logo">SH</div>
-      <div>
-        <h1>Silent Hustle Academy</h1>
-        <div style="font-size:12px;color:var(--muted)">Turn Your Skills into Income — Live Classes by Yahya</div>
-      </div>
-    </div>
-
-    <nav class="desktop">
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#what">Learn</a>
-        <a href="#proof">Proof</a>
-        <a href="#faq">FAQ</a>
-        <a class="cta" href="https://wa.me/919121783895">Join ₹99 Trial</a>
-      </div>
+  <header>
+    <img src="Silent Hustle Academy Logo.png" alt="Silent Hustle Academy Logo" />
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Courses</a>
+      <a href="#">Mentorship</a>
+      <a href="#">Community</a>
+      <a href="#">Contact</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main class="container">
-  <!-- HERO -->
   <section class="hero">
-    <div class="hero-card">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-        <div style="background:linear-gradient(90deg,#fff7e6,#fff);padding:6px 10px;border-radius:999px;border:1px solid #fff1de;font-weight:800;color:var(--primary)">LIVE</div>
-        <div class="muted" style="font-weight:700">Weekly live class • Replays available</div>
-      </div>
-
-      <h2>Turn Your Skills into Income — Live Classes by Yahya</h2>
-      <p>Join step-by-step sessions to start earning online. Topics: Dropshipping, Affiliate Marketing, Fiverr orders & YouTube growth — practical, beginner-friendly.</p>
-
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
-        <a class="btn-primary" href="https://wa.me/919121783895">Join ₹99 Trial — WhatsApp</a>
-        <a class="btn-ghost" href="#faq">See FAQ</a>
-      </div>
-    </div>
-    <aside style="padding:6px">
-      <div style="background:linear-gradient(180deg,#fff,#fff7ee);padding:14px;border-radius:12px;border:1px solid #fff1de;box-shadow:var(--shadow)">
-        <h4>Quick facts</h4>
-        <p class="muted">Includes Fiverr templates, product sheets & YouTube plans.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <div style="padding:8px 12px;border-radius:10px;background:#fff;border:1px solid #f5f7fb;text-align:center;min-width:86px">
-            <div style="font-weight:800;color:var(--primary)">500+</div>
-            <div class="muted" style="font-size:13px">Students</div>
-          </div>
-          <div style="padding:8px 12px;border-radius:10px;background:#fff;border:1px solid #f5f7fb;text-align:center;min-width:86px">
-            <div style="font-weight:800;color:var(--primary)">4.8★</div>
-            <div class="muted" style="font-size:13px">Rating</div>
-          </div>
-        </div>
-      </div>
-    </aside>
+    <h1>SILENT HUSTLE ACADEMY</h1>
+    <p>Where dedication meets transformation — learn, build, and grow in silence.</p>
+    <button class="cta-btn">Join the Movement</button>
   </section>
 
-  <!-- (KEEP YOUR EXISTING SECTIONS HERE) -->
-  <!-- ABOUT, WHAT YOU’LL LEARN, PROOF, REVIEWS, FAQ, JOIN etc. -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Silent Hustle Academy empowers individuals to grow with discipline, mindset, and skill — creating leaders who hustle silently and let results speak.</p>
+  </section>
 
-</main>
+  <section id="features">
+    <h2>Why Join Us?</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>🔥 Real Skills</h3>
+        <p>Get hands-on experience with practical, real-world learning modules.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🧠 Mindset Training</h3>
+        <p>Develop resilience, focus, and long-term growth habits.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🤝 Community</h3>
+        <p>Join a powerful network of hustlers who move with purpose and silence.</p>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <div class="socials">
-    <a href="https://www.instagram.com/silent_hustle_academy" aria-label="Instagram">📸</a>
-    <a href="https://www.youtube.com/@silent_yahya" aria-label="YouTube">▶️</a>
-    <a href="https://wa.me/919121783895" aria-label="WhatsApp">💬</a>
-  </div>
-  © 2025 Silent Hustle Academy — Built by Yahya
-</footer>
+  <footer>
+    <p>© 2025 Silent Hustle Academy. All Rights Reserved.</p>
+    <p>
+      <a href="#">Instagram</a> |
+      <a href="#">YouTube</a> |
+      <a href="#">Twitter</a>
+    </p>
+  </footer>
 
-<!-- Floating Join Button -->
-<a href="https://wa.me/919121783895" class="floating-btn" id="floatJoin">Join ₹99 Trial</a>
-
-<script>
-// Floating button visibility
-window.addEventListener('scroll',()=>{
-  const btn=document.getElementById('floatJoin');
-  if(window.scrollY>500){btn.style.display='block';}else{btn.style.display='none';}
-});
-
-// Simple fade-in on scroll
-const fades=document.querySelectorAll('.hero,section');
-window.addEventListener('scroll',()=>{
-  fades.forEach(el=>{
-    const rect=el.getBoundingClientRect();
-    if(rect.top<window.innerHeight-80){el.style.opacity='1';el.style.transform='none';}
-  });
-});
-</script>
 </body>
 </html>
