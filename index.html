@@ -1,189 +1,475 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Silent Hustle Academy — Yahya</title>
-<meta name="description" content="Turn Your Skills into Income — Live Classes by Yahya. Learn Dropshipping, Affiliate Marketing, Fiverr orders and YouTube growth. ₹99 trial." />
-<style>
-:root{
-  --bg:#ffffff; --text:#0b1320; --muted:#52606d; --card:#ffffff;
-  --primary:#007bff; --accent:#ffd700; --radius:14px;
-  --shadow:0 10px 30px rgba(12,18,26,0.06); --maxw:1100px;
-  --gap:18px; --focus:3px solid rgba(0,123,255,0.18);
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;font-family:Inter,"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-  background:linear-gradient(180deg,#fbfdff 0%,#fff 100%);
-  color:var(--text);line-height:1.45;
-}
-a{color:inherit;text-decoration:none}
-.container{max-width:var(--maxw);margin:0 auto;padding:20px}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Silent Hustle Academy — Yahya</title>
+  <meta name="description" content="Turn Your Skills into Income — Live Classes by Yahya. Learn Dropshipping, Affiliate Marketing, Fiverr orders and YouTube growth. ₹99 trial." />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0b1320;
+      --muted:#52606d;
+      --card:#ffffff;
+      --primary:#007bff;
+      --accent:#ffd700;
+      --radius:14px;
+      --shadow: 0 10px 30px rgba(12,18,26,0.06);
+      --maxw:1100px;
+      --gap:18px;
+      --focus: 3px solid rgba(0,123,255,0.18);
+    }
 
-/* Header */
-header{position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);
-border-bottom:1px solid #eef2f7;z-index:80}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#2ea0ff);
-display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:16px;box-shadow:var(--shadow)}
-.brand h1{font-size:16px;margin:0}
-nav.desktop{display:none}
-.nav-links{display:flex;gap:12px;align-items:center}
-.nav-links a{font-weight:700;color:var(--muted);padding:8px;border-radius:8px}
-.nav-links a:focus{outline:var(--focus);outline-offset:3px}
-.cta{background:linear-gradient(90deg,var(--primary),#2ea0ff);color:white;padding:10px 14px;border-radius:10px;font-weight:800;box-shadow:0 8px 26px rgba(0,123,255,0.12)}
-.menu-btn{background:transparent;border:0;padding:8px;border-radius:8px}
-.menu-btn:focus{outline:var(--focus);outline-offset:3px}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#fbfdff 0%, #fff 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}
 
-/* Hero */
-.hero{padding:28px 0;display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
-.hero-card{background:var(--card);padding:22px;border-radius:16px;box-shadow:var(--shadow);border:1px solid #f6f8fb}
-.hero h2{font-size:28px;margin:6px 0 8px}
-.hero p{color:var(--muted);font-size:15px;max-width:780px}
-.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-.btn-primary{background:linear-gradient(90deg,var(--primary),#2ea0ff);color:white;padding:12px 18px;border-radius:12px;font-weight:800;display:inline-block}
-.btn-ghost{background:transparent;border:1px solid #eef3fb;padding:10px 14px;border-radius:10px;color:var(--muted);font-weight:700}
+    /* Header */
+    header{position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);border-bottom:1px solid #eef2f7;z-index:80}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#2ea0ff);
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:16px;box-shadow:var(--shadow);
+    }
+    .brand h1{font-size:16px;margin:0}
+    nav.desktop{display:none}
+    .nav-links{display:flex;gap:12px;align-items:center}
+    .nav-links a{font-weight:700;color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
+    .nav-links a:focus{outline:var(--focus);outline-offset:3px}
+    .cta{background:linear-gradient(90deg,var(--primary),#2ea0ff);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:800;box-shadow:0 8px 26px rgba(0,123,255,0.12)}
 
-/* Features */
-.grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.feature{background:#fff;padding:16px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:0 8px 22px rgba(12,18,26,0.03)}
-.feature h4{margin:6px 0;color:var(--text)}
-.feature p{color:var(--muted);font-size:14px}
+    /* Mobile menu */
+    .menu-btn{background:transparent;border:0;padding:8px;border-radius:8px}
+    .menu-btn:focus{outline:var(--focus);outline-offset:3px}
 
-/* Proof */
-.proof{display:grid;gap:14px;margin-top:10px}
-.orders{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.order{width:240px;background:#fff;padding:12px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:0 10px 24px rgba(12,18,26,0.04)}
-.order .mock{height:130px;border-radius:8px;background:linear-gradient(180deg,#f8fbff,#f1f7ff);padding:10px;display:flex;flex-direction:column;justify-content:space-between}
-.muted{color:var(--muted);font-size:13px}
-.meta{font-weight:700;color:var(--text);font-size:14px;margin-top:6px}
+    /* Hero */
+    .hero{padding:28px 0;display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+    .hero-card{background:var(--card);padding:22px;border-radius:16px;box-shadow:var(--shadow);border:1px solid #f6f8fb}
+    .hero h2{font-size:28px;margin:6px 0 8px}
+    .hero p{color:var(--muted);font-size:15px;max-width:780px}
+    .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .btn-primary{background:linear-gradient(90deg,var(--primary),#2ea0ff);color:white;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:800;display:inline-block}
+    .btn-ghost{background:transparent;border:1px solid #eef3fb;padding:10px 14px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:700}
 
-/* Reviews */
-.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}
-.review{background:#fff;padding:14px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:0 8px 22px rgba(12,18,26,0.03)}
-.review p{color:var(--muted);font-size:14px}
-.review strong{display:block;margin-top:10px;color:var(--text)}
+    /* Grid features */
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .feature{background:#fff;padding:16px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:0 8px 22px rgba(12,18,26,0.03)}
+    .feature h4{margin:6px 0;color:var(--text)}
+    .feature p{color:var(--muted);font-size:14px}
 
-/* About + Join */
-.about{display:grid;gap:12px;margin-top:14px}
-.about .desc{color:var(--muted);font-size:15px;max-width:900px}
-.join{background:linear-gradient(90deg,#fffaf2,#fff);padding:14px;border-radius:12px;border:1px solid #fff1de;
-display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    /* Proof and orders */
+    .proof{display:grid;gap:14px;margin-top:10px}
+    .orders{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .order{width:240px;background:linear-gradient(180deg,#fff,#fff);padding:12px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:0 10px 24px rgba(12,18,26,0.04)}
+    .order .mock{height:130px;border-radius:8px;background:linear-gradient(180deg,#f8fbff,#f1f7ff);padding:10px;display:flex;flex-direction:column;justify-content:space-between}
+    .muted{color:var(--muted);font-size:13px}
+    .meta{font-weight:700;color:var(--text);font-size:14px;margin-top:6px}
 
-/* FAQ */
-.faq{max-width:980px;margin-top:12px;text-align:left}
-.faq-item{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #f3f6fb}
-.faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700}
-.faq-a{margin-top:8px;color:var(--muted);display:none;font-size:14px}
+    /* Reviews */
+    .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}
+    .review{background:#fff;padding:14px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:0 8px 22px rgba(12,18,26,0.03)}
+    .review p{color:var(--muted);font-size:14px}
+    .review strong{display:block;margin-top:10px;color:var(--text)}
 
-/* Footer */
-footer{text-align:center;padding:18px 0;color:var(--muted);font-size:14px;margin-top:16px;border-top:1px solid #f3f6fb}
+    /* About + join */
+    .about{display:grid;gap:12px;margin-top:14px}
+    .about .desc{color:var(--muted);font-size:15px;max-width:900px}
+    .join{background:linear-gradient(90deg,#fffaf2,#fff);padding:14px;border-radius:12px;border:1px solid #fff1de;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .join h3{margin:0}
+    .join p{color:var(--muted);font-size:14px;margin:6px 0 0}
 
-/* Responsive */
-@media(min-width:880px){
-  .hero{grid-template-columns:1fr 360px}
-  .grid{grid-template-columns:1fr 360px}
-  nav.desktop{display:block}
-  nav.mobile{display:none}
-}
+    /* FAQ */
+    .faq{max-width:980px;margin-top:12px;text-align:left}
+    .faq-item{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #f3f6fb}
+    .faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700}
+    .faq-a{margin-top:8px;color:var(--muted);display:none;font-size:14px}
 
-/* Animation */
-.fade{opacity:0;transform:translateY(12px);transition:all 560ms cubic-bezier(.2,.9,.3,1)}
-.in{opacity:1;transform:none}
-</style>
+    /* Footer */
+    footer{text-align:center;padding:18px 0;color:var(--muted);font-size:14px;margin-top:16px;border-top:1px solid #f3f6fb}
+
+    /* Responsive layout adjustments */
+    @media(min-width:880px){
+      .hero{grid-template-columns:1fr 360px}
+      .grid{grid-template-columns:1fr 360px}
+      nav.desktop{display:block}
+      nav.mobile{display:none}
+    }
+
+    /* Animations & focus */
+    .fade{opacity:0;transform:translateY(12px);transition:all 560ms cubic-bezier(.2,.9,.3,1)}
+    .in{opacity:1;transform:none}
+    button:focus, a:focus{outline:var(--focus);outline-offset:3px}
+  </style>
 </head>
 <body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main navigation">
+      <div class="brand" style="gap:10px">
+        <div class="logo" aria-hidden="true">SH</div>
+        <div>
+          <h1 style="font-size:15px;margin:0">Silent Hustle Academy</h1>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">Turn Your Skills into Income — Live Classes by Yahya</div>
+        </div>
+      </div>
 
-<header>
-  <div class="container nav">
-    <div class="brand">
-      <div class="logo">SH</div>
-      <div>
-        <h1>Silent Hustle Academy</h1>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px">Turn Your Skills into Income — Live Classes by Yahya</div>
+      <!-- desktop nav -->
+      <nav class="desktop" aria-hidden="true">
+        <div class="nav-links" role="menubar">
+          <a href="#about" role="menuitem">About</a>
+          <a href="#what" role="menuitem">What you'll learn</a>
+          <a href="#proof" role="menuitem">Proof</a>
+          <a class="cta" href="https://wa.me/919121783895" id="joinTop">Join ₹99 Trial</a>
+        </div>
+      </nav>
+
+      <!-- mobile nav -->
+      <div class="mobile" style="display:flex;align-items:center;gap:8px">
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <!-- simple hamburger -->
+          <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="22" height="2" rx="1" fill="#0b1320"></rect>
+            <rect y="6" width="22" height="2" rx="1" fill="#0b1320"></rect>
+            <rect y="12" width="22" height="2" rx="1" fill="#0b1320"></rect>
+          </svg>
+        </button>
       </div>
     </div>
-    <nav class="desktop">
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#what">What you'll learn</a>
-        <a href="#proof">Proof</a>
+
+    <!-- mobile menu (hidden by default) -->
+    <div id="mobileMenu" style="display:none;background:#fff;border-bottom:1px solid #f1f5f9">
+      <div class="container" style="padding:10px 20px;display:flex;flex-direction:column;gap:8px">
+        <a href="#about" class="small">About</a>
+        <a href="#what" class="small">What you'll learn</a>
+        <a href="#proof" class="small">Proof</a>
         <a class="cta" href="https://wa.me/919121783895">Join ₹99 Trial</a>
       </div>
-    </nav>
-    <button class="menu-btn" id="menuBtn">
-      <svg width="22" height="14" viewBox="0 0 22 14" fill="none"><rect width="22" height="2" rx="1" fill="#0b1320"/><rect y="6" width="22" height="2" rx="1" fill="#0b1320"/><rect y="12" width="22" height="2" rx="1" fill="#0b1320"/></svg>
-    </button>
-  </div>
-  <div id="mobileMenu" style="display:none;background:#fff;border-bottom:1px solid #f1f5f9">
-    <div class="container" style="padding:10px 20px;display:flex;flex-direction:column;gap:8px">
-      <a href="#about">About</a>
-      <a href="#what">What you'll learn</a>
-      <a href="#proof">Proof</a>
-      <a class="cta" href="https://wa.me/919121783895">Join ₹99 Trial</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="container" id="top">
-  <!-- HERO -->
-  <section class="hero fade">
-    <div class="hero-card">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-        <div style="background:#fff7e6;padding:6px 10px;border-radius:999px;border:1px solid #fff1de;font-weight:800;color:var(--primary)">LIVE</div>
-        <div class="muted" style="font-weight:700">Weekly live class • Replays available</div>
+  <main class="container" id="top">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-card fade" id="hero-left">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <div style="background:linear-gradient(90deg,#fff7e6,#fff);padding:6px 10px;border-radius:999px;border:1px solid #fff1de;font-weight:800;color:var(--primary)">LIVE</div>
+          <div class="muted" style="font-weight:700">Weekly live class • Replays available</div>
+        </div>
+
+        <h2 id="hero-title">Turn Your Skills into Income — Live Classes by Yahya</h2>
+        <p>Join practical live sessions where Yahya teaches step-by-step processes to start earning online. Topics: Dropshipping, Affiliate Marketing, Fiverr orders, and YouTube growth — for beginners and serious learners. Trial access: <strong>₹99</strong>.</p>
+
+        <div class="ctas">
+          <a class="btn-primary" href="https://wa.me/919121783895" id="joinHero">Join ₹99 Trial — WhatsApp</a>
+          <a class="btn-ghost" href="#faq">See FAQ</a>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <div class="muted">📌 Live demos & assignments</div>
+          <div class="muted">💬 WhatsApp support group</div>
+          <div class="muted">🔁 Replay available</div>
+        </div>
       </div>
-      <h2>Turn Your Skills into Income — Live Classes by Yahya</h2>
-      <p>Join practical live sessions where Yahya teaches step-by-step processes to start earning online. Topics: Dropshipping, Affiliate Marketing, Fiverr orders, and YouTube growth — for beginners and serious learners. Trial access: <strong>₹99</strong>.</p>
-      <div class="ctas">
-        <a class="btn-primary" href="https://wa.me/919121783895">Join ₹99 Trial — WhatsApp</a>
-        <a class="btn-ghost" href="#faq">See FAQ</a>
+
+      <aside class="fade" id="hero-right" style="padding:6px">
+        <div style="background:linear-gradient(180deg,#fff,#fff7ee);padding:14px;border-radius:12px;border:1px solid #fff1de;box-shadow:var(--shadow)">
+          <h4 style="margin:0 0 8px">Quick facts</h4>
+          <p class="muted" style="margin:0 0 10px">Actionable lessons, Fiverr templates, gig message scripts, product research sheets & YouTube short plans.</p>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div style="padding:8px 12px;border-radius:10px;background:#fff;border:1px solid #f5f7fb;text-align:center;min-width:86px">
+              <div style="font-weight:800;color:var(--primary)">500+</div>
+              <div class="muted" style="font-size:13px">Students</div>
+            </div>
+
+            <div style="padding:8px 12px;border-radius:10px;background:#fff;border:1px solid #f5f7fb;text-align:center;min-width:86px">
+              <div style="font-weight:800;color:var(--primary)">1,800+</div>
+              <div class="muted" style="font-size:13px">Orders</div>
+            </div>
+
+            <div style="padding:8px 12px;border-radius:10px;background:#fff;border:1px solid #f5f7fb;text-align:center;min-width:86px">
+              <div style="font-weight:800;color:var(--primary)">4.8★</div>
+              <div class="muted" style="font-size:13px">Avg Rating</div>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;font-size:13px;color:var(--muted)">Secure & clear — trial ₹99 then you decide to continue.</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- WHAT YOU'LL LEARN -->
+    <section id="what" class="grid fade" aria-labelledby="what-title">
+      <div>
+        <h3 id="what-title">What you'll learn</h3>
+        <div class="features" aria-hidden="false">
+          <div class="feature">
+            <h4>🛍️ Dropshipping & Store Setup</h4>
+            <p>Market research, supplier selection, store creation, writing high-converting product listings, and simple ad & organic funnels to get your first sale.</p>
+          </div>
+
+          <div class="feature">
+            <h4>🤝 Affiliate Marketing</h4>
+            <p>Choose high-converting products, craft content & funnels that convert, and build recurring commissions using organic and low-cost strategies.</p>
+          </div>
+
+          <div class="feature">
+            <h4>🎥 YouTube Growth & Monetization</h4>
+            <p>Niche selection, content planning, thumbnails & titles, shorts strategy for fast growth, and monetization: ads, sponsors, and affiliate deals.</p>
+          </div>
+
+          <div class="feature">
+            <h4>🧰 Fiverr Orders — Get Real Clients</h4>
+            <p>Create buyer-focused gigs, build sample portfolios, write message templates, set pricing tiers, and promote gigs to land orders quickly.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <h4 style="margin:6px 0">How we help you get Fiverr orders</h4>
+          <p class="muted" style="margin:0">You’ll get gig templates, 3 demo samples, optimized titles & tags, buyer message scripts, and short promotion methods that convert visitors into buyers.</p>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- (You already have all sections below, keeping same as before for brevity) -->
-  <!-- ... what, proof, reviews, about, faq, join, footer ... -->
-</main>
+      <!-- aside quick tips -->
+      <aside style="padding:6px">
+        <div style="background:#fff;padding:14px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:var(--shadow)">
+          <h4 style="margin:0 0 8px">Fiverr quick tips</h4>
+          <ul style="color:var(--muted);margin:0 0 0 18px">
+            <li>Pick 1–2 micro-niches</li>
+            <li>Use 3 clear demo samples</li>
+            <li>Offer precise deliverables & delivery time</li>
+            <li>Respond fast & politely to buyers</li>
+            <li>Share gigs on YouTube shorts & social</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
 
-<footer>
-  <div class="container">
-    <div>Made with ❤️ by Yahya</div>
-    <div style="font-size:13px;color:var(--muted)">© 2025 Silent Hustle Academy — For educational purposes only</div>
-  </div>
-</footer>
+    <!-- PROOF -->
+    <section id="proof" class="proof fade" aria-labelledby="proof-title">
+      <div>
+        <h3 id="proof-title">Proof — Fiverr orders (mockups)</h3>
+        <p class="muted">Example order cards (replace these with real screenshots when available). Each mock shows order id, buyer, service, status and date — fields buyers trust.</p>
 
-<script>
-// Fade animation
-document.querySelectorAll('.fade').forEach(el=>{
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
-  },{threshold:0.12});
-  io.observe(el);
-});
+        <div class="orders" role="list" aria-hidden="false" style="margin-top:12px">
+          <div class="order" role="listitem">
+            <div class="mock">
+              <div style="font-weight:800;color:var(--text)">Order #FH-8421</div>
+              <div class="muted" style="display:flex;justify-content:space-between;margin-top:6px">
+                <span>Buyer</span><span>Lina P.</span>
+              </div>
+              <div class="muted" style="display:flex;justify-content:space-between">
+                <span>Service</span><span>Thumbnails</span>
+              </div>
+              <div class="meta">₹1,200 • Delivered • 03 Sep 2025</div>
+            </div>
+          </div>
 
-// Mobile menu toggle
-const menuBtn=document.getElementById('menuBtn');
-const mobileMenu=document.getElementById('mobileMenu');
-menuBtn.addEventListener('click',()=>{
-  const visible=mobileMenu.style.display==='block';
-  mobileMenu.style.display=visible?'none':'block';
-  menuBtn.setAttribute('aria-expanded',!visible);
-});
+          <div class="order" role="listitem">
+            <div class="mock">
+              <div style="font-weight:800;color:var(--text)">Order #DS-1907</div>
+              <div class="muted" style="display:flex;justify-content:space-between;margin-top:6px">
+                <span>Buyer</span><span>Rahul S.</span>
+              </div>
+              <div class="muted" style="display:flex;justify-content:space-between">
+                <span>Service</span><span>Product Listing</span>
+              </div>
+              <div class="meta">₹2,500 • In Progress • 26 Oct 2025</div>
+            </div>
+          </div>
 
-// FAQ accordion
-document.querySelectorAll('.faq-q').forEach(q=>{
-  q.addEventListener('click',()=>{
-    const a=q.nextElementSibling;
-    const isVisible=a.style.display==='block';
-    document.querySelectorAll('.faq-a').forEach(x=>x.style.display='none');
-    a.style.display=isVisible?'none':'block';
-  });
-});
-</script>
+          <div class="order" role="listitem">
+            <div class="mock">
+              <div style="font-weight:800;color:var(--text)">Order #AF-3312</div>
+              <div class="muted" style="display:flex;justify-content:space-between;margin-top:6px">
+                <span>Buyer</span><span>Sara M.</span>
+              </div>
+              <div class="muted" style="display:flex;justify-content:space-between">
+                <span>Service</span><span>Affiliate Review</span>
+              </div>
+              <div class="meta">₹900 • Delivered • 11 Oct 2025</div>
+            </div>
+          </div>
+
+          <div class="order" role="listitem">
+            <div class="mock">
+              <div style="font-weight:800;color:var(--text)">Order #SP-4809</div>
+              <div class="muted" style="display:flex;justify-content:space-between;margin-top:6px">
+                <span>Buyer</span><span>Aman Q.</span>
+              </div>
+              <div class="muted" style="display:flex;justify-content:space-between">
+                <span>Service</span><span>Store Setup</span>
+              </div>
+              <div class="meta">₹3,450 • Delivered • 04 Nov 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="fade" id="reviews" aria-labelledby="reviews-title">
+      <h3 id="reviews-title">Student Reviews</h3>
+      <div class="reviews" role="list">
+        <div class="review" role="listitem">
+          <p>“Joined the ₹99 trial — got my first Fiverr order in 10 days. The gig templates and message scripts worked perfectly.”</p>
+          <strong>— Aisha R.</strong>
+        </div>
+
+        <div class="review" role="listitem">
+          <p>“Dropshipping module is short and actionable. Launched a store and made my first sale in two weeks.”</p>
+          <strong>— Omar K.</strong>
+        </div>
+
+        <div class="review" role="listitem">
+          <p>“Yahya explains clearly. The YouTube short strategy boosted my channel fast.”</p>
+          <strong>— Faizan M.</strong>
+        </div>
+
+        <div class="review" role="listitem">
+          <p>“Live classes + WhatsApp group kept me focused. Real mentorship — no fake promises.”</p>
+          <strong>— Saniya S.</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT & JOIN -->
+    <section id="about" class="about fade" aria-labelledby="about-title">
+      <div>
+        <h3 id="about-title">About Yahya</h3>
+        <p class="desc">Yahya is a digital entrepreneur and mentor who began with small freelance gigs and scaled into dropshipping and YouTube monetization. He teaches repeatable systems: product research, gig templates, content strategies and conversion messaging. Training is action-first — live walkthroughs, assignments and templates you can use immediately.</p>
+      </div>
+
+      <div>
+        <div style="background:#fff;padding:14px;border-radius:12px;border:1px solid #f3f6fb;box-shadow:var(--shadow)">
+          <h4 style="margin:0 0 8px">What you get in the ₹99 trial</h4>
+          <ul style="color:var(--muted);margin:0 0 0 18px">
+            <li>Access to next live class + replay</li>
+            <li>Beginner toolkit: Fiverr gig templates, product research sheet</li>
+            <li>WhatsApp group support for 7 days</li>
+            <li>Action plan to get your first Fiverr order or store sale</li>
+          </ul>
+          <div style="margin-top:12px">
+            <a class="btn-primary" href="https://wa.me/919121783895" id="joinMiddle">Get ₹99 Trial</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="fade" aria-labelledby="faq-title">
+      <h3 id="faq-title">Frequently Asked Questions</h3>
+      <div class="faq" role="list">
+        <div class="faq-item" role="listitem">
+          <div class="faq-q">Is the trial really ₹99? <span class="muted">Click to open</span></div>
+          <div class="faq-a">Yes — the trial is a small paid access to one live class, starter templates and 7 days WhatsApp support. It helps filter serious learners and gives immediate value.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">When are classes held? <span class="muted">Click</span></div>
+          <div class="faq-a">Weekly live classes (evening) with recorded replays if you miss a session.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Do I need money to start? <span class="muted">Click</span></div>
+          <div class="faq-a">You can start with low or no money. Fiverr and affiliate work mainly require effort and time. Dropshipping may need a small ad budget after product validation.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Will I get 1-on-1 help? <span class="muted">Click</span></div>
+          <div class="faq-a">Support is via WhatsApp group and live sessions. 1-on-1 coaching is an optional paid upgrade after the trial.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How soon can I get Fiverr orders? <span class="muted">Click</span></div>
+          <div class="faq-a">Many students get their first Fiverr order in 1–4 weeks after applying the templates, optimizing the gig, and actively promoting. We teach repeatable steps to accelerate this.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section class="fade" style="margin-top:16px">
+      <div class="join" role="region" aria-label="Join section">
+        <div>
+          <h3>Ready to start? Join the ₹99 trial</h3>
+          <p class="muted">Get live class access, starter templates and community support — small fee, immediate value.</p>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center">
+          <a class="btn-primary" href="https://wa.me/919121783895" id="joinBottom">Join Trial — ₹99</a>
+          <a class="btn-ghost" href="#faq">See FAQ</a>
+        </div>
+      </div>
+    </section>
+
+    <footer role="contentinfo">
+      <div class="container">
+        <div style="margin-bottom:6px">Made with ❤️ by Yahya</div>
+        <div style="font-size:13px;color:var(--muted)">© 2025 Silent Hustle Academy — For educational purposes only</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Simple fade-in when in view
+    document.querySelectorAll('.fade').forEach(el=>{
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting) entry.target.classList.add('in');
+        });
+      }, {threshold:0.12});
+      io.observe(el);
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if(menuBtn){
+      menuBtn.addEventListener('click', ()=>{
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.style.display = expanded ? 'none' : 'block';
+      });
+    }
+
+    // FAQ toggle (accessible)
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      q.setAttribute('tabindex', '0');
+      q.addEventListener('click', ()=> {
+        const open = a.style.display === 'block';
+        document.querySelectorAll('.faq-a').forEach(x=>x.style.display='none');
+        a.style.display = open ? 'none' : 'block';
+      });
+      q.addEventListener('keydown', (e)=> {
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); }
+      });
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+
+    // Ensure WA links open in new tab on mobile when required
+    document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a=>{
+      a.setAttribute('rel','noopener noreferrer');
+    });
+  </script>
 </body>
 </html>
