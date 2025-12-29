@@ -5,151 +5,164 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MQ Threads | Men’s Streetwear</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
-body{background:#0b0b0b;color:#fff;overflow-x:hidden}
+:root{
+  --red:#e10600;
+  --dark:#080808;
+  --glass:rgba(255,255,255,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:var(--dark);color:#fff}
 
 /* Announcement */
 .announce{
   position:fixed;top:0;width:100%;
-  background:linear-gradient(90deg,#b31217,#e52d27);
-  text-align:center;padding:9px;
-  font-size:13px;font-weight:600;
+  background:linear-gradient(90deg,#000,#e10600,#000);
+  padding:10px;text-align:center;
+  font-size:12px;letter-spacing:1px;
   z-index:3000;
 }
-body{padding-top:45px}
+body{padding-top:46px}
 
 /* Navbar */
 nav{
-  position:fixed;top:45px;width:100%;
-  padding:22px 8%;
+  position:fixed;top:46px;width:100%;
+  padding:24px 9%;
   display:flex;justify-content:space-between;align-items:center;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.06);
   z-index:2000;
 }
-nav h1{font-size:24px;font-weight:700;letter-spacing:1px}
-nav a{text-decoration:none;color:#fff;font-weight:500}
+nav h1{letter-spacing:2px;font-size:22px}
+nav a{text-decoration:none;color:#fff;font-size:14px}
 
 /* Hero */
 .hero{
   min-height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.9)),
-    url("https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb");
+   linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.95)),
+   url("https://images.unsplash.com/photo-1618354691373-d851c5c3a990");
   background-size:cover;
   background-position:center;
-  display:flex;align-items:center;
+  display:flex;
+  align-items:center;
   padding:0 10%;
 }
 .hero h2{
-  font-size:54px;
+  font-size:60px;
   font-weight:700;
-  line-height:1.15;
+  letter-spacing:-1px;
+  line-height:1.1;
 }
-.hero span{color:#e52d27}
+.hero span{color:var(--red)}
 .hero p{
-  margin-top:18px;
   max-width:520px;
-  color:#ccc;
+  margin-top:20px;
   font-size:17px;
+  color:#ccc;
 }
 .hero button{
-  margin-top:32px;
-  padding:16px 40px;
+  margin-top:36px;
+  padding:18px 44px;
+  border-radius:50px;
   border:none;
-  border-radius:40px;
-  background:#e52d27;
+  background:var(--red);
   color:#fff;
-  font-size:16px;
   font-weight:600;
+  letter-spacing:.5px;
   cursor:pointer;
+  transition:.3s;
+}
+.hero button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 15px 40px rgba(225,6,0,.4);
 }
 .hero small{
   display:block;
-  margin-top:22px;
+  margin-top:24px;
   color:#aaa;
+  letter-spacing:.5px;
 }
 
 /* Sections */
-section{padding:100px 8%}
-.section-title{text-align:center;margin-bottom:60px}
-.section-title h3{font-size:36px}
-.section-title p{color:#aaa;margin-top:10px}
+section{padding:120px 9%}
+.title{text-align:center;margin-bottom:70px}
+.title h3{font-size:38px}
+.title p{color:#aaa;margin-top:12px}
 
 /* Products */
-.products{
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:40px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:45px;
 }
 .card{
-  background:rgba(255,255,255,.04);
+  background:var(--glass);
   border:1px solid rgba(255,255,255,.08);
-  border-radius:22px;
+  border-radius:26px;
   overflow:hidden;
+  transition:.4s;
+}
+.card:hover{
+  transform:translateY(-6px);
 }
 .card img{
   width:100%;
-  height:320px;
+  height:360px;
   object-fit:cover;
 }
-.card div{padding:25px}
-.card h4{font-size:18px;margin-bottom:6px}
-.card p{color:#aaa;font-size:14px}
+.card .content{padding:28px}
+.card h4{font-size:19px;margin-bottom:6px}
+.card p{font-size:14px;color:#aaa}
 
 /* Scarcity */
-.scarcity-box{
+.scarcity{
   margin-top:18px;
-  padding:16px;
-  border-radius:14px;
-  background:rgba(255,255,255,.05);
+  padding:18px;
+  border-radius:16px;
+  background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.12);
   text-align:center;
 }
 #timer{
-  font-size:24px;
+  margin-top:8px;
+  font-size:26px;
   font-weight:700;
-  color:#e52d27;
-  margin-top:6px;
+  color:var(--red);
 }
 
-/* Why */
-.why-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
-.why-box{
-  padding:30px;
-  border-radius:20px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
+/* Manifesto */
+.manifesto{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+  font-size:18px;
+  color:#ccc;
+  line-height:1.7;
 }
 
 /* Footer */
 footer{
-  padding:50px 8%;
-  text-align:center;
+  padding:60px 9%;
   border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;
   color:#777;
 }
 
 /* WhatsApp */
 .whatsapp{
   position:fixed;
-  bottom:22px;
-  right:22px;
+  bottom:22px;right:22px;
   background:#25D366;
-  color:#fff;
-  padding:15px 24px;
-  border-radius:50px;
+  padding:16px 26px;
+  border-radius:60px;
+  color:white;
   text-decoration:none;
   font-weight:600;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  box-shadow:0 15px 40px rgba(0,0,0,.5);
   animation:pulse 1.5s infinite;
 }
 @keyframes pulse{
@@ -162,84 +175,70 @@ footer{
 
 <body>
 
-<div class="announce">🔥 MEN’S LIMITED DROP • FREE SHIPPING • NO RESTOCK</div>
+<div class="announce">MEN’S LIMITED DROP • NO RESTOCK • FREE SHIPPING</div>
 
 <nav>
   <h1>MQ THREADS</h1>
-  <a href="#shop">Shop</a>
+  <a href="#shop">SHOP</a>
 </nav>
 
 <div class="hero">
   <div>
-    <h2>Built for Men<br><span>Who Move Different</span></h2>
+    <h2>Crafted for Men<br><span>Who Lead</span></h2>
     <p>
-      MQ Threads is modern men’s streetwear.
-      Minimal design. Strong identity. Limited drops.
+      MQ Threads is not fashion.
+      It’s a statement of discipline, confidence, and presence.
     </p>
-    <button onclick="document.getElementById('shop').scrollIntoView()">Explore Collection</button>
-    <small>Premium fabric • Fast delivery • Secure orders</small>
+    <button onclick="document.getElementById('shop').scrollIntoView()">Enter Store</button>
+    <small>Premium fabric • Limited drops • Built with intent</small>
   </div>
 </div>
 
 <section id="shop">
-  <div class="section-title">
-    <h3>Featured Collection</h3>
-    <p>Exclusive men’s wear — once sold, never restocked</p>
+  <div class="title">
+    <h3>Signature Collection</h3>
+    <p>Once sold out, it’s gone forever</p>
   </div>
 
-  <div class="products">
+  <div class="grid">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
-      <div>
+      <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633">
+      <div class="content">
         <h4>Black Core Tee</h4>
-        <p>Minimal • Masculine • Street</p>
-        <div class="scarcity-box">
-          <p>⏳ Drop ends in</p>
+        <p>Minimal • Masculine • Timeless</p>
+        <div class="scarcity">
+          <p>Drop ends in</p>
           <div id="timer"></div>
-          <p style="font-size:12px;color:#aaa;margin-top:6px">
-            High demand today
-          </p>
         </div>
       </div>
     </div>
 
     <div class="card">
       <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22">
-      <div>
+      <div class="content">
         <h4>Oversized Urban Tee</h4>
-        <p>Bold fit • Daily wear</p>
+        <p>Street fit • Daily essential</p>
       </div>
     </div>
 
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633">
-      <div>
+      <img src="https://images.unsplash.com/photo-1602810317536-5d5eacb89b70">
+      <div class="content">
         <h4>White Essential Tee</h4>
-        <p>Clean • Sharp • Versatile</p>
+        <p>Clean • Sharp • Confident</p>
       </div>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="section-title">
-    <h3>Why MQ Threads</h3>
-    <p>Designed for modern men</p>
+  <div class="title">
+    <h3>Our Philosophy</h3>
   </div>
-
-  <div class="why-grid">
-    <div class="why-box">
-      <h4>Masculine Design</h4>
-      <p>Strong, minimal aesthetics made for men.</p>
-    </div>
-    <div class="why-box">
-      <h4>Premium Fabric</h4>
-      <p>Comfort-first material built for daily wear.</p>
-    </div>
-    <div class="why-box">
-      <h4>Limited Drops</h4>
-      <p>No mass production. Exclusivity guaranteed.</p>
-    </div>
+  <div class="manifesto">
+    We don’t chase trends.  
+    We build pieces that speak quietly but carry weight.  
+    MQ Threads is for men who value discipline, clarity, and presence.
   </div>
 </section>
 
@@ -249,20 +248,17 @@ footer{
 </footer>
 
 <a class="whatsapp"
-   href="https://wa.me/9121783895?text=Hi%20I%20want%20to%20order%20from%20MQ%20Threads"
-   target="_blank">
-  Order on WhatsApp
+href="https://wa.me/919121783895?text=Hi%20I%20want%20to%20order%20from%20MQ%20Threads"
+target="_blank">
+Order on WhatsApp
 </a>
 
 <script>
-let time = 60 * 30;
+let time=1800;
 setInterval(()=>{
-  let min = Math.floor(time / 60);
-  let sec = time % 60;
-  document.getElementById("timer").innerHTML =
-    `${min}:${sec<10?'0':''}${sec}`;
-  time--;
-  if(time<0) time = 60*30;
+  let m=Math.floor(time/60),s=time%60;
+  document.getElementById("timer").innerHTML=`${m}:${s<10?'0':''}${s}`;
+  time--; if(time<0) time=1800;
 },1000);
 </script>
 
