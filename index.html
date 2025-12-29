@@ -1,39 +1,170 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>MQ Threads | Wear Your Vibe</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MQ Threads</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* Reset & body */
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family: 'Roboto', sans-serif; background-color:#fff; color:#111; line-height:1.6;}
-a {text-decoration:none; color:inherit;}
-img {max-width:100%; display:block;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0d0d0d;color:#fff;overflow-x:hidden}
 
-/* Header */
-header {
-    background-color:#000;
-    color:#fff;
-    padding:20px 0;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
+/* NAV */
+nav{
+  position:fixed;top:0;width:100%;padding:18px 8%;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
+  z-index:1000;
 }
-header img {max-width:150px; margin-bottom:10px;}
-header h1 {font-size:2.5rem; color:#E63946; margin-bottom:5px; animation:slideDown 1s ease;}
-header p {font-size:1.2rem; color:#fff; animation:fadeIn 2s ease;}
+nav h1{color:#ff2d2d;font-weight:700}
+nav a{color:#fff;margin-left:20px;text-decoration:none;font-size:14px}
 
-/* Hero Animation */
-@keyframes slideDown {
-    0% {transform: translateY(-50px); opacity:0;}
-    100% {transform: translateY(0); opacity:1;}
+/* HERO */
+.hero{
+  height:100vh;
+  background:
+  linear-gradient(to right,rgba(0,0,0,.85),rgba(0,0,0,.3)),
+  url("https://images.unsplash.com/photo-1520975916090-3105956dac38");
+  background-size:cover;background-position:center;
+  display:flex;align-items:center;padding:0 8%;
 }
-@keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
+.hero-content{max-width:600px;animation:fadeUp 1.3s ease}
+.hero h2{font-size:3.3rem;margin-bottom:15px}
+.hero h2 span{color:#ff2d2d}
+.hero p{color:#ccc;margin-bottom:25px;line-height:1.7}
+.hero button{
+  padding:14px 34px;border:none;border-radius:30px;
+  background:#ff2d2d;color:#fff;font-size:15px;
+  cursor:pointer;transition:.3s
+}
+.hero button:hover{transform:scale(1.05);background:#fff;color:#000}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* SECTION */
+section{padding:90px 8%}
+.section-title{text-align:center;margin-bottom:60px}
+.section-title h3{font-size:2.3rem}
+.section-title p{color:#aaa;margin-top:10px}
+
+/* PRODUCTS */
+.products{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+.card{
+  background:#151515;border-radius:18px;overflow:hidden;
+  transition:.4s;
+}
+.card:hover{transform:translateY(-12px)}
+.card img{width:100%;height:320px;object-fit:cover}
+.card div{padding:20px}
+.card h4{margin-bottom:10px}
+.card p{color:#aaa;font-size:14px}
+
+/* BRAND STORY */
+.story{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center
+}
+.story img{width:100%;border-radius:20px}
+.story p{color:#ccc;line-height:1.8}
+
+/* FOOTER */
+footer{
+  background:#000;text-align:center;padding:30px;color:#888;font-size:14px
+}
+
+/* MOBILE */
+@media(max-width:800px){
+.hero h2{font-size:2.4rem}
+.story{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>MQ Threads</h1>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Collection</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>Wear Your <span>Vibe</span></h2>
+    <p>
+      MQ Threads is not just clothing.  
+      It’s identity, confidence, and minimal street culture.
+    </p>
+    <button>Explore Collection</button>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">
+    <h3>Featured Drops</h3>
+    <p>Minimal. Premium. Youth-driven.</p>
+  </div>
+
+  <div class="products">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1602810317536-5d5eacb89b70">
+      <div>
+        <h4>Classic Black Tee</h4>
+        <p>Street-ready minimal wear</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
+      <div>
+        <h4>White Essential</h4>
+        <p>Clean & timeless look</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
+      <div>
+        <h4>Bold Red Drop</h4>
+        <p>Statement piece</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">
+    <h3>Our Story</h3>
+    <p>Built for the new generation</p>
+  </div>
+
+  <div class="story">
+    <p>
+      MQ Threads was created with one goal —  
+      to give youth a brand that feels confident, clean, and powerful.
+      Inspired by street culture and minimal fashion, we design pieces
+      that speak without shouting.
+    </p>
+    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
+  </div>
+</section>
+
+<footer>
+  © 2025 MQ Threads — Wear Your Vibe
+</footer>
+
+</body>
+</html>
 }
 
 /* Products Section */
