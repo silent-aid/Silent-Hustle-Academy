@@ -1,78 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Track Your Order | MQ Threads</title>
+  <title>Track Order | MQ Threads</title>
   <style>
     body {
-      background: #0f0f0f;
-      color: #fff;
+      margin: 0;
+      background: #0e0e0e;
+      color: white;
       font-family: Arial, sans-serif;
-      padding: 20px;
+      display: flex;
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #222;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
+    .sidebar img {
+      width: 120px;
     }
+
+    /* Main */
+    .main {
+      flex: 1;
+      padding: 40px;
+    }
+
+    input, button {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      background: #111;
+      color: white;
+      border: 1px solid #333;
+    }
+
+    button {
+      cursor: pointer;
+      background: white;
+      color: black;
+      font-weight: bold;
+    }
+
     .step {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-top: 20px;
     }
-    .circle {
-      width: 18px;
-      height: 18px;
+
+    .dot {
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       margin-right: 15px;
       background: #555;
     }
+
     .done { background: #2ecc71; }
     .progress { background: #f1c40f; }
-    .pending { background: #777; }
-
-    .note {
-      font-size: 12px;
-      color: #bbb;
-      margin-left: 33px;
-    }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>Order Tracking</h1>
-
-  <div class="step">
-    <div class="circle done"></div>
-    <div>Design Selected</div>
-  </div>
-
-  <div class="step">
-    <div class="circle progress"></div>
-    <div>Waiting for ₹100 Confirmation Payment</div>
-  </div>
-  <div class="note">₹100 is non-refundable once production starts</div>
-
-  <div class="step">
-    <div class="circle pending"></div>
-    <div>Printing in Progress</div>
-  </div>
-
-  <div class="step">
-    <div class="circle pending"></div>
-    <div>Out for Delivery (COD)</div>
-  </div>
-
-  <div class="step">
-    <div class="circle pending"></div>
-    <div>Delivered</div>
-  </div>
+<div class="sidebar">
+  <img src="logo.png" alt="MQ Threads">
 </div>
+
+<div class="main">
+  <h2>Track Your Order</h2>
+
+  <input type="text" id="orderId" placeholder="Enter Order ID">
+  <button onclick="track()">Track Order</button>
+
+  <div id="status"></div>
+</div>
+
+<script>
+function track() {
+  const id = document.getElementById("orderId").value;
+  const order = JSON.parse(localStorage.getItem(id));
+
+  if (!order) {
+    document.getElementById("status").innerHTML = "<p>❌ Order not found</p>";
+    return;
+  }
+
+  const steps = [
+    "Design Selected",
+    "Waiting for ₹100 Confirmation",
+    "Printing",
+    "Out for Delivery",
+    "Delivered"
+  ];
+
+  let html = "";
+  steps.forEach((step, index) => {
+    let cls = index < order.step ? "done" :
+              index === order.step ? "progress" : "";
+    html += `
+      <div class="step">
+        <div class="dot ${cls}"></div>
+        <div>${step}</div>
+      </div>`;
+  });
+
+  document.getElementById("status").innerHTML = html;
+}
+</script>
 
 </body>
 </html>
-
