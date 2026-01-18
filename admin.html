@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MQ Threads Admin</title>
+  <style>
+    body {
+      background: #0e0e0e;
+      color: white;
+      font-family: Arial;
+      padding: 40px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #111;
+      color: white;
+      border: 1px solid #333;
+    }
+
+    button {
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>MQ Threads – Admin Panel</h2>
+
+<input id="orderId" placeholder="Order ID (ex: MQ1021)">
+
+<select id="step">
+  <option value="0">Design Selected</option>
+  <option value="1">Waiting for ₹100 Confirmation</option>
+  <option value="2">Printing</option>
+  <option value="3">Out for Delivery</option>
+  <option value="4">Delivered</option>
+</select>
+
+<button onclick="update()">Update Status</button>
+
+<script>
+function update() {
+  const id = document.getElementById("orderId").value;
+  const step = Number(document.getElementById("step").value);
+
+  localStorage.setItem(id, JSON.stringify({ step }));
+  alert("✅ Order Updated Successfully");
+}
+</script>
+
+</body>
+</html>
