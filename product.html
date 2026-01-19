@@ -1,98 +1,316 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Product | MQ Threads</title>
-<style>
-body{font-family:Poppins;background:#f5f5f5;margin:0;}
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:40px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-}
-.card{
-  background:#fff;
-  padding:30px;
-  border-radius:20px;
-}
-img{width:100%;border-radius:20px;}
-.size button{
-  padding:10px 18px;
-  margin-right:8px;
-  border-radius:20px;
-  border:1px solid #ccc;
-  background:#fff;
-}
-.size button.active{background:#c9a24d;}
-.btn{
-  margin-top:20px;
-  padding:14px 30px;
-  background:#c9a24d;
-  border:none;
-  border-radius:30px;
-  font-weight:600;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MQ Threads | Stop Dreaming Start Doing</title>
+
+  <style>
+    :root{
+      --bg:#f6f6f6;
+      --card:#ffffff;
+      --black:#111;
+      --grey:#777;
+      --accent:#000;
+      --gold:#c6a75e;
+    }
+
+    *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system;}
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--black);
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    /* HEADER */
+    header{
+      background:#fff;
+      padding:14px 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid #eaeaea;
+    }
+    header h1{
+      font-size:18px;
+      letter-spacing:1px;
+    }
+    header a{
+      font-size:14px;
+      color:#000;
+    }
+
+    /* PRODUCT */
+    .container{
+      max-width:480px;
+      margin:auto;
+      padding:16px;
+    }
+
+    .product-card{
+      background:var(--card);
+      border-radius:14px;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      overflow:hidden;
+    }
+
+    .product-card img{
+      width:100%;
+      display:block;
+    }
+
+    .info{
+      padding:16px;
+    }
+
+    .info h2{
+      font-size:20px;
+      margin:0 0 6px;
+    }
+
+    .price{
+      margin:10px 0;
+    }
+
+    .price .current{
+      font-size:22px;
+      font-weight:700;
+    }
+
+    .price .old{
+      margin-left:8px;
+      color:#999;
+      text-decoration:line-through;
+    }
+
+    .save{
+      color:green;
+      font-size:13px;
+      margin-top:4px;
+    }
+
+    /* SIZE */
+    .sizes{
+      display:flex;
+      gap:10px;
+      margin:14px 0;
+    }
+
+    .size{
+      border:1px solid #ddd;
+      padding:8px 14px;
+      border-radius:8px;
+      font-size:14px;
+      cursor:pointer;
+    }
+
+    .size.active{
+      border-color:#000;
+      background:#000;
+      color:#fff;
+    }
+
+    /* QTY */
+    .qty{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:12px 0;
+    }
+
+    .qty button{
+      width:34px;
+      height:34px;
+      border:none;
+      background:#000;
+      color:#fff;
+      font-size:18px;
+      border-radius:6px;
+    }
+
+    .qty span{
+      font-size:16px;
+      min-width:20px;
+      text-align:center;
+    }
+
+    /* PAYMENT OPTIONS */
+    .pay-box{
+      margin-top:16px;
+      border-top:1px solid #eee;
+      padding-top:16px;
+    }
+
+    .option{
+      border:1px solid #ddd;
+      padding:12px;
+      border-radius:10px;
+      margin-bottom:10px;
+      cursor:pointer;
+    }
+
+    .option.active{
+      border-color:#000;
+      background:#f2f2f2;
+    }
+
+    /* BUTTONS */
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .btn{
+      flex:1;
+      padding:14px;
+      border-radius:12px;
+      border:none;
+      font-size:15px;
+      cursor:pointer;
+    }
+
+    .cart-btn{
+      background:#fff;
+      border:1px solid #000;
+    }
+
+    .buy-btn{
+      background:#000;
+      color:#fff;
+    }
+
+    footer{
+      text-align:center;
+      font-size:12px;
+      color:#777;
+      margin:20px 0;
+    }
+  </style>
 </head>
 <body>
 
+<header>
+  <a href="index.html">← Back</a>
+  <h1>MQ THREADS</h1>
+  <a href="cart.html">Cart 🛒</a>
+</header>
+
 <div class="container">
-  <img id="img">
-  <div class="card">
-    <h1 id="name"></h1>
-    <p id="price"></p>
+  <div class="product-card">
 
-    <p>Select Size</p>
-    <div class="size">
-      <button onclick="sel(this)">S</button>
-      <button onclick="sel(this)">M</button>
-      <button onclick="sel(this)">L</button>
-      <button onclick="sel(this)">XL</button>
+    <img src="https://drive.google.com/uc?id=1481MDsqUOklkHnUnDfBQ2ockDw8Omz3h" alt="MQ Threads T-shirt">
+
+    <div class="info">
+      <h2>Stop Dreaming, Start Doing</h2>
+
+      <div class="price">
+        <span class="current">₹499</span>
+        <span class="old">₹799</span>
+        <div class="save">You save ₹300</div>
+      </div>
+
+      <!-- SIZE -->
+      <div class="sizes">
+        <div class="size active">S</div>
+        <div class="size">M</div>
+        <div class="size">L</div>
+        <div class="size">XL</div>
+      </div>
+
+      <!-- QTY -->
+      <div class="qty">
+        <button onclick="changeQty(-1)">−</button>
+        <span id="qty">1</span>
+        <button onclick="changeQty(1)">+</button>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="pay-box">
+        <div class="option active" onclick="selectPay('advance')">
+          ₹100 Advance + COD
+        </div>
+        <div class="option" onclick="selectPay('full')">
+          Pay Full ₹449 (₹50 OFF)
+        </div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+        <button class="btn cart-btn" onclick="addToCart()">Add to Cart</button>
+        <button class="btn buy-btn" onclick="buyNow()">Buy Now</button>
+      </div>
     </div>
-
-    <button class="btn" onclick="add()">Add to Cart</button>
   </div>
+
+  <footer>
+    Premium handcrafted by MQ Threads
+  </footer>
 </div>
 
 <script>
-const products={
-  1:{name:"Premium Black Tee",price:499,show:"₹499 (₹799)",img:"https://drive.google.com/uc?id=1481MDsqUOklkHnUnDfBQ2ockDw8Omz3h",stock:10},
-  2:{name:"Oversized Tee",price:549,show:"₹549 (₹899)",img:"https://images.unsplash.com/photo-1520975916090-3105956dac38",stock:5}
-};
+  let quantity = 1;
+  let paymentType = "advance";
+  let selectedSize = "S";
 
-let stock=JSON.parse(localStorage.getItem("stock"))||{
-  "Premium Black Tee":10,
-  "Oversized Tee":5
-};
-localStorage.setItem("stock",JSON.stringify(stock));
+  function changeQty(val){
+    quantity = Math.max(1, quantity + val);
+    document.getElementById("qty").innerText = quantity;
+  }
 
-let id=new URLSearchParams(location.search).get("id");
-let p=products[id];
+  document.querySelectorAll(".size").forEach(s=>{
+    s.onclick=()=>{
+      document.querySelectorAll(".size").forEach(x=>x.classList.remove("active"));
+      s.classList.add("active");
+      selectedSize = s.innerText;
+    }
+  });
 
-img.src=p.img;
-name.innerText=p.name;
-price.innerText=p.show;
-localStorage.setItem("currentProduct",p.name);
-localStorage.setItem("currentPrice",p.price);
+  function selectPay(type){
+    paymentType = type;
+    document.querySelectorAll(".option").forEach(o=>o.classList.remove("active"));
+    event.currentTarget.classList.add("active");
+  }
 
-function sel(b){
-  document.querySelectorAll(".size button").forEach(x=>x.classList.remove("active"));
-  b.classList.add("active");
-  localStorage.setItem("size",b.innerText);
-}
+  function addToCart(){
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    cart.push({
+      id: Date.now(),
+      name:"Stop Dreaming Start Doing",
+      price: paymentType==="full"?449:499,
+      qty: quantity,
+      size: selectedSize
+    });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to cart");
+  }
 
-function add(){
-  let size=localStorage.getItem("size");
-  if(!size){alert("Select size");return;}
-  if(stock[p.name]<=0){alert("Out of stock");return;}
+  function buyNow(){
+    const orderId = "MQ" + Date.now();
+    const amount = paymentType==="full" ? 449*quantity : 100;
+    const upi = `upi://pay?pa=9121783895@fam&pn=MQ Threads&am=${amount}&cu=INR&tn=${orderId}`;
 
-  let cart=JSON.parse(localStorage.getItem("cart"))||[];
-  cart.push({name:p.name,size:size,price:p.price});
-  localStorage.setItem("cart",JSON.stringify(cart));
-  alert("Added to cart");
-}
+    const msg =
+`🧵 MQ THREADS ORDER
+Order ID: ${orderId}
+Product: Stop Dreaming Start Doing
+Size: ${selectedSize}
+Qty: ${quantity}
+Payment: ${paymentType}
+Amount: ₹${amount}`;
+
+    // open UPI
+    window.location.href = upi;
+
+    // delay then WhatsApp
+    setTimeout(()=>{
+      window.location.href =
+      `https://wa.me/919121783895?text=${encodeURIComponent(msg)}`;
+    },1200);
+  }
 </script>
 
 </body>
