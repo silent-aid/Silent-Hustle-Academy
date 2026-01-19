@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>MQ Threads Admin</title>
 
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
@@ -38,7 +37,7 @@
 
 <h2>MQ Threads – Admin Panel</h2>
 
-<input id="orderId" placeholder="Order ID (e.g. MQ1021)">
+<input id="oid" placeholder="Order ID (MQ1021)">
 <input id="name" placeholder="Customer Name">
 <input id="product" placeholder="Product (T-shirt / Hoodie)">
 <input id="size" placeholder="Size (S / M / L / XL)">
@@ -52,36 +51,39 @@
   <option value="4">Delivered</option>
 </select>
 
-<button onclick="saveOrder()">Save / Update Order</button>
+<button onclick="save()">Save Order</button>
 
 <script>
-  // 🔥 PASTE YOUR REAL FIREBASE CONFIG HERE
-  firebase.initializeApp({
+  // 🔴 PASTE YOUR REAL FIREBASE CONFIG HERE
+  const firebaseConfig = {
     apiKey: "PASTE_API_KEY",
     authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
     projectId: "PASTE_PROJECT_ID"
-  });
+  };
 
+  firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
-  function saveOrder() {
-    const id = orderId.value.trim();
-    if (!id) {
+  function save() {
+    const orderId = oid.value.trim();
+    if (!orderId) {
       alert("Order ID required");
       return;
     }
 
-    db.collection("orders").doc(id).set({
-      name: name.value,
-      product: product.value,
-      size: size.value,
-      color: color.value,
+    db.collection("orders").doc(orderId).set({
+      name: name.value || "",
+      product: product.value || "",
+      size: size.value || "",
+      color: color.value || "",
       step: Number(step.value)
-    }).then(() => {
-      alert("✅ Order saved");
-    }).catch(err => {
-      alert("❌ Error saving");
+    })
+    .then(() => {
+      alert("✅ Order saved to database");
+    })
+    .catch((err) => {
       console.error(err);
+      alert("❌ Error saving (check console)");
     });
   }
 </script>
