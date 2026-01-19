@@ -1,216 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MQ Threads | Stop Dreaming Start Doing</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>MQ Threads | Stop Dreaming Start Doing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-    body {
-      margin: 0;
-      background: #0e0e0e;
-      color: #fff;
-    }
+body{
+  background:#0b0b0b;
+  color:#ffffff;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
 
-    .product {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
+.product{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
 
-    .product img {
-      width: 100%;
-      border-radius: 12px;
-      background: #111;
-    }
+.product img{
+  width:100%;
+  border-radius:14px;
+  background:#111;
+}
 
-    .title {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
+.title{
+  font-size:30px;
+  font-weight:600;
+}
 
-    .price {
-      font-size: 26px;
-      color: #facc15;
-      font-weight: 700;
-    }
+.price{
+  font-size:28px;
+  color:#facc15;
+  font-weight:700;
+}
 
-    .mrp {
-      text-decoration: line-through;
-      color: #888;
-      margin-left: 10px;
-      font-size: 16px;
-    }
+.mrp{
+  margin-left:10px;
+  color:#777;
+  text-decoration:line-through;
+  font-size:16px;
+}
 
-    .save {
-      margin-top: 6px;
-      color: #22c55e;
-      font-size: 14px;
-    }
+.save{
+  color:#22c55e;
+  margin-top:6px;
+}
 
-    .desc {
-      margin: 20px 0;
-      line-height: 1.6;
-      color: #ddd;
-    }
+.desc{
+  margin:20px 0;
+  line-height:1.6;
+  color:#d1d5db;
+}
 
-    .btn {
-      display: inline-block;
-      background: #facc15;
-      color: #000;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      margin-top: 15px;
-    }
+.badges{
+  margin:15px 0;
+  color:#9ca3af;
+  font-size:14px;
+}
 
-    .btn:hover {
-      background: #eab308;
-    }
+.btn{
+  display:inline-block;
+  background:#facc15;
+  color:#000;
+  padding:14px 30px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+}
 
-    .form-section {
-      margin-top: 60px;
-      background: #111;
-      padding: 30px;
-      border-radius: 12px;
-    }
+.btn:hover{
+  background:#eab308;
+}
 
-    h2 {
-      margin-bottom: 20px;
-    }
+.brandline{
+  margin-top:10px;
+  color:#9ca3af;
+  font-size:14px;
+}
 
-    form {
-      display: grid;
-      gap: 15px;
-    }
+/* ORDER FORM */
+.form-section{
+  margin-top:70px;
+  background:#111;
+  padding:30px;
+  border-radius:16px;
+}
 
-    input, select {
-      width: 100%;
-      padding: 12px;
-      border-radius: 6px;
-      border: none;
-      background: #1a1a1a;
-      color: #fff;
-    }
+.form-section h2{
+  margin-bottom:20px;
+}
 
-    input::placeholder {
-      color: #777;
-    }
+form{
+  display:grid;
+  gap:15px;
+}
 
-    .submit-btn {
-      background: #facc15;
-      color: #000;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+input, select{
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  background:#1a1a1a;
+  color:#fff;
+}
 
-    .note {
-      font-size: 13px;
-      color: #aaa;
-      margin-top: 10px;
-    }
+input::placeholder{
+  color:#777;
+}
 
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      color: #777;
-      font-size: 14px;
-    }
+.submit-btn{
+  background:#facc15;
+  color:#000;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+}
 
-    @media(max-width: 768px) {
-      .product {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.note{
+  font-size:13px;
+  color:#9ca3af;
+  margin-top:10px;
+}
+
+footer{
+  margin:60px 0 20px;
+  text-align:center;
+  font-size:14px;
+  color:#777;
+}
+
+@media(max-width:768px){
+  .product{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- PRODUCT SECTION -->
-    <div class="product">
-      <img src="tshirt.jpg" alt="MQ Threads T-shirt">
+  <!-- PRODUCT -->
+  <div class="product">
+    <img src="tshirt.jpg" alt="MQ Threads T-Shirt">
+
+    <div>
+      <div class="title">Stop Dreaming, Start Doing – Black T-Shirt</div>
 
       <div>
-        <div class="title">Stop Dreaming, Start Doing – Black T-Shirt</div>
+        <span class="price">₹499</span>
+        <span class="mrp">₹799</span>
+      </div>
 
-        <div>
-          <span class="price">₹499</span>
-          <span class="mrp">₹799</span>
-        </div>
-        <div class="save">You save ₹300 (Limited time)</div>
+      <div class="save">You save ₹300 (Limited time)</div>
 
-        <div class="desc">
-          Turn motivation into action.  
-          Premium black T-shirt made for hustlers, creators, and doers.  
-          Comfortable fit, bold print, and long-lasting quality.
-        </div>
+      <div class="desc">
+        A premium motivational T-shirt designed for hustlers and doers.
+        Comfortable fabric, bold print, and minimal luxury feel.
+      </div>
 
-        <a href="#order" class="btn">ORDER NOW</a>
+      <div class="badges">
+        ✔ Premium Cotton <br>
+        ✔ Printed After Order <br>
+        ✔ Pan-India Shipping
+      </div>
+
+      <a href="#order" class="btn">ORDER NOW</a>
+
+      <div class="brandline">
+        Minimal. Meaningful. Made for Doers.
       </div>
     </div>
-
-    <!-- ORDER FORM -->
-    <div id="order" class="form-section">
-      <h2>Place Your Order</h2>
-
-      <form>
-        <input type="text" placeholder="Full Name" required>
-        <input type="tel" placeholder="Mobile Number" required>
-        <input type="text" placeholder="House / Flat / Street" required>
-        <input type="text" placeholder="City" required>
-        <input type="text" placeholder="State" required>
-        <input type="number" placeholder="Pincode" required>
-
-        <select required>
-          <option value="">Select Size</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-          <option>XXL</option>
-        </select>
-
-        <select required>
-          <option value="">Payment Method</option>
-          <option>₹100 Advance + COD</option>
-          <option>Full Cash on Delivery</option>
-        </select>
-
-        <button class="submit-btn">CONFIRM ORDER</button>
-
-        <div class="note">
-          ₹100 advance is non-refundable once production starts.  
-          Printed after order confirmation to ensure quality.
-        </div>
-      </form>
-    </div>
-
-    <footer>
-      © 2026 MQ Threads — Minimal. Meaningful. Made for Doers.
-    </footer>
-
   </div>
 
+  <!-- ORDER FORM -->
+  <div id="order" class="form-section">
+    <h2>Place Your Order</h2>
+
+    <form onsubmit="sendOrder(event)">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="tel" id="phone" placeholder="Mobile Number" required>
+      <input type="text" id="address" placeholder="House / Street / Area" required>
+      <input type="text" id="city" placeholder="City" required>
+      <input type="text" id="state" placeholder="State" required>
+      <input type="number" id="pincode" placeholder="Pincode" required>
+
+      <select id="size" required>
+        <option value="">Select Size</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+        <option>XXL</option>
+      </select>
+
+      <select id="payment" required>
+        <option value="">Payment Method</option>
+        <option>₹100 Advance + COD</option>
+        <option>Full Cash on Delivery</option>
+      </select>
+
+      <button class="submit-btn">CONFIRM ORDER</button>
+
+      <div class="note">
+        ₹100 advance is non-refundable once printing starts.
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    © 2026 MQ Threads — Wear the mindset.
+  </footer>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+function sendOrder(e){
+  e.preventDefault();
+
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let address = document.getElementById("address").value;
+  let city = document.getElementById("city").value;
+  let state = document.getElementById("state").value;
+  let pincode = document.getElementById("pincode").value;
+  let size = document.getElementById("size").value;
+  let payment = document.getElementById("payment").value;
+
+  let message =
+`🧵 *MQ THREADS – NEW ORDER*
+Name: ${name}
+Phone: ${phone}
+Address: ${address}, ${city}, ${state} - ${pincode}
+Product: Stop Dreaming Start Doing T-Shirt
+Size: ${size}
+Price: ₹499
+Payment: ${payment}`;
+
+  let whatsapp = "https://wa.me/9121783895text=" + encodeURIComponent(message);
+
+  if(payment.includes("Advance")){
+    window.open("https://rzp.io/l/mqthreads100", "_blank");
+  }
+
+  window.open(whatsapp, "_blank");
+}
+</script>
+
 </body>
-  </html>
-  
+</html>
