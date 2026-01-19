@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order Confirmed | MQ Threads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background:#0b0b0b;
+  color:#ffffff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.card{
+  background:#0f0f0f;
+  padding:50px;
+  border-radius:24px;
+  max-width:520px;
+  width:90%;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+.check{
+  font-size:48px;
+  color:#22c55e;
+  margin-bottom:15px;
+}
+
+h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.status{
+  color:#9ca3af;
+  margin-bottom:25px;
+  line-height:1.6;
+}
+
+.details{
+  background:#111;
+  padding:20px;
+  border-radius:16px;
+  margin-bottom:25px;
+  text-align:left;
+  font-size:14px;
+  color:#cbd5e1;
+}
+
+.details span{
+  color:#facc15;
+  font-weight:600;
+}
+
+.btn{
+  display:block;
+  background:#facc15;
+  color:#000;
+  padding:16px;
+  border-radius:14px;
+  font-weight:700;
+  text-decoration:none;
+  margin-top:15px;
+}
+
+.small{
+  font-size:13px;
+  color:#9ca3af;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="check">✔</div>
+  <h1>Order Initiated</h1>
+
+  <p class="status">
+    Your order request has been received.<br>
+    Please complete the steps below to confirm your order.
+  </p>
+
+  <div class="details" id="orderDetails">
+    Loading order details...
+  </div>
+
+  <a id="whatsappBtn" class="btn">Send Order on WhatsApp</a>
+
+  <p class="small">
+    📦 Printing starts only after payment confirmation.
+  </p>
+</div>
+
+<script>
+const payment = localStorage.getItem("mq_label") || "Not specified";
+
+document.getElementById("orderDetails").innerHTML = `
+<strong>Payment Method:</strong> <span>${payment}</span><br><br>
+<strong>Next Steps:</strong><br>
+• If you paid ₹100 advance → send screenshot on WhatsApp<br>
+• If full payment → order will be processed immediately
+`;
+
+const msg =
+`🧵 MQ THREADS – ORDER CONFIRMATION
+Payment: ${payment}
+Please confirm my order.`;
+
+document.getElementById("whatsappBtn").href =
+"https://wa.me/919121783895?text=" + encodeURIComponent(msg);
+</script>
+
+</body>
+</html>
