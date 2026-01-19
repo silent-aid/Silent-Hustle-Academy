@@ -1,70 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MQ Threads Order Tracking</title>
-  <style>
-    body { font-family: Arial; background:#f7f7f7; }
-    .box { max-width:400px; margin:auto; background:white; padding:20px; }
-    .step { padding:8px; border-left:4px solid #ccc; margin:6px 0; }
-    .active { border-color:black; font-weight:bold; }
-  </style>
+<title>MQ Threads | Track Order</title>
+
+<style>
+body{
+  background:#0b0b0b;
+  color:white;
+  font-family:Arial;
+}
+
+.container{
+  max-width:420px;
+  margin:60px auto;
+  background:#121212;
+  padding:25px;
+  border-radius:12px;
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+input,button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:6px;
+  border:none;
+}
+
+button{
+  background:#d4af37;
+  color:black;
+  font-weight:bold;
+}
+
+.step{
+  display:flex;
+  align-items:center;
+  margin:12px 0;
+}
+
+.circle{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#444;
+  margin-right:10px;
+}
+
+.active .circle{
+  background:#d4af37;
+  box-shadow:0 0 10px #d4af37;
+}
+
+.line{
+  height:2px;
+  background:#444;
+  margin:6px 0 6px 7px;
+}
+
+.activeLine{
+  background:#d4af37;
+}
+</style>
 </head>
+
 <body>
 
-<div class="box">
-  <img src="mq-logo.png" width="120"><br><br>
+<div class="container">
+  <div class="logo">
+    <img src="mq-logo.png" width="120">
+  </div>
 
   <input id="orderId" placeholder="Enter Order ID">
-  <button onclick="track()">Track</button>
+  <button onclick="track()">Track Order</button>
 
-  <div id="result"></div>
+  <div id="status"></div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT_ID"
-};
+firebase.initializeApp({
+  apiKey:"YOUR_KEY",
+  projectId:"YOUR_PROJECT_ID"
+});
+const db=firebase.firestore();
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-const steps = [
-  "Design Selected",
-  "Waiting for Address",
-  "Address Received",
-  "Order Confirmed",
-  "Printing",
-  "Shipped",
-  "Out for Delivery",
-  "Delivered"
+const steps=[
+"Design Selected",
+"Waiting for Address",
+"Address Received",
+"Order Confirmed",
+"Printing",
+"Shipped",
+"Out for Delivery",
+"Delivered"
 ];
 
-function track() {
-  const id = document.getElementById("orderId").value;
-  const res = document.getElementById("result");
-  res.innerHTML = "Loading...";
+function track(){
+  const id=document.getElementById("orderId").value;
+  const box=document.getElementById("status");
+  box.innerHTML="Loading...";
 
-  db.collection("orders").doc(id).get().then(doc => {
-    if (!doc.exists) {
-      res.innerHTML = "❌ Order not found";
-      return;
-    }
-
-    const data = doc.data();
-    let html = `<h3>${data.product}</h3><p>Name: ${data.name}</p>`;
-
-    steps.forEach((s, i) => {
-      html += `<div class="step ${data.status >= i+1 ? 'active' : ''}">
-        ${s}
+  db.collection("orders").doc(id).get().then(doc=>{
+    if(!doc.exists){ box.innerHTML="Order not found"; return; }
+    const s=doc.data().status;
+    let html="";
+    steps.forEach((t,i)=>{
+      html+=`
+      <div class="step ${s>i?'active':''}">
+        <div class="circle"></div>${t}
       </div>`;
     });
-
-    res.innerHTML = html;
+    box.innerHTML=html;
   });
 }
 </script>
