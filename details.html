@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MQ Threads | Order Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  font-family:Poppins;
+  background:#0b0b0b;
+  color:#fff;
+}
+.box{
+  max-width:500px;
+  margin:40px auto;
+  background:#111;
+  padding:30px;
+  border-radius:20px;
+}
+input,select{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:10px;
+}
+button{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:30px;
+  background:#fff;
+  font-weight:600;
+}
+.note{
+  font-size:13px;
+  color:#aaa;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Order Details</h2>
+
+<input id="name" placeholder="Full Name">
+<input id="phone" placeholder="Phone Number">
+<input id="address" placeholder="Full Address">
+<input id="pincode" placeholder="Pincode">
+
+<select id="payment">
+  <option value="">Select Payment Option</option>
+  <option value="advance">₹100 Advance + COD</option>
+  <option value="full">Pay Full ₹449 (₹50 OFF)</option>
+</select>
+
+<p class="note">COD is enabled only after ₹100 advance</p>
+
+<button onclick="payNow()">Continue</button>
+</div>
+
+<script>
+function payNow(){
+  let pay = document.getElementById("payment").value;
+  if(!pay){ alert("Select payment option"); return; }
+
+  if(pay==="advance"){
+    window.location.href="upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=100&cu=INR";
+  }
+
+  if(pay==="full"){
+    window.location.href="upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=449&cu=INR";
+  }
+
+  setTimeout(()=>{
+    localStorage.setItem("orderName",name.value);
+    localStorage.setItem("orderPhone",phone.value);
+    localStorage.setItem("orderAddress",address.value);
+    localStorage.setItem("orderPin",pincode.value);
+    localStorage.setItem("orderPay",pay);
+    window.location.href="success.html";
+  },1500);
+}
+</script>
+
+</body>
+</html>
