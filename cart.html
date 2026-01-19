@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MQ Threads | Cart</title>
+<title>Cart | MQ Threads</title>
 <style>
-:root{--bg:#0f0f0f;--card:#181818;--text:#fff;--muted:#aaa;--accent:#d4af37;}
-body{font-family:Poppins;background:var(--bg);color:var(--text);}
-.box{max-width:800px;margin:40px auto;}
+body{font-family:Poppins;background:#f5f5f5;}
+.box{max-width:700px;margin:40px auto;}
 .item{
-  background:var(--card);
+  background:#fff;
   padding:20px;
   border-radius:15px;
   margin-bottom:15px;
@@ -15,11 +14,12 @@ body{font-family:Poppins;background:var(--bg);color:var(--text);}
   justify-content:space-between;
 }
 .btn{
-  padding:12px 25px;
-  background:var(--accent);
-  color:#000;
+  display:inline-block;
+  padding:14px 30px;
+  background:#c9a24d;
   border-radius:30px;
   text-decoration:none;
+  color:#000;
   font-weight:600;
 }
 </style>
@@ -28,29 +28,18 @@ body{font-family:Poppins;background:var(--bg);color:var(--text);}
 
 <div class="box">
 <h2>Your Cart</h2>
-<div id="cart"></div>
+<div id="list"></div>
 <h3 id="total"></h3>
-<a href="details.html" class="btn">Checkout</a>
+<a class="btn" href="details.html">Checkout</a>
 </div>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let wrap=document.getElementById("cart");
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
 let sum=0;
-
-cart.forEach((p,i)=>{
-  sum+=p.price;
-  wrap.innerHTML+=`
-    <div class="item">
-      <div>
-        <b>${p.name}</b><br>
-        Size: ${p.size}
-      </div>
-      ₹${p.price}
-    </div>
-  `;
+cart.forEach(i=>{
+  sum+=i.price;
+  list.innerHTML+=`<div class="item"><div>${i.name} (${i.size})</div>₹${i.price}</div>`;
 });
-
 total.innerText="Total: ₹"+sum;
 localStorage.setItem("cartTotal",sum);
 </script>
