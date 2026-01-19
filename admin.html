@@ -1,92 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>MQ Threads Admin</title>
-
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-  <style>
-    body {
-      background:#0e0e0e;
-      color:#fff;
-      font-family:Arial;
-      max-width:420px;
-      margin:auto;
-      padding:40px;
-    }
-    input, select, button {
-      width:100%;
-      padding:12px;
-      margin-top:12px;
-      background:#111;
-      color:#fff;
-      border:1px solid #333;
-    }
-    button {
-      background:#fff;
-      color:#000;
-      font-weight:bold;
-      cursor:pointer;
-    }
-  </style>
+<title>Admin</title>
+<style>
+body{font-family:Poppins;background:#f5f5f5;padding:40px;}
+table{width:100%;background:#fff;border-radius:15px;}
+th,td{padding:12px;border-bottom:1px solid #ddd;}
+</style>
 </head>
-
 <body>
 
-<h2>MQ Threads – Admin Panel</h2>
+<h2>Last Order</h2>
+<table>
+<tr><th>Product</th><th>Size</th><th>Price</th></tr>
+<tbody id="o"></tbody>
+</table>
 
-<input id="oid" placeholder="Order ID (MQ1021)">
-<input id="name" placeholder="Customer Name">
-<input id="product" placeholder="Product (T-shirt / Hoodie)">
-<input id="size" placeholder="Size (S / M / L / XL)">
-<input id="color" placeholder="Color">
-
-<select id="step">
-  <option value="0">Design Selected</option>
-  <option value="1">Waiting for ₹100 Confirmation</option>
-  <option value="2">Printing</option>
-  <option value="3">Out for Delivery</option>
-  <option value="4">Delivered</option>
-</select>
-
-<button onclick="save()">Save Order</button>
+<h2>Stock</h2>
+<div id="s"></div>
 
 <script>
-  // 🔴 PASTE YOUR REAL FIREBASE CONFIG HERE
-  const firebaseConfig = {
-    apiKey: "PASTE_API_KEY",
-    authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
-    projectId: "PASTE_PROJECT_ID"
-  };
+(JSON.parse(localStorage.getItem("lastOrder"))||[]).forEach(i=>{
+  o.innerHTML+=`<tr><td>${i.name}</td><td>${i.size}</td><td>₹${i.price}</td></tr>`;
+});
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  function save() {
-    const orderId = oid.value.trim();
-    if (!orderId) {
-      alert("Order ID required");
-      return;
-    }
-
-    db.collection("orders").doc(orderId).set({
-      name: name.value || "",
-      product: product.value || "",
-      size: size.value || "",
-      color: color.value || "",
-      step: Number(step.value)
-    })
-    .then(() => {
-      alert("✅ Order saved to database");
-    })
-    .catch((err) => {
-      console.error(err);
-      alert("❌ Error saving (check console)");
-    });
-  }
+let st=JSON.parse(localStorage.getItem("stock"));
+for(let k in st) s.innerHTML+=`<p>${k}: ${st[k]}</p>`;
 </script>
 
 </body>
 </html>
+
