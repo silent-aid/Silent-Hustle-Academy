@@ -2,130 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MQ Threads | Stop Dreaming Start Doing</title>
+<title>MQ Threads | Order Confirmation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body{
-  background:#0b0b0b;
-  color:#ffffff;
-}
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
-
-.product{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-}
-
-.product img{
-  width:100%;
-  border-radius:14px;
-}
-
-.title{
-  font-size:30px;
-  font-weight:600;
-}
-
-.price{
-  font-size:28px;
-  color:#facc15;
-  font-weight:700;
-}
-
-.mrp{
-  margin-left:10px;
-  color:#777;
-  text-decoration:line-through;
-  font-size:16px;
-}
-
-.save{
-  color:#22c55e;
-  margin-top:6px;
-}
-
-.desc{
-  margin:20px 0;
-  line-height:1.6;
-  color:#d1d5db;
-}
-
-.badges{
-  margin:15px 0;
-  color:#9ca3af;
-  font-size:14px;
-}
-
-.btn{
-  display:inline-block;
-  background:#facc15;
-  color:#000;
-  padding:14px 30px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:600;
-}
-
-.form-section{
-  margin-top:70px;
-  background:#111;
-  padding:30px;
-  border-radius:16px;
-}
-
-form{
-  display:grid;
-  gap:15px;
-}
-
-input, select{
-  padding:12px;
-  border-radius:8px;
-  border:none;
-  background:#1a1a1a;
-  color:#fff;
-}
-
-.submit-btn{
-  background:#facc15;
-  color:#000;
-  padding:14px;
-  border:none;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.note{
-  font-size:13px;
-  color:#9ca3af;
-}
-
-footer{
-  margin:60px 0 20px;
-  text-align:center;
-  font-size:14px;
-  color:#777;
-}
-
-@media(max-width:768px){
-  .product{grid-template-columns:1fr;}
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#0b0b0b;color:#fff}
+.container{max-width:1100px;margin:auto;padding:20px}
+.product{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.product img{width:100%;border-radius:14px}
+.title{font-size:30px;font-weight:600}
+.price{font-size:28px;color:#facc15;font-weight:700}
+.mrp{text-decoration:line-through;color:#777;margin-left:10px}
+.save{color:#22c55e;margin-top:6px}
+.desc{margin:20px 0;color:#d1d5db}
+.badges{font-size:14px;color:#9ca3af}
+.btn{background:#facc15;color:#000;padding:14px 30px;border-radius:10px;font-weight:600;text-decoration:none}
+.form{margin-top:60px;background:#111;padding:30px;border-radius:16px}
+form{display:grid;gap:14px}
+input,select{padding:12px;border-radius:8px;border:none;background:#1a1a1a;color:#fff}
+button{background:#facc15;color:#000;padding:14px;border:none;border-radius:10px;font-weight:600;cursor:pointer}
+.note{font-size:13px;color:#9ca3af}
+.success{display:none;text-align:center;padding:40px}
+.success h2{color:#22c55e;margin-bottom:10px}
+footer{text-align:center;margin:50px 0;color:#777}
+@media(max-width:768px){.product{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -133,110 +34,112 @@ footer{
 
 <div class="container">
 
-  <!-- PRODUCT -->
-  <div class="product">
-    <img src="tshirt.jpg" alt="MQ Threads T-Shirt">
-
+<!-- PRODUCT -->
+<div class="product">
+  <img src="tshirt.jpg">
+  <div>
+    <div class="title">Stop Dreaming, Start Doing – Black T-Shirt</div>
     <div>
-      <div class="title">Stop Dreaming, Start Doing – Black T-Shirt</div>
-
-      <div>
-        <span class="price">₹499</span>
-        <span class="mrp">₹799</span>
-      </div>
-
-      <div class="save">You save ₹300 (Limited time)</div>
-
-      <div class="desc">
-        Premium motivational T-shirt for hustlers and doers.
-        Minimal design. Luxury feel. Everyday comfort.
-      </div>
-
-      <div class="badges">
-        ✔ Premium Cotton <br>
-        ✔ Printed After Order <br>
-        ✔ Pan-India Shipping
-      </div>
-
-      <a href="#order" class="btn">ORDER NOW</a>
+      <span class="price" id="price">₹499</span>
+      <span class="mrp">₹799</span>
     </div>
+    <div class="save" id="discountText">You save ₹300</div>
+    <div class="desc">Minimal luxury T-shirt for hustlers and doers.</div>
+    <div class="badges">✔ Premium Cotton<br>✔ Printed After Order<br>✔ Pan-India Shipping</div>
+    <a href="#order" class="btn">ORDER NOW</a>
   </div>
+</div>
 
-  <!-- ORDER FORM -->
-  <div id="order" class="form-section">
-    <h2>Place Your Order</h2>
+<!-- ORDER FORM -->
+<div class="form" id="order">
+  <h2>Place Your Order</h2>
 
-    <form onsubmit="sendOrder(event)">
-      <input type="text" id="name" placeholder="Full Name" required>
-      <input type="tel" id="phone" placeholder="Mobile Number" required>
-      <input type="text" id="address" placeholder="House / Street / Area" required>
-      <input type="text" id="city" placeholder="City" required>
-      <input type="text" id="state" placeholder="State" required>
-      <input type="number" id="pincode" placeholder="Pincode" required>
+  <form onsubmit="placeOrder(event)">
+    <input id="name" placeholder="Full Name" required>
+    <input id="phone" placeholder="Mobile Number" required>
+    <input id="address" placeholder="Address" required>
+    <input id="city" placeholder="City" required>
+    <input id="state" placeholder="State" required>
+    <input id="pincode" placeholder="Pincode" required>
 
-      <select id="size" required>
-        <option value="">Select Size</option>
-        <option>S</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-        <option>XXL</option>
-      </select>
+    <select id="size" required>
+      <option value="">Select Size</option>
+      <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+    </select>
 
-      <select id="payment" required>
-        <option value="">Payment Method</option>
-        <option>₹100 Advance + COD</option>
-        <option>Full Cash on Delivery</option>
-      </select>
+    <select id="payment" onchange="updatePrice()" required>
+      <option value="">Payment Method</option>
+      <option value="advance">₹100 Advance + COD</option>
+      <option value="full">Pay Full Online (₹50 OFF)</option>
+    </select>
 
-      <button class="submit-btn">CONFIRM ORDER</button>
+    <button>CONFIRM ORDER</button>
 
-      <div class="note">
-        ₹100 advance is non-refundable once printing starts.
-      </div>
-    </form>
-  </div>
+    <div class="note">
+      ₹100 advance is non-refundable once production starts.
+    </div>
+  </form>
+</div>
 
-  <footer>
-    © 2026 MQ Threads — Minimal. Meaningful. Made for Doers.
-  </footer>
+<!-- SUCCESS SCREEN -->
+<div class="success" id="success">
+  <h2>Order Initiated Successfully 🎉</h2>
+  <p>Please complete payment and send screenshot on WhatsApp to confirm your order.</p>
+  <br>
+  <button onclick="sendWhatsApp()">SEND ORDER ON WHATSAPP</button>
+</div>
+
+<footer>© 2026 MQ Threads — Minimal. Meaningful. Made for Doers.</footer>
 
 </div>
 
-<!-- JAVASCRIPT -->
 <script>
-function sendOrder(e){
+let finalAmount = 499;
+
+function updatePrice(){
+  let payment = document.getElementById("payment").value;
+  let price = document.getElementById("price");
+  let text = document.getElementById("discountText");
+
+  if(payment === "full"){
+    finalAmount = 449;
+    price.innerText = "₹449";
+    text.innerText = "₹50 OFF for full payment";
+  } else {
+    finalAmount = 499;
+    price.innerText = "₹499";
+    text.innerText = "You save ₹300";
+  }
+}
+
+function placeOrder(e){
   e.preventDefault();
 
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let address = document.getElementById("address").value;
-  let city = document.getElementById("city").value;
-  let state = document.getElementById("state").value;
-  let pincode = document.getElementById("pincode").value;
-  let size = document.getElementById("size").value;
   let payment = document.getElementById("payment").value;
+  if(!payment){ alert("Select payment method"); return; }
 
-  let message =
+  let upiAmount = payment === "full" ? 449 : 100;
+
+  let upiURL =
+`upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=${upiAmount}&cu=INR&tn=MQ%20Threads%20Order`;
+
+  localStorage.setItem("mq_payment", payment);
+  window.location.href = upiURL;
+
+  document.getElementById("order").style.display="none";
+  document.getElementById("success").style.display="block";
+}
+
+function sendWhatsApp(){
+  let payment = localStorage.getItem("mq_payment");
+
+  let msg =
 `🧵 MQ THREADS – NEW ORDER
-Name: ${name}
-Phone: ${phone}
-Address: ${address}, ${city}, ${state} - ${pincode}
-Product: Stop Dreaming Start Doing T-Shirt
-Size: ${size}
-Price: ₹499
-Payment: ${payment}`;
+Payment: ${payment === "full" ? "FULL PAID ₹449" : "₹100 Advance + COD"}
+Please confirm order.`;
 
-  let whatsappURL =
-"https://wa.me/919121783895?text=" + encodeURIComponent(message);
-
-  if(payment.includes("Advance")){
-    let upiURL =
-"upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=100&cu=INR&tn=MQ%20Threads%20Order";
-    window.open(upiURL, "_blank");
-  }
-
-  window.open(whatsappURL, "_blank");
+  window.location.href =
+"https://wa.me/919121783895?text=" + encodeURIComponent(msg);
 }
 </script>
 
