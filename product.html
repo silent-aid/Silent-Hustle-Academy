@@ -34,7 +34,6 @@ body{
 .product img{
   width:100%;
   border-radius:14px;
-  background:#111;
 }
 
 .title{
@@ -82,26 +81,11 @@ body{
   font-weight:600;
 }
 
-.btn:hover{
-  background:#eab308;
-}
-
-.brandline{
-  margin-top:10px;
-  color:#9ca3af;
-  font-size:14px;
-}
-
-/* ORDER FORM */
 .form-section{
   margin-top:70px;
   background:#111;
   padding:30px;
   border-radius:16px;
-}
-
-.form-section h2{
-  margin-bottom:20px;
 }
 
 form{
@@ -117,10 +101,6 @@ input, select{
   color:#fff;
 }
 
-input::placeholder{
-  color:#777;
-}
-
 .submit-btn{
   background:#facc15;
   color:#000;
@@ -134,7 +114,6 @@ input::placeholder{
 .note{
   font-size:13px;
   color:#9ca3af;
-  margin-top:10px;
 }
 
 footer{
@@ -145,9 +124,7 @@ footer{
 }
 
 @media(max-width:768px){
-  .product{
-    grid-template-columns:1fr;
-  }
+  .product{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -171,8 +148,8 @@ footer{
       <div class="save">You save ₹300 (Limited time)</div>
 
       <div class="desc">
-        A premium motivational T-shirt designed for hustlers and doers.
-        Comfortable fabric, bold print, and minimal luxury feel.
+        Premium motivational T-shirt for hustlers and doers.
+        Minimal design. Luxury feel. Everyday comfort.
       </div>
 
       <div class="badges">
@@ -182,10 +159,6 @@ footer{
       </div>
 
       <a href="#order" class="btn">ORDER NOW</a>
-
-      <div class="brandline">
-        Minimal. Meaningful. Made for Doers.
-      </div>
     </div>
   </div>
 
@@ -225,7 +198,7 @@ footer{
   </div>
 
   <footer>
-    © 2026 MQ Threads — Wear the mindset.
+    © 2026 MQ Threads — Minimal. Meaningful. Made for Doers.
   </footer>
 
 </div>
@@ -245,7 +218,7 @@ function sendOrder(e){
   let payment = document.getElementById("payment").value;
 
   let message =
-`🧵 *MQ THREADS – NEW ORDER*
+`🧵 MQ THREADS – NEW ORDER
 Name: ${name}
 Phone: ${phone}
 Address: ${address}, ${city}, ${state} - ${pincode}
@@ -254,13 +227,16 @@ Size: ${size}
 Price: ₹499
 Payment: ${payment}`;
 
-  let whatsapp = "https://wa.me/9121783895text=" + encodeURIComponent(message);
+  let whatsappURL =
+"https://wa.me/919121783895?text=" + encodeURIComponent(message);
 
   if(payment.includes("Advance")){
-    window.open("https://rzp.io/l/mqthreads100", "_blank");
+    let upiURL =
+"upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=100&cu=INR&tn=MQ%20Threads%20Order";
+    window.open(upiURL, "_blank");
   }
 
-  window.open(whatsapp, "_blank");
+  window.open(whatsappURL, "_blank");
 }
 </script>
 
