@@ -1,84 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MQ Threads | Order Details</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout</title>
 <style>
-body{
-  font-family:Poppins;
-  background:#0b0b0b;
-  color:#fff;
-}
+body{font-family:Poppins;background:#f5f5f5;}
 .box{
-  max-width:500px;
+  max-width:450px;
   margin:40px auto;
-  background:#111;
+  background:#fff;
   padding:30px;
   border-radius:20px;
 }
-input,select{
+input,select,button{
   width:100%;
   padding:12px;
   margin:10px 0;
-  border:none;
-  border-radius:10px;
 }
 button{
-  width:100%;
-  padding:15px;
+  background:#c9a24d;
   border:none;
   border-radius:30px;
-  background:#fff;
   font-weight:600;
-}
-.note{
-  font-size:13px;
-  color:#aaa;
 }
 </style>
 </head>
 <body>
 
 <div class="box">
-<h2>Order Details</h2>
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<input id="addr" placeholder="Address">
+<input id="pin" placeholder="Pincode">
 
-<input id="name" placeholder="Full Name">
-<input id="phone" placeholder="Phone Number">
-<input id="address" placeholder="Full Address">
-<input id="pincode" placeholder="Pincode">
-
-<select id="payment">
-  <option value="">Select Payment Option</option>
+<select id="pay">
+  <option value="">Select Payment</option>
   <option value="advance">₹100 Advance + COD</option>
-  <option value="full">Pay Full ₹449 (₹50 OFF)</option>
+  <option value="full">Pay Full (₹50 OFF)</option>
 </select>
 
-<p class="note">COD is enabled only after ₹100 advance</p>
-
-<button onclick="payNow()">Continue</button>
+<button onclick="go()">Pay</button>
 </div>
 
 <script>
-function payNow(){
-  let pay = document.getElementById("payment").value;
-  if(!pay){ alert("Select payment option"); return; }
+let oid="MQ"+Math.floor(100000+Math.random()*900000);
+localStorage.setItem("orderId",oid);
 
-  if(pay==="advance"){
-    window.location.href="upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=100&cu=INR";
-  }
+function go(){
+  localStorage.setItem("orderName",name.value);
+  localStorage.setItem("orderPhone",phone.value);
+  localStorage.setItem("orderAddr",addr.value);
+  localStorage.setItem("orderPin",pin.value);
+  localStorage.setItem("orderPay",pay.value);
 
-  if(pay==="full"){
-    window.location.href="upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=449&cu=INR";
-  }
+  if(pay.value==="advance")
+    location.href="upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=100&cu=INR";
+  if(pay.value==="full")
+    location.href="upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am="+(localStorage.getItem("cartTotal")-50)+"&cu=INR";
 
-  setTimeout(()=>{
-    localStorage.setItem("orderName",name.value);
-    localStorage.setItem("orderPhone",phone.value);
-    localStorage.setItem("orderAddress",address.value);
-    localStorage.setItem("orderPin",pincode.value);
-    localStorage.setItem("orderPay",pay);
-    window.location.href="success.html";
-  },1500);
+  setTimeout(()=>location.href="success.html",1500);
 }
 </script>
 
