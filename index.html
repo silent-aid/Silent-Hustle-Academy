@@ -1,89 +1,233 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Cart | MQ Threads</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MQ Threads — Minimal Streetwear</title>
+
 <style>
-:root{--bg:#f4f4f4;--card:#fff;--accent:#c9a24d;}
-body{margin:0;font-family:Poppins;background:var(--bg);}
-.wrap{max-width:600px;margin:auto;padding:15px;}
-.item{
-  background:var(--card);
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:12px;
+:root{
+  --bg:#f6f6f6;
+  --card:#ffffff;
+  --black:#111;
+  --grey:#777;
+  --accent:#000;
+  --gold:#c6a75e;
 }
-.row{display:flex;justify-content:space-between;align-items:center;}
-.qty{
+
+*{
+  box-sizing:border-box;
+  font-family:Inter,system-ui,-apple-system;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--black);
+}
+
+/* HEADER */
+header{
+  background:#fff;
+  padding:14px 16px;
   display:flex;
+  justify-content:space-between;
   align-items:center;
+  border-bottom:1px solid #eaeaea;
+  position:sticky;
+  top:0;
+  z-index:100;
 }
-.qty button{
-  width:32px;height:32px;
-  border:none;
-  border-radius:50%;
-  background:#eee;
+
+header h1{
   font-size:18px;
+  letter-spacing:2px;
 }
-.qty span{margin:0 10px;}
-.checkout{
-  background:var(--accent);
-  padding:15px;
-  text-align:center;
-  border-radius:30px;
-  font-weight:600;
+
+header a{
+  font-size:14px;
   text-decoration:none;
   color:#000;
+}
+
+/* HERO */
+.hero{
+  padding:40px 20px;
+  text-align:center;
+}
+
+.hero h2{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  font-size:14px;
+  color:#555;
+}
+
+.hero button{
+  margin-top:16px;
+  padding:14px 24px;
+  border:none;
+  background:#000;
+  color:#fff;
+  border-radius:30px;
+  font-size:14px;
+}
+
+/* PRODUCTS */
+.section{
+  padding:20px;
+}
+
+.section h3{
+  font-size:18px;
+  margin-bottom:12px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+/* PRODUCT CARD */
+.card{
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+.card img{
+  width:100%;
   display:block;
+}
+
+.card .info{
+  padding:10px;
+}
+
+.card h4{
+  font-size:14px;
+  margin:0 0 4px;
+}
+
+.card .price{
+  font-size:14px;
+  font-weight:700;
+}
+
+.card .old{
+  font-size:12px;
+  color:#999;
+  text-decoration:line-through;
+  margin-left:6px;
+}
+
+.card button{
+  margin-top:8px;
+  width:100%;
+  padding:10px;
+  border:none;
+  background:#000;
+  color:#fff;
+  border-radius:8px;
+  font-size:13px;
+}
+
+/* BANNER */
+.banner{
+  margin:20px;
+  padding:20px;
+  background:#000;
+  color:#fff;
+  border-radius:18px;
+  text-align:center;
+}
+
+.banner h3{
+  margin:0 0 6px;
+}
+
+.banner p{
+  font-size:13px;
+  color:#ccc;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#777;
+  padding:20px;
 }
 </style>
 </head>
+
 <body>
 
-<div class="wrap">
-  <h2>Your Cart</h2>
-  <div id="list"></div>
-  <h3 id="total"></h3>
-  <a href="details.html" class="checkout">Checkout</a>
+<header>
+  <h1>MQ THREADS</h1>
+  <a href="cart.html">Cart 🛒</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h2>Minimal. Meaningful. Bold.</h2>
+  <p>Premium streetwear crafted for doers.</p>
+  <button onclick="location.href='#products'">Shop Now</button>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <h3>Featured Drops</h3>
+
+  <div class="products">
+
+    <!-- PRODUCT 1 -->
+    <div class="card">
+      <img src="https://drive.google.com/uc?id=1481MDsqUOklkHnUnDfBQ2ockDw8Omz3h">
+      <div class="info">
+        <h4>Stop Dreaming, Start Doing</h4>
+        <div>
+          <span class="price">₹499</span>
+          <span class="old">₹799</span>
+        </div>
+        <button onclick="openProduct()">View Product</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 2 (Sample) -->
+    <div class="card">
+      <img src="https://via.placeholder.com/400x500?text=Coming+Soon">
+      <div class="info">
+        <h4>Next Drop Incoming</h4>
+        <div>
+          <span class="price">₹—</span>
+        </div>
+        <button disabled style="background:#aaa">Coming Soon</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BRAND BANNER -->
+<div class="banner">
+  <h3>Why MQ Threads?</h3>
+  <p>Designed with purpose. Printed after order. Zero compromise.</p>
 </div>
 
+<footer>
+  © 2026 MQ Threads • Built with purpose
+</footer>
+
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function render(){
-  let sum = 0;
-  list.innerHTML = "";
-  cart.forEach((p,i)=>{
-    sum += p.price * p.qty;
-    list.innerHTML += `
-      <div class="item">
-        <div class="row">
-          <div>
-            <b>${p.name}</b><br>
-            Size: ${p.size}
-          </div>
-          ₹${p.price * p.qty}
-        </div>
-        <div class="qty">
-          <button onclick="change(${i},-1)">−</button>
-          <span>${p.qty}</span>
-          <button onclick="change(${i},1)">+</button>
-        </div>
-      </div>
-    `;
-  });
-  total.innerText = "Total: ₹" + sum;
-  localStorage.setItem("cartTotal", sum);
-  localStorage.setItem("cart", JSON.stringify(cart));
+function openProduct(){
+  window.location.href = "product.html";
 }
-
-function change(i,val){
-  cart[i].qty += val;
-  if(cart[i].qty <= 0) cart.splice(i,1);
-  render();
-}
-
-render();
 </script>
 
 </body>
