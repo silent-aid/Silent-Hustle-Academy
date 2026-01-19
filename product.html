@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MQ Threads | Stop Dreaming Start Doing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #0e0e0e;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .product {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 12px;
+      background: #111;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 26px;
+      color: #facc15;
+      font-weight: 700;
+    }
+
+    .mrp {
+      text-decoration: line-through;
+      color: #888;
+      margin-left: 10px;
+      font-size: 16px;
+    }
+
+    .save {
+      margin-top: 6px;
+      color: #22c55e;
+      font-size: 14px;
+    }
+
+    .desc {
+      margin: 20px 0;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #facc15;
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      background: #eab308;
+    }
+
+    .form-section {
+      margin-top: 60px;
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    .submit-btn {
+      background: #facc15;
+      color: #000;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media(max-width: 768px) {
+      .product {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- PRODUCT SECTION -->
+    <div class="product">
+      <img src="tshirt.jpg" alt="MQ Threads T-shirt">
+
+      <div>
+        <div class="title">Stop Dreaming, Start Doing – Black T-Shirt</div>
+
+        <div>
+          <span class="price">₹499</span>
+          <span class="mrp">₹799</span>
+        </div>
+        <div class="save">You save ₹300 (Limited time)</div>
+
+        <div class="desc">
+          Turn motivation into action.  
+          Premium black T-shirt made for hustlers, creators, and doers.  
+          Comfortable fit, bold print, and long-lasting quality.
+        </div>
+
+        <a href="#order" class="btn">ORDER NOW</a>
+      </div>
+    </div>
+
+    <!-- ORDER FORM -->
+    <div id="order" class="form-section">
+      <h2>Place Your Order</h2>
+
+      <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="tel" placeholder="Mobile Number" required>
+        <input type="text" placeholder="House / Flat / Street" required>
+        <input type="text" placeholder="City" required>
+        <input type="text" placeholder="State" required>
+        <input type="number" placeholder="Pincode" required>
+
+        <select required>
+          <option value="">Select Size</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
+          <option>XXL</option>
+        </select>
+
+        <select required>
+          <option value="">Payment Method</option>
+          <option>₹100 Advance + COD</option>
+          <option>Full Cash on Delivery</option>
+        </select>
+
+        <button class="submit-btn">CONFIRM ORDER</button>
+
+        <div class="note">
+          ₹100 advance is non-refundable once production starts.  
+          Printed after order confirmation to ensure quality.
+        </div>
+      </form>
+    </div>
+
+    <footer>
+      © 2026 MQ Threads — Minimal. Meaningful. Made for Doers.
+    </footer>
+
+  </div>
+
+</body>
+  </html>
+  
