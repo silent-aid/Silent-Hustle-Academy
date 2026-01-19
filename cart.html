@@ -2,46 +2,88 @@
 <html>
 <head>
 <title>Cart | MQ Threads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:Poppins;background:#f5f5f5;}
-.box{max-width:700px;margin:40px auto;}
+:root{--bg:#f4f4f4;--card:#fff;--accent:#c9a24d;}
+body{margin:0;font-family:Poppins;background:var(--bg);}
+.wrap{max-width:600px;margin:auto;padding:15px;}
 .item{
-  background:#fff;
-  padding:20px;
+  background:var(--card);
   border-radius:15px;
-  margin-bottom:15px;
-  display:flex;
-  justify-content:space-between;
+  padding:15px;
+  margin-bottom:12px;
 }
-.btn{
-  display:inline-block;
-  padding:14px 30px;
-  background:#c9a24d;
+.row{display:flex;justify-content:space-between;align-items:center;}
+.qty{
+  display:flex;
+  align-items:center;
+}
+.qty button{
+  width:32px;height:32px;
+  border:none;
+  border-radius:50%;
+  background:#eee;
+  font-size:18px;
+}
+.qty span{margin:0 10px;}
+.checkout{
+  background:var(--accent);
+  padding:15px;
+  text-align:center;
   border-radius:30px;
+  font-weight:600;
   text-decoration:none;
   color:#000;
-  font-weight:600;
+  display:block;
 }
 </style>
 </head>
 <body>
 
-<div class="box">
-<h2>Your Cart</h2>
-<div id="list"></div>
-<h3 id="total"></h3>
-<a class="btn" href="details.html">Checkout</a>
+<div class="wrap">
+  <h2>Your Cart</h2>
+  <div id="list"></div>
+  <h3 id="total"></h3>
+  <a href="details.html" class="checkout">Checkout</a>
 </div>
 
 <script>
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
-let sum=0;
-cart.forEach(i=>{
-  sum+=i.price;
-  list.innerHTML+=`<div class="item"><div>${i.name} (${i.size})</div>₹${i.price}</div>`;
-});
-total.innerText="Total: ₹"+sum;
-localStorage.setItem("cartTotal",sum);
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function render(){
+  let sum = 0;
+  list.innerHTML = "";
+  cart.forEach((p,i)=>{
+    sum += p.price * p.qty;
+    list.innerHTML += `
+      <div class="item">
+        <div class="row">
+          <div>
+            <b>${p.name}</b><br>
+            Size: ${p.size}
+          </div>
+          ₹${p.price * p.qty}
+        </div>
+        <div class="qty">
+          <button onclick="change(${i},-1)">−</button>
+          <span>${p.qty}</span>
+          <button onclick="change(${i},1)">+</button>
+        </div>
+      </div>
+    `;
+  });
+  total.innerText = "Total: ₹" + sum;
+  localStorage.setItem("cartTotal", sum);
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function change(i,val){
+  cart[i].qty += val;
+  if(cart[i].qty <= 0) cart.splice(i,1);
+  render();
+}
+
+render();
 </script>
 
 </body>
