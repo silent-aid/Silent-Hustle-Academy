@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MQ Threads | Cart</title>
+<style>
+:root{--bg:#0f0f0f;--card:#181818;--text:#fff;--muted:#aaa;--accent:#d4af37;}
+body{font-family:Poppins;background:var(--bg);color:var(--text);}
+.box{max-width:800px;margin:40px auto;}
+.item{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:15px;
+  display:flex;
+  justify-content:space-between;
+}
+.btn{
+  padding:12px 25px;
+  background:var(--accent);
+  color:#000;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Your Cart</h2>
+<div id="cart"></div>
+<h3 id="total"></h3>
+<a href="details.html" class="btn">Checkout</a>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let wrap=document.getElementById("cart");
+let sum=0;
+
+cart.forEach((p,i)=>{
+  sum+=p.price;
+  wrap.innerHTML+=`
+    <div class="item">
+      <div>
+        <b>${p.name}</b><br>
+        Size: ${p.size}
+      </div>
+      ₹${p.price}
+    </div>
+  `;
+});
+
+total.innerText="Total: ₹"+sum;
+localStorage.setItem("cartTotal",sum);
+</script>
+
+</body>
+</html>
