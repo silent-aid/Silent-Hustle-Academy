@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Confirmed | MQ Threads</title>
+<style>
+body{
+  background:#0b0b0b;
+  color:#fff;
+  font-family:Poppins;
+  text-align:center;
+  padding:40px;
+}
+.card{
+  background:#111;
+  padding:30px;
+  border-radius:20px;
+  max-width:400px;
+  margin:auto;
+}
+a{
+  display:inline-block;
+  margin-top:20px;
+  padding:15px 25px;
+  background:#25D366;
+  color:#fff;
+  border-radius:30px;
+  text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h2>Order Confirmed 🎉</h2>
+<p>Thank you for ordering from MQ Threads</p>
+
+<a id="wa">Send Order on WhatsApp</a>
+</div>
+
+<script>
+let msg = `
+New Order - MQ Threads
+
+Name: ${localStorage.getItem("orderName")}
+Phone: ${localStorage.getItem("orderPhone")}
+Address: ${localStorage.getItem("orderAddress")}
+Pincode: ${localStorage.getItem("orderPin")}
+
+Payment: ${localStorage.getItem("orderPay")}
+Product: Premium T-Shirt
+`;
+
+document.getElementById("wa").href =
+"https://wa.me/919121783895?text=" + encodeURIComponent(msg);
+</script>
+
+</body>
+</html>
