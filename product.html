@@ -2,256 +2,74 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MQ Threads — Stop Dreaming Start Doing</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>MQ Threads | Premium T-Shirt</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#0b0b0b;color:#fff}
-
-.container{max-width:1200px;margin:auto;padding:30px}
-
-/* PRODUCT CARD */
-.product{
-  display:grid;
-  grid-template-columns:1.1fr 0.9fr;
-  gap:50px;
-  align-items:center;
-  background:#0f0f0f;
-  border-radius:22px;
-  padding:40px;
-  box-shadow:0 20px 50px rgba(0,0,0,.6);
+body{
+  margin:0;
+  font-family:Poppins;
+  background:#0b0b0b;
+  color:#fff;
 }
-
-.product img{
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+img{
   width:100%;
   border-radius:20px;
 }
-
-h1{
-  font-size:34px;
-  font-weight:700;
-  line-height:1.2;
+.price{
+  font-size:28px;
 }
-
-.price-row{margin-top:15px}
-.price{font-size:30px;color:#facc15;font-weight:700}
-.mrp{margin-left:12px;color:#666;text-decoration:line-through}
-
-.tag{
-  margin-top:10px;
-  color:#22c55e;
-  font-size:14px;
+.price del{
+  color:#888;
+  font-size:18px;
 }
-
-.desc{
-  margin:22px 0;
-  color:#cbd5e1;
-  line-height:1.7;
-}
-
-.features{
-  font-size:14px;
-  color:#9ca3af;
-  line-height:1.8;
-}
-
-.cta{
-  margin-top:28px;
-  display:inline-block;
-  background:#facc15;
+.btn{
+  background:#fff;
   color:#000;
-  padding:16px 34px;
-  border-radius:14px;
-  font-weight:700;
+  padding:15px 30px;
+  border-radius:30px;
   text-decoration:none;
+  font-weight:600;
+  display:inline-block;
+  margin-top:20px;
 }
-
-/* FORM */
-.form-box{
-  margin-top:70px;
-  background:#0f0f0f;
-  padding:40px;
-  border-radius:24px;
-}
-
-.form-box h2{margin-bottom:25px}
-
-form{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-}
-
-input,select{
-  padding:14px;
-  border-radius:12px;
-  border:none;
-  background:#1a1a1a;
-  color:#fff;
-}
-
-.full{grid-column:1/3}
-
-button{
-  grid-column:1/3;
-  background:#facc15;
-  color:#000;
-  padding:16px;
-  border:none;
-  border-radius:14px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.note{
-  grid-column:1/3;
-  font-size:13px;
-  color:#9ca3af;
-}
-
-/* SUCCESS */
-.success{
-  display:none;
-  margin-top:60px;
-  background:#0f0f0f;
-  padding:50px;
-  border-radius:24px;
-  text-align:center;
-}
-
-.success h2{color:#22c55e;margin-bottom:10px}
-
-footer{
-  margin:60px 0 20px;
-  text-align:center;
-  color:#666;
-}
-
-@media(max-width:900px){
-  .product{grid-template-columns:1fr}
-  form{grid-template-columns:1fr}
-  .full,button,.note{grid-column:1/2}
+.badge{
+  background:#111;
+  padding:8px 15px;
+  border-radius:20px;
+  display:inline-block;
+  margin-bottom:10px;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
-
-<!-- PRODUCT -->
-<div class="product">
-  <img src="https://drive.google.com/uc?export=view&id=1481MDsqUOklkHnUnDfBQ2ockDw8Omz3h">
-
+  <img src="https://drive.google.com/uc?id=1481MDsqUOklkHnUnDfBQ2ockDw8Omz3h">
+  
   <div>
-    <h1>Stop Dreaming, Start Doing</h1>
+    <span class="badge">MQ Threads • Premium</span>
+    <h1>Luxury Black T-Shirt</h1>
+    <p>Minimal • Premium Fabric • Everyday Luxury</p>
 
-    <div class="price-row">
-      <span class="price" id="price">₹499</span>
-      <span class="mrp">₹799</span>
-    </div>
+    <div class="price">₹499 <del>₹799</del></div>
 
-    <div class="tag" id="tag">Limited launch pricing</div>
+    <ul>
+      <li>✔ Heavy GSM Fabric</li>
+      <li>✔ Long-lasting print</li>
+      <li>✔ Premium fitting</li>
+    </ul>
 
-    <div class="desc">
-      Designed for doers. A premium black T-shirt that represents discipline,
-      execution, and purpose — the core of MQ Threads.
-    </div>
-
-    <div class="features">
-      ✔ Premium cotton fabric<br>
-      ✔ Printed after order<br>
-      ✔ Pan-India shipping
-    </div>
-
-    <a href="#order" class="cta">Order Now</a>
+    <a href="details.html" class="btn">Order Now</a>
   </div>
 </div>
-
-<!-- ORDER -->
-<div class="form-box" id="order">
-<h2>Complete Your Order</h2>
-
-<form onsubmit="placeOrder(event)">
-  <input placeholder="Full Name" required>
-  <input placeholder="Mobile Number" required>
-  <input class="full" placeholder="Address" required>
-  <input placeholder="City" required>
-  <input placeholder="State" required>
-  <input placeholder="Pincode" required>
-
-  <select class="full" id="payment" onchange="updatePrice()" required>
-    <option value="">Select Payment Method</option>
-    <option value="advance">₹100 Advance + Cash on Delivery</option>
-    <option value="full">Pay Full Online (₹50 OFF)</option>
-  </select>
-
-  <button>Proceed to Pay</button>
-
-  <div class="note">
-    ✔ Pay using **any UPI app** (PhonePe / GPay / Paytm / FamPay)<br>
-    ✔ ₹100 advance is non-refundable once printing starts
-  </div>
-</form>
-</div>
-
-<!-- SUCCESS -->
-<div class="success" id="success">
-  <h2>Payment Initiated Successfully</h2>
-  <p>Please complete payment and send screenshot on WhatsApp.</p><br>
-  <button onclick="sendWhatsApp()">Send Order on WhatsApp</button>
-</div>
-
-<footer>© 2026 MQ Threads — Wear the mindset.</footer>
-
-</div>
-
-<script>
-let amount = 100;
-let label = "";
-
-function updatePrice(){
-  let p = document.getElementById("payment").value;
-  if(p === "full"){
-    amount = 449;
-    document.getElementById("price").innerText="₹449";
-    document.getElementById("tag").innerText="₹50 OFF for full payment";
-    label="FULL PAID ₹449";
-  } else {
-    amount = 100;
-    document.getElementById("price").innerText="₹499";
-    document.getElementById("tag").innerText="₹100 advance + COD";
-    label="₹100 Advance + COD";
-  }
-}
-
-function placeOrder(e){
-  e.preventDefault();
-
-  localStorage.setItem("mq_label", label);
-
-  let upi =
-`upi://pay?pa=9121783895@fam&pn=MQ%20Threads&am=${amount}&cu=INR&tn=MQ%20Threads%20Order`;
-
-  window.location.href = upi;
-
-  document.getElementById("order").style.display="none";
-  document.getElementById("success").style.display="block";
-}
-
-function sendWhatsApp(){
-  let msg =
-`🧵 MQ THREADS – NEW ORDER
-Payment: ${localStorage.getItem("mq_label")}
-Please confirm order.`;
-
-  window.location.href =
-"https://wa.me/919121783895?text="+encodeURIComponent(msg);
-}
-</script>
 
 </body>
 </html>
