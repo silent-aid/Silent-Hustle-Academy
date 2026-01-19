@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Track Order | MQ Threads</title>
 
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
@@ -10,107 +12,138 @@
     body {
       margin:0;
       background:#0e0e0e;
-      color:white;
+      color:#fff;
       font-family:Arial;
       display:flex;
     }
-    .side {
+    .sidebar {
       width:220px;
-      background:black;
+      background:#000;
       display:flex;
       align-items:center;
       justify-content:center;
       border-right:1px solid #222;
     }
-    .side img { width:120px; }
-    .main { padding:40px; flex:1; max-width:600px; }
-    input,button {
+    .sidebar img {
+      width:120px;
+    }
+    .main {
+      padding:40px;
+      max-width:600px;
+      flex:1;
+    }
+    input, button {
       width:100%;
-      padding:10px;
-      margin-top:10px;
+      padding:12px;
+      margin-top:12px;
     }
     button {
-      background:white;
-      color:black;
+      background:#fff;
+      color:#000;
       font-weight:bold;
       cursor:pointer;
     }
     .step {
       display:flex;
       align-items:center;
-      margin-top:15px;
+      margin-top:14px;
     }
     .dot {
       width:14px;
       height:14px;
       border-radius:50%;
-      background:#555;
       margin-right:10px;
+      background:#555;
     }
     .done { background:#2ecc71; }
     .progress { background:#f1c40f; }
-    .details p { margin:5px 0; color:#ccc; }
+    .details p {
+      color:#ccc;
+      margin:4px 0;
+    }
   </style>
 </head>
 
 <body>
 
-<div class="side">
-  <img src="logo.png" alt="MQ Threads">
+<div class="sidebar">
+  <!-- Optional logo -->
+  <!-- <img src="logo.png" alt="MQ Threads"> -->
+  MQ THREADS
 </div>
 
 <div class="main">
   <h2>Track Your Order</h2>
-  <input id="oid" placeholder="Enter Order ID">
-  <button onclick="track()">Track Order</button>
+
+  <input id="orderId" placeholder="Enter Order ID">
+  <button onclick="trackOrder()">Track</button>
 
   <div id="result"></div>
 </div>
 
 <script>
-firebase.initializeApp({
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID"
-});
+  // 🔥 SAME FIREBASE CONFIG AS ADMIN
+  firebase.initializeApp({
+    apiKey: "PASTE_API_KEY",
+    authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
+    projectId: "PASTE_PROJECT_ID"
+  });
 
-const db = firebase.firestore();
+  const db = firebase.firestore();
 
-const steps = [
-  "Design Selected",
-  "Waiting for ₹100 Confirmation",
-  "Printing",
-  "Out for Delivery",
-  "Delivered"
-];
+  const steps = [
+    "Design Selected",
+    "Waiting for ₹100 Confirmation",
+    "Printing",
+    "Out for Delivery",
+    "Delivered"
+  ];
 
-function track(){
-  const id = oid.value;
-  db.collection("orders").doc(id).get().then(doc=>{
-    if(!doc.exists){
-      result.innerHTML = "❌ Order not found";
+  function trackOrder() {
+    const id = orderId.value.trim();
+    const result = document.getElementById("result");
+
+    if (!id) {
+      result.innerHTML = "❌ Enter Order ID";
       return;
     }
 
-    const d = doc.data();
-    let html = `
-      <div class="details">
-        <p><b>Name:</b> ${d.name}</p>
-        <p><b>Product:</b> ${d.product}</p>
-        <p><b>Size:</b> ${d.size}</p>
-        <p><b>Color:</b> ${d.color}</p>
-      </div>
-      <hr>
-    `;
+    result.innerHTML = "🔄 Checking order...";
 
-    steps.forEach((s,i)=>{
-      let c = i < d.step ? "done" : i === d.step ? "progress" : "";
-      html += `<div class="step"><div class="dot ${c}"></div>${s}</div>`;
-    });
+    db.collection("orders").doc(id).get()
+      .then(doc => {
+        if (!doc.exists) {
+          result.innerHTML = "❌ Order not found";
+          return;
+        }
 
-    result.innerHTML = html;
-  });
-}
+        const d = doc.data();
+        let html = `
+          <div class="details">
+            <p><b>Name:</b> ${d.name}</p>
+            <p><b>Product:</b> ${d.product}</p>
+            <p><b>Size:</b> ${d.size}</p>
+            <p><b>Color:</b> ${d.color}</p>
+          </div>
+          <hr>
+        `;
+
+        steps.forEach((s, i) => {
+          let cls = i < d.step ? "done" : i === d.step ? "progress" : "";
+          html += `
+            <div class="step">
+              <div class="dot ${cls}"></div>${s}
+            </div>
+          `;
+        });
+
+        result.innerHTML = html;
+      })
+      .catch(err => {
+        console.error(err);
+        result.innerHTML = "❌ Error loading order (check console)";
+      });
+  }
 </script>
 
 </body>
