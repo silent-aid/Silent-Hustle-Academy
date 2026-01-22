@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MQ Threads | Premium Hoodie</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+@media(max-width:768px){
+  .product { grid-template-columns: 1fr; }
+}
+
+.product img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.price {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #0f0;
+}
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: #111;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+
+.btn {
+  width: 100%;
+  padding: 15px;
+  background: #fff;
+  color: #000;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: #0f0;
+}
+
+.badges {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.desc {
+  margin-top: 30px;
+  line-height: 1.6;
+  color: #ccc;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="product">
+    
+    <!-- IMAGE -->
+    <div>
+      <img src="https://via.placeholder.com/600x700" alt="Hoodie">
+    </div>
+
+    <!-- DETAILS -->
+    <div>
+      <h1>MQ Threads Premium Hoodie</h1>
+      <div class="price">₹1499</div>
+
+      <label>Color</label>
+      <select id="color">
+        <option>Black</option>
+        <option>Grey</option>
+        <option>White</option>
+      </select>
+
+      <label>Size</label>
+      <select id="size">
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+
+      <label>Quantity</label>
+      <input type="number" id="qty" value="1" min="1">
+
+      <button class="btn" onclick="addToCart()">Add to Cart</button>
+      <button class="btn" onclick="buyNow()">Buy Now</button>
+
+      <div class="badges">
+        🚚 Free Shipping <br>
+        💳 Secure Payments <br>
+        📦 7-Day Replacement <br>
+        COD Available
+      </div>
+    </div>
+  </div>
+
+  <div class="desc">
+    <h2>Product Details</h2>
+    <p>
+      Premium quality cotton fleece hoodie by MQ Threads.
+      Soft inside, heavy GSM, perfect for daily wear.
+    </p>
+  </div>
+</div>
+
+<script>
+function addToCart() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let product = {
+    name: "MQ Threads Hoodie",
+    price: 1499,
+    color: document.getElementById("color").value,
+    size: document.getElementById("size").value,
+    qty: document.getElementById("qty").value
+  };
+
+  cart.push(product);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to cart!");
+}
+
+function buyNow() {
+  addToCart();
+  window.location.href = "cart.html";
+}
+</script>
+
+</body>
+  </html>
+  
