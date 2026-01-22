@@ -34,9 +34,10 @@ body {
 }
 
 .price {
-  font-size: 24px;
+  font-size: 26px;
   margin: 10px 0;
-  color: #0f0;
+  color: #00ff99;
+  font-weight: bold;
 }
 
 select, input {
@@ -62,7 +63,7 @@ select, input {
 }
 
 .btn:hover {
-  background: #0f0;
+  background: #00ff99;
 }
 
 .badges {
@@ -85,13 +86,13 @@ select, input {
     
     <!-- IMAGE -->
     <div>
-      <img src="https://via.placeholder.com/600x700" alt="Hoodie">
+      <img src="https://images.meesho.com/images/products/405228267/8n1hf_512.webp" alt="Hoodie">
     </div>
 
     <!-- DETAILS -->
     <div>
-      <h1>MQ Threads Premium Hoodie</h1>
-      <div class="price">₹1499</div>
+      <h1>MQ Threads Printed Hoodie</h1>
+      <div class="price">₹499</div>
 
       <label>Color</label>
       <select id="color">
@@ -126,8 +127,9 @@ select, input {
   <div class="desc">
     <h2>Product Details</h2>
     <p>
-      Premium quality cotton fleece hoodie by MQ Threads.
-      Soft inside, heavy GSM, perfect for daily wear.
+      Premium printed hoodie for men & women.  
+      Soft fabric, comfortable fit, perfect for daily wear.  
+      Winter essential by MQ Threads.
     </p>
   </div>
 </div>
@@ -137,8 +139,8 @@ function addToCart() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   let product = {
-    name: "MQ Threads Hoodie",
-    price: 1499,
+    name: "MQ Threads Printed Hoodie",
+    price: 499,
     color: document.getElementById("color").value,
     size: document.getElementById("size").value,
     qty: document.getElementById("qty").value
@@ -156,5 +158,4 @@ function buyNow() {
 </script>
 
 </body>
-  </html>
-  
+</html>
