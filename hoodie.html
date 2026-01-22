@@ -3,17 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MQ Threads | Premium Hoodie</title>
+<title>MQ Threads | Printed Hoodie</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #000;
+  font-family: 'Inter', sans-serif;
+  background: #0b0b0b;
   color: #fff;
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
@@ -21,61 +24,111 @@ body {
 .product {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 50px;
+  align-items: center;
 }
 
 @media(max-width:768px){
-  .product { grid-template-columns: 1fr; }
+  .product {
+    grid-template-columns: 1fr;
+  }
 }
 
 .product img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
 }
 
 .price {
-  font-size: 26px;
-  margin: 10px 0;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 15px 0;
   color: #00ff99;
-  font-weight: bold;
 }
 
-select, input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  background: #111;
-  color: white;
-  border: 1px solid #333;
-  border-radius: 8px;
-}
-
-.btn {
-  width: 100%;
-  padding: 15px;
-  background: #fff;
-  color: #000;
+.old {
+  text-decoration: line-through;
+  color: #777;
   font-size: 18px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 10px;
+  margin-left: 10px;
 }
 
-.btn:hover {
-  background: #00ff99;
-}
-
-.badges {
-  margin-top: 15px;
+.label {
+  margin-top: 20px;
   font-size: 14px;
   color: #aaa;
 }
 
-.desc {
-  margin-top: 30px;
+select, input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  background: #141414;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.btn {
+  width: 100%;
+  padding: 18px;
+  margin-top: 20px;
+  background: linear-gradient(135deg,#00ff99,#00ccff);
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid #444;
+}
+
+.trust {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #aaa;
   line-height: 1.6;
-  color: #ccc;
+}
+
+.section {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+@media(max-width:768px){
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature {
+  background: #141414;
+  padding: 25px;
+  border-radius: 16px;
 }
 </style>
 </head>
@@ -84,24 +137,24 @@ select, input {
 <div class="container">
   <div class="product">
     
-    <!-- IMAGE -->
+    <!-- IMAGE (LOCAL FILE) -->
     <div>
-      <img src="https://images.meesho.com/images/products/405228267/8n1hf_512.webp" alt="Hoodie">
+      <img src="images/hoodie.jpg" alt="Printed Hoodie">
     </div>
 
-    <!-- DETAILS -->
+    <!-- INFO -->
     <div>
       <h1>MQ Threads Printed Hoodie</h1>
-      <div class="price">₹499</div>
+      <div class="price">₹499 <span class="old">₹999</span></div>
 
-      <label>Color</label>
+      <div class="label">Color</div>
       <select id="color">
         <option>Black</option>
         <option>Grey</option>
         <option>White</option>
       </select>
 
-      <label>Size</label>
+      <div class="label">Size</div>
       <select id="size">
         <option>S</option>
         <option>M</option>
@@ -109,27 +162,37 @@ select, input {
         <option>XL</option>
       </select>
 
-      <label>Quantity</label>
+      <div class="label">Quantity</div>
       <input type="number" id="qty" value="1" min="1">
 
-      <button class="btn" onclick="addToCart()">Add to Cart</button>
       <button class="btn" onclick="buyNow()">Buy Now</button>
+      <button class="btn secondary" onclick="addToCart()">Add to Cart</button>
 
-      <div class="badges">
-        🚚 Free Shipping <br>
-        💳 Secure Payments <br>
-        📦 7-Day Replacement <br>
-        COD Available
+      <div class="trust">
+        🚚 Free Shipping across India <br>
+        💳 UPI / Card / COD available <br>
+        🔁 7-Day Replacement <br>
+        🔒 100% Secure Checkout
       </div>
     </div>
   </div>
 
-  <div class="desc">
+  <!-- FEATURES -->
+  <div class="section">
+    <h2>Why MQ Threads?</h2>
+    <div class="features">
+      <div class="feature">Premium soft fabric</div>
+      <div class="feature">Unisex streetwear fit</div>
+      <div class="feature">High quality print</div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="section">
     <h2>Product Details</h2>
-    <p>
-      Premium printed hoodie for men & women.  
-      Soft fabric, comfortable fit, perfect for daily wear.  
-      Winter essential by MQ Threads.
+    <p style="max-width:700px;margin:auto;color:#aaa;">
+      This printed hoodie is designed for daily comfort and modern street style.
+      Perfect for winters, soft inside fleece, durable print and relaxed fit.
     </p>
   </div>
 </div>
@@ -137,16 +200,13 @@ select, input {
 <script>
 function addToCart() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  let product = {
+  cart.push({
     name: "MQ Threads Printed Hoodie",
     price: 499,
-    color: document.getElementById("color").value,
-    size: document.getElementById("size").value,
-    qty: document.getElementById("qty").value
-  };
-
-  cart.push(product);
+    color: color.value,
+    size: size.value,
+    qty: qty.value
+  });
   localStorage.setItem("cart", JSON.stringify(cart));
   alert("Added to cart!");
 }
