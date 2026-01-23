@@ -3,55 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secure Checkout | MQ Threads</title>
-
+<title>Checkout | MQ Threads</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 *{box-sizing:border-box;}
 body{
   margin:0;
-  font-family:Poppins, sans-serif;
+  font-family:system-ui, -apple-system, sans-serif;
   background:#0b0b0b;
   color:#fff;
 }
 .container{
   max-width:420px;
   margin:auto;
-  padding:15px;
+  padding:12px;
 }
 .card{
   background:#141414;
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:14px;
-  box-shadow:0 0 15px rgba(255,255,255,0.05);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
 }
-h2{font-size:18px;margin-bottom:10px;}
+h2{font-size:17px;margin:6px 0 10px;}
 
-.payment-option{
+.option{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
   padding:12px;
   border:2px solid #333;
-  border-radius:12px;
-  margin:10px 0;
-  cursor:pointer;
+  border-radius:10px;
+  margin:8px 0;
 }
-.payment-option.active{
+.option.active{
   border-color:#00ff99;
   background:#0f1f1a;
 }
-.payment-option i{font-size:24px;}
-
-.discount{color:#00ff99;font-size:13px;}
 
 input,select,textarea{
   width:100%;
   padding:11px;
   margin:6px 0;
-  border-radius:10px;
+  border-radius:8px;
   border:none;
   background:#1f1f1f;
   color:#fff;
@@ -61,19 +55,17 @@ input,select,textarea{
 button{
   width:100%;
   padding:14px;
-  background:linear-gradient(135deg,#00ff99,#00ccff);
+  margin-top:10px;
   border:none;
-  border-radius:14px;
+  border-radius:12px;
+  background:#00ff99;
   color:#000;
   font-size:16px;
   font-weight:600;
-  margin-top:12px;
 }
-.price{
-  font-size:16px;
-  margin-top:6px;
-}
+
 .green{color:#00ff99;}
+.small{font-size:13px;color:#aaa;}
 </style>
 </head>
 
@@ -83,36 +75,28 @@ button{
 <div class="card">
 <h2>Order Summary</h2>
 <p>Premium Hoodie – MQ Threads</p>
-<p class="price" id="priceText">Price: ₹499</p>
-<p class="discount" id="discountText" style="display:none;">UPI Discount Applied: -₹50</p>
+<p id="priceText">Price: ₹499</p>
+<p id="discountText" class="green" style="display:none;">UPI Discount: -₹50</p>
 </div>
 
 <div class="card">
 <h2>Payment Method</h2>
 
-<div class="payment-option active" onclick="selectPayment('cod')" id="codBox">
-<i class="fa-solid fa-truck"></i>
-Cash on Delivery
+<div class="option active" id="cod" onclick="setPay('cod')">
+<i class="fa-solid fa-truck"></i> Cash on Delivery
 </div>
 
-<div class="payment-option" onclick="selectPayment('upi')" id="upiBox">
-<i class="fa-solid fa-mobile-screen"></i>
-UPI / Online Payment
-<span class="discount">(₹50 OFF)</span>
-</div>
-
-<div style="display:flex;gap:10px;margin-top:10px;">
-<i class="fa-brands fa-google-pay"></i>
-<i class="fa-brands fa-cc-paypal"></i>
-<i class="fa-solid fa-qrcode"></i>
+<div class="option" id="upi" onclick="setPay('upi')">
+<i class="fa-solid fa-mobile"></i> UPI (PhonePe / GPay / Paytm)
+<span class="green small">(₹50 OFF)</span>
 </div>
 </div>
 
 <div class="card">
 <h2>Shipping Details</h2>
-<input type="text" id="name" placeholder="Full Name" required>
-<input type="tel" id="phone" placeholder="Phone Number" required>
-<input type="email" id="email" placeholder="Email">
+<input id="name" placeholder="Full Name">
+<input id="phone" placeholder="Phone Number">
+<input id="email" placeholder="Email (optional)">
 
 <select id="state">
 <option value="">Select State</option>
@@ -121,7 +105,6 @@ UPI / Online Payment
 <option>Assam</option>
 <option>Bihar</option>
 <option>Chhattisgarh</option>
-<option>Delhi</option>
 <option>Goa</option>
 <option>Gujarat</option>
 <option>Haryana</option>
@@ -131,14 +114,29 @@ UPI / Online Payment
 <option>Kerala</option>
 <option>Madhya Pradesh</option>
 <option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
 <option>Odisha</option>
 <option>Punjab</option>
 <option>Rajasthan</option>
+<option>Sikkim</option>
 <option>Tamil Nadu</option>
 <option>Telangana</option>
+<option>Tripura</option>
 <option>Uttar Pradesh</option>
 <option>Uttarakhand</option>
 <option>West Bengal</option>
+<option>Delhi</option>
+<option>Jammu & Kashmir</option>
+<option>Ladakh</option>
+<option>Puducherry</option>
+<option>Chandigarh</option>
+<option>Dadra & Nagar Haveli</option>
+<option>Daman & Diu</option>
+<option>Lakshadweep</option>
+<option>Andaman & Nicobar</option>
 </select>
 
 <textarea id="address" placeholder="Full Address"></textarea>
@@ -152,17 +150,17 @@ UPI / Online Payment
 let payment="cod";
 let price=499;
 
-function selectPayment(method){
-  payment=method;
-  codBox.classList.remove("active");
-  upiBox.classList.remove("active");
+function setPay(type){
+  payment=type;
+  document.getElementById("cod").classList.remove("active");
+  document.getElementById("upi").classList.remove("active");
 
-  if(method==="upi"){
-    upiBox.classList.add("active");
+  if(type==="upi"){
+    document.getElementById("upi").classList.add("active");
     price=449;
     discountText.style.display="block";
   }else{
-    codBox.classList.add("active");
+    document.getElementById("cod").classList.add("active");
     price=499;
     discountText.style.display="none";
   }
@@ -170,22 +168,24 @@ function selectPayment(method){
 }
 
 function placeOrder(){
-  let name=name.value;
-  let phone=document.getElementById("phone").value;
-  let state=document.getElementById("state").value;
+  let n=name.value;
+  let p=phone.value;
+  let s=state.value;
 
-  if(!name || !phone || !state){
-    alert("Fill all required fields");
+  if(!n||!p||!s){
+    alert("Please fill all required fields");
     return;
   }
 
   if(payment==="upi"){
-    let upiId="9121783895@fam";
-    let link=`upi://pay?pa=${upiId}&pn=MQ%20Threads&am=${price}&cu=INR`;
-    window.location.href=link;
+    let upi="9121783895@fam";
+    let url=`upi://pay?pa=${upi}&pn=MQ%20Threads&am=${price}&cu=INR`;
+    window.location.href=url;
+
+    // fallback if browser blocks
     setTimeout(()=>{
       window.location.href="thankyou.html";
-    },3000);
+    },2500);
   }else{
     window.location.href="thankyou.html";
   }
