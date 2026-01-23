@@ -2,102 +2,100 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Secure Checkout - MQ Threads</title>
+<title>Secure Checkout | MQ Threads</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 body{
-font-family: 'Segoe UI', sans-serif;
-background: radial-gradient(circle at top,#000,#050505);
+font-family:Poppins,system-ui;
+background:radial-gradient(circle at top,#000,#050505);
 color:white;
 margin:0;
 padding:20px;
 }
 
 .marquee{
-background:linear-gradient(90deg,red,#ff0055);
+background:linear-gradient(90deg,#ff0000,#ff0066);
 padding:10px;
 text-align:center;
-font-weight:bold;
-animation:slide 15s linear infinite;
+font-weight:600;
 white-space:nowrap;
 overflow:hidden;
 }
 
-@keyframes slide{
-0%{transform:translateX(100%)}
-100%{transform:translateX(-100%)}
-}
-
-form{
-max-width:600px;
+.container{
+max-width:720px;
 margin:30px auto;
-background:#0e0e0e;
-padding:30px;
-border-radius:18px;
-box-shadow:0 0 40px rgba(0,255,150,0.08);
-animation:pop 0.7s ease;
 }
 
-@keyframes pop{
-from{opacity:0;transform:scale(0.95)}
-to{opacity:1;transform:scale(1)}
+.card{
+background:linear-gradient(180deg,#141414,#0d0d0d);
+padding:24px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,.7);
+margin-bottom:20px;
 }
 
-h2{text-align:center;margin-bottom:10px}
+h2{text-align:center;margin:0}
+.sub{text-align:center;opacity:.7;margin-bottom:15px}
 
-.summary{
+.summary-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:10px;
+}
+.summary-box{
+background:#1c1c1c;
+padding:14px;
+border-radius:14px;
+}
+
+.price-box{
 background:#000;
 border:1px solid #222;
-padding:15px;
-border-radius:12px;
-margin-bottom:20px;
-line-height:1.7;
+padding:16px;
+border-radius:16px;
+margin-top:10px;
+line-height:1.8;
 }
 
 label{display:block;margin-top:14px;font-weight:600}
-
-input,select,textarea{
+input,textarea{
 width:100%;
-padding:11px;
+padding:12px;
 margin-top:6px;
 background:#1a1a1a;
 color:white;
-border:1px solid #444;
-border-radius:8px;
+border:1px solid #333;
+border-radius:10px;
 }
 
 .payment-box{
 display:flex;
-gap:10px;
-margin-top:10px;
+gap:12px;
+margin-top:12px;
 }
-
 .payment-box div{
 flex:1;
+background:#1a1a1a;
 border:1px solid #333;
-padding:12px;
-border-radius:10px;
+padding:14px;
+border-radius:14px;
 cursor:pointer;
 text-align:center;
-transition:0.3s;
+font-weight:600;
 }
-
-.payment-box div:hover{
-border-color:#00ff9d;
-transform:scale(1.03);
-}
-
 .active-pay{
 border-color:#00ff9d;
-background:#002f22;
+background:#003326;
 }
 
 .upi-info{
 margin-top:10px;
-padding:10px;
+padding:12px;
 background:#000;
-border-radius:10px;
+border-radius:12px;
 border:1px dashed #00ff9d;
 display:none;
 }
@@ -105,41 +103,59 @@ display:none;
 button{
 margin-top:25px;
 width:100%;
-padding:14px;
-background:#00ff9d;
+padding:16px;
+background:linear-gradient(45deg,#00ff9d,#00ffaa);
 border:none;
 font-size:18px;
-font-weight:bold;
-border-radius:12px;
+font-weight:700;
+border-radius:16px;
 cursor:pointer;
-transition:0.3s;
 }
-
-button:hover{
-transform:scale(1.04);
-background:#00ffaa;
-}
+button:active{transform:scale(.98)}
 </style>
 </head>
 
 <body>
 
 <div class="marquee">
-🔥 Free Delivery | COD & UPI Accepted | Premium Streetwear
+🔥 Free Delivery | COD & UPI Available | Premium Streetwear
 </div>
 
+<div class="container">
+<div class="card">
+<h2>Secure Checkout</h2>
+<p class="sub">Complete your order in 30 seconds</p>
+
+<div class="summary-grid">
+<div class="summary-box">
+<b>Product</b><br>
+<span id="pName"></span>
+</div>
+<div class="summary-box">
+<b>Color</b><br>
+<span id="pColor"></span>
+</div>
+<div class="summary-box">
+<b>Quantity</b><br>
+<span id="pQty"></span>
+</div>
+<div class="summary-box">
+<b>Size</b><br>
+Free Size
+</div>
+</div>
+
+<div class="price-box">
+MRP: ₹999<br>
+Discount: -₹500<br>
+<b style="font-size:20px">Total: ₹<span id="pTotal"></span></b>
+</div>
+</div>
+
+<div class="card">
 <form id="orderForm">
-<h2>MQ Threads Checkout</h2>
-<p style="text-align:center;opacity:0.7">Almost there. Complete your order 👇</p>
-
-<div class="summary" id="summaryBox"></div>
-
 <label>Full Name
 <input type="text" name="name" required>
-</label>
-
-<label>Email
-<input type="email" name="email" required>
 </label>
 
 <label>Phone
@@ -158,90 +174,78 @@ background:#00ffaa;
 <textarea name="address" required></textarea>
 </label>
 
-<!-- Hidden product fields -->
 <input type="hidden" name="product" id="productField">
-<input type="hidden" name="size" id="sizeField">
 <input type="hidden" name="qty" id="qtyField">
 <input type="hidden" name="price" id="priceField">
+<input type="hidden" name="color" id="colorField">
 <input type="hidden" name="payment" id="paymentField">
 
-<label>Select Payment Method</label>
+<label>Select Payment</label>
 <div class="payment-box">
 <div id="codBox">Cash on Delivery</div>
-<div id="upiBox">UPI (PhonePe / GPay)</div>
+<div id="upiBox">UPI</div>
 </div>
 
 <div class="upi-info" id="upiInfo">
-Pay to UPI ID:<br>
-<b>9121783895@fam</b><br>
-After payment, place order.
+Pay to: <b>9121783895@fam</b><br>
+Then click confirm.
 </div>
 
 <button type="submit">Confirm Order</button>
 </form>
+</div>
+</div>
 
 <script>
-// Load from hoodie.html
+// From product page
 let product = localStorage.getItem("product") || "Premium Hoodie";
-let size = localStorage.getItem("size") || "M";
 let qty = parseInt(localStorage.getItem("qty") || 1);
 let price = parseInt(localStorage.getItem("price") || 499);
+let color = localStorage.getItem("color") || "Black";
+
 let total = price * qty;
 
-document.getElementById("summaryBox").innerHTML = `
-<b>Product:</b> ${product}<br>
-<b>Size:</b> ${size}<br>
-<b>Quantity:</b> ${qty}<br>
-<b>Total:</b> ₹${total}
-`;
+// UI
+pName.innerText = product;
+pQty.innerText = qty;
+pColor.innerText = color;
+pTotal.innerText = total;
 
-document.getElementById("productField").value = product;
-document.getElementById("sizeField").value = size;
-document.getElementById("qtyField").value = qty;
-document.getElementById("priceField").value = total;
+// Hidden fields
+productField.value = product;
+qtyField.value = qty;
+priceField.value = total;
+colorField.value = color;
 
-// Payment logic
-let paymentMethod = "";
-const codBox = document.getElementById("codBox");
-const upiBox = document.getElementById("upiBox");
-const upiInfo = document.getElementById("upiInfo");
-const paymentField = document.getElementById("paymentField");
-
-codBox.onclick = () => {
+// Payment
+let paymentMethod="";
+codBox.onclick=()=>{
 paymentMethod="COD";
 codBox.classList.add("active-pay");
 upiBox.classList.remove("active-pay");
 upiInfo.style.display="none";
 paymentField.value="COD";
-};
-
-upiBox.onclick = () => {
+}
+upiBox.onclick=()=>{
 paymentMethod="UPI";
 upiBox.classList.add("active-pay");
 codBox.classList.remove("active-pay");
 upiInfo.style.display="block";
-paymentField.value="UPI - 9121783895@fam";
-};
-
-// Submit
-document.getElementById("orderForm").addEventListener("submit", e=>{
-e.preventDefault();
-
-if(!paymentMethod){
-alert("Please select payment method");
-return;
+paymentField.value="UPI";
 }
 
-const formData = new FormData(e.target);
+// Submit
+orderForm.addEventListener("submit",e=>{
+e.preventDefault();
+if(!paymentMethod){alert("Select payment");return;}
 
 fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",{
 method:"POST",
-body:formData
+body:new FormData(orderForm)
 })
-.then(()=> window.location.href="thank-you.html")
-.catch(()=> alert("Order failed"));
+.then(()=>location.href="thank-you.html")
+.catch(()=>alert("Order failed"));
 });
 </script>
-
 </body>
 </html>
