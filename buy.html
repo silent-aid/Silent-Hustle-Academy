@@ -119,6 +119,7 @@ cursor:pointer;
 
 <div class="container">
 
+<!-- SUMMARY -->
 <div class="card">
 <h2>Order Summary</h2>
 <div class="summary-row"><span>Product</span><b>Premium Hoodie</b></div>
@@ -128,6 +129,7 @@ cursor:pointer;
 <div class="summary-row"><span>Total</span><b id="totalText">₹499</b></div>
 </div>
 
+<!-- PAYMENT -->
 <div class="card">
 <h2>Payment Method</h2>
 
@@ -143,20 +145,21 @@ cursor:pointer;
 <i class="fa-solid fa-bolt"></i> UPI / Online Payment
 <div class="apps">
 <i class="fa-brands fa-google-pay"></i>
-<i class="fa-brands fa-paypal"></i>
 <i class="fa-solid fa-mobile"></i>
+<i class="fa-solid fa-wallet"></i>
 </div>
 </div>
 </div>
 
+<!-- FORM -->
 <div class="card">
 <h2>Shipping Details</h2>
-<input id="name" placeholder="Full Name" required>
-<input id="phone" placeholder="Phone Number" required>
+<input id="name" placeholder="Full Name *">
+<input id="phone" placeholder="Phone Number *">
 <input id="email" placeholder="Email">
 
 <select id="state">
-<option value="">Select State</option>
+<option value="">Select State *</option>
 <option>Andhra Pradesh</option>
 <option>Arunachal Pradesh</option>
 <option>Assam</option>
@@ -188,7 +191,7 @@ cursor:pointer;
 <option>Delhi</option>
 </select>
 
-<textarea id="address" placeholder="Full Address"></textarea>
+<textarea id="address" placeholder="Full Address *"></textarea>
 
 <button onclick="placeOrder()">Place Order</button>
 </div>
@@ -225,18 +228,18 @@ updateUI();
 }
 
 function placeOrder(){
-let name=nameInput=name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let email=document.getElementById("email").value;
+let name=document.getElementById("name").value.trim();
+let phone=document.getElementById("phone").value.trim();
+let email=document.getElementById("email").value.trim();
 let state=document.getElementById("state").value;
-let address=document.getElementById("address").value;
+let address=document.getElementById("address").value.trim();
 
 if(!name||!phone||!state||!address){
 alert("Please fill all required fields");
 return;
 }
 
-// SEND TO YOUR EMAIL (GOOGLE SCRIPT)
+// send to your gmail
 let data=new FormData();
 data.append("name",name);
 data.append("phone",phone);
@@ -251,11 +254,12 @@ data.append("address",address);
 fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",
 {method:"POST",body:data});
 
-// UPI OPEN
+// redirect
 if(payment==="upi"){
 let upi="9121783895@fam";
 let link=`upi://pay?pa=${upi}&pn=MQ%20Threads&am=${finalPrice}&cu=INR`;
-window.location.href=link;
+alert("Redirecting to UPI App...");
+setTimeout(()=>{ window.location.href=link; },500);
 }else{
 window.location.href="thankyou.html";
 }
