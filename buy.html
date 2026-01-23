@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checkout | MQ Threads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{background:#0b0b0b;color:white;font-family:Arial;margin:0}
+.box{
+max-width:500px;
+margin:40px auto;
+background:#111;
+padding:20px;
+border-radius:15px;
+}
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+}
+button{
+width:100%;
+padding:15px;
+background:#00ff9d;
+border:none;
+font-size:18px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Order Summary</h2>
+<p id="summary"></p>
+
+<h3>Customer Details</h3>
+<input placeholder="Full Name">
+<input placeholder="Mobile Number">
+<input placeholder="Full Address">
+
+<button onclick="confirm()">Confirm Order</button>
+</div>
+
+<script>
+let p = localStorage.getItem("product");
+let s = localStorage.getItem("size");
+let q = localStorage.getItem("qty");
+let price = localStorage.getItem("price");
+
+document.getElementById("summary").innerHTML =
+`Product: ${p}<br>Size: ${s}<br>Qty: ${q}<br>Total: ₹${price*q}`;
+
+function confirm(){
+alert("Order Placed Successfully! We will contact you.");
+}
+</script>
+
+</body>
+</html>
