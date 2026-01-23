@@ -1,61 +1,246 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Checkout | MQ Threads</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Secure Checkout - MQ Threads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-body{background:#0b0b0b;color:white;font-family:Arial;margin:0}
-.box{
-max-width:500px;
-margin:40px auto;
-background:#111;
+body{
+font-family: 'Segoe UI', sans-serif;
+background: radial-gradient(circle at top,#000,#050505);
+color:white;
+margin:0;
 padding:20px;
-border-radius:15px;
 }
-input{
-width:100%;
-padding:12px;
-margin:10px 0;
-border-radius:8px;
-border:none;
+
+.marquee{
+background:linear-gradient(90deg,red,#ff0055);
+padding:10px;
+text-align:center;
+font-weight:bold;
+animation:slide 15s linear infinite;
+white-space:nowrap;
+overflow:hidden;
 }
-button{
-width:100%;
+
+@keyframes slide{
+0%{transform:translateX(100%)}
+100%{transform:translateX(-100%)}
+}
+
+form{
+max-width:600px;
+margin:30px auto;
+background:#0e0e0e;
+padding:30px;
+border-radius:18px;
+box-shadow:0 0 40px rgba(0,255,150,0.08);
+animation:pop 0.7s ease;
+}
+
+@keyframes pop{
+from{opacity:0;transform:scale(0.95)}
+to{opacity:1;transform:scale(1)}
+}
+
+h2{text-align:center;margin-bottom:10px}
+
+.summary{
+background:#000;
+border:1px solid #222;
 padding:15px;
+border-radius:12px;
+margin-bottom:20px;
+line-height:1.7;
+}
+
+label{display:block;margin-top:14px;font-weight:600}
+
+input,select,textarea{
+width:100%;
+padding:11px;
+margin-top:6px;
+background:#1a1a1a;
+color:white;
+border:1px solid #444;
+border-radius:8px;
+}
+
+.payment-box{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.payment-box div{
+flex:1;
+border:1px solid #333;
+padding:12px;
+border-radius:10px;
+cursor:pointer;
+text-align:center;
+transition:0.3s;
+}
+
+.payment-box div:hover{
+border-color:#00ff9d;
+transform:scale(1.03);
+}
+
+.active-pay{
+border-color:#00ff9d;
+background:#002f22;
+}
+
+.upi-info{
+margin-top:10px;
+padding:10px;
+background:#000;
+border-radius:10px;
+border:1px dashed #00ff9d;
+display:none;
+}
+
+button{
+margin-top:25px;
+width:100%;
+padding:14px;
 background:#00ff9d;
 border:none;
 font-size:18px;
-border-radius:10px;
+font-weight:bold;
+border-radius:12px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.04);
+background:#00ffaa;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-<h2>Order Summary</h2>
-<p id="summary"></p>
-
-<h3>Customer Details</h3>
-<input placeholder="Full Name">
-<input placeholder="Mobile Number">
-<input placeholder="Full Address">
-
-<button onclick="confirm()">Confirm Order</button>
+<div class="marquee">
+🔥 Free Delivery | COD & UPI Accepted | Premium Streetwear
 </div>
 
+<form id="orderForm">
+<h2>MQ Threads Checkout</h2>
+<p style="text-align:center;opacity:0.7">Almost there. Complete your order 👇</p>
+
+<div class="summary" id="summaryBox"></div>
+
+<label>Full Name
+<input type="text" name="name" required>
+</label>
+
+<label>Email
+<input type="email" name="email" required>
+</label>
+
+<label>Phone
+<input type="tel" name="phone" required>
+</label>
+
+<label>WhatsApp
+<input type="tel" name="whatsapp" required>
+</label>
+
+<label>City
+<input type="text" name="city" required>
+</label>
+
+<label>Full Address
+<textarea name="address" required></textarea>
+</label>
+
+<!-- Hidden product fields -->
+<input type="hidden" name="product" id="productField">
+<input type="hidden" name="size" id="sizeField">
+<input type="hidden" name="qty" id="qtyField">
+<input type="hidden" name="price" id="priceField">
+<input type="hidden" name="payment" id="paymentField">
+
+<label>Select Payment Method</label>
+<div class="payment-box">
+<div id="codBox">Cash on Delivery</div>
+<div id="upiBox">UPI (PhonePe / GPay)</div>
+</div>
+
+<div class="upi-info" id="upiInfo">
+Pay to UPI ID:<br>
+<b>9121783895@fam</b><br>
+After payment, place order.
+</div>
+
+<button type="submit">Confirm Order</button>
+</form>
+
 <script>
-let p = localStorage.getItem("product");
-let s = localStorage.getItem("size");
-let q = localStorage.getItem("qty");
-let price = localStorage.getItem("price");
+// Load from hoodie.html
+let product = localStorage.getItem("product") || "Premium Hoodie";
+let size = localStorage.getItem("size") || "M";
+let qty = parseInt(localStorage.getItem("qty") || 1);
+let price = parseInt(localStorage.getItem("price") || 499);
+let total = price * qty;
 
-document.getElementById("summary").innerHTML =
-`Product: ${p}<br>Size: ${s}<br>Qty: ${q}<br>Total: ₹${price*q}`;
+document.getElementById("summaryBox").innerHTML = `
+<b>Product:</b> ${product}<br>
+<b>Size:</b> ${size}<br>
+<b>Quantity:</b> ${qty}<br>
+<b>Total:</b> ₹${total}
+`;
 
-function confirm(){
-alert("Order Placed Successfully! We will contact you.");
+document.getElementById("productField").value = product;
+document.getElementById("sizeField").value = size;
+document.getElementById("qtyField").value = qty;
+document.getElementById("priceField").value = total;
+
+// Payment logic
+let paymentMethod = "";
+const codBox = document.getElementById("codBox");
+const upiBox = document.getElementById("upiBox");
+const upiInfo = document.getElementById("upiInfo");
+const paymentField = document.getElementById("paymentField");
+
+codBox.onclick = () => {
+paymentMethod="COD";
+codBox.classList.add("active-pay");
+upiBox.classList.remove("active-pay");
+upiInfo.style.display="none";
+paymentField.value="COD";
+};
+
+upiBox.onclick = () => {
+paymentMethod="UPI";
+upiBox.classList.add("active-pay");
+codBox.classList.remove("active-pay");
+upiInfo.style.display="block";
+paymentField.value="UPI - 9121783895@fam";
+};
+
+// Submit
+document.getElementById("orderForm").addEventListener("submit", e=>{
+e.preventDefault();
+
+if(!paymentMethod){
+alert("Please select payment method");
+return;
 }
+
+const formData = new FormData(e.target);
+
+fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",{
+method:"POST",
+body:formData
+})
+.then(()=> window.location.href="thank-you.html")
+.catch(()=> alert("Order failed"));
+});
 </script>
 
 </body>
