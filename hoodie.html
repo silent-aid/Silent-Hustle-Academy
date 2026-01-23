@@ -1,248 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Premium Hoodie | MQ Threads</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body{
-  margin:0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background:#0b0b0b;
-  color:#fff;
-}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
-.box{
-  background:#141414;
-  border-radius:18px;
-  padding:25px;
-  margin-bottom:25px;
-  box-shadow:0 10px 35px rgba(0,0,0,0.6);
-  animation: fadeUp 0.6s ease;
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.badge{
-  background:linear-gradient(45deg,#ffcc00,#ff8800);
-  color:#000;
-  padding:6px 14px;
-  border-radius:8px;
-  font-weight:bold;
-  display:inline-block;
-}
-.slider img{
-  width:100%;
-  border-radius:18px;
-  transition:0.4s;
-}
-.slider img:hover{transform:scale(1.08)}
-.thumb img{
-  width:80px;
-  border-radius:10px;
-  margin:6px;
-  cursor:pointer;
-  opacity:0.7;
-  transition:0.3s;
-}
-.thumb img:hover{opacity:1;transform:scale(1.1)}
-.price{font-size:34px}
-.old{text-decoration:line-through;color:#888;font-size:18px}
-
-.colors button{
-  padding:10px 16px;
-  margin:6px;
-  border:none;
-  border-radius:20px;
-  cursor:pointer;
-  font-weight:bold;
-  transition:0.3s;
-}
-.black{background:#000;color:#fff}
-.grey{background:#777;color:#000}
-.red{background:#b11212;color:#fff}
-.colors button:hover{transform:scale(1.1)}
-
-select{
-  padding:12px;
-  border-radius:10px;
-  width:100%;
-  font-size:16px;
-  background:#1e1e1e;
-  color:#fff;
-  border:none;
-}
-.buybtn{
-  background:linear-gradient(45deg,#ff3b3b,#ff0000);
-  color:#fff;
-  padding:18px;
-  border:none;
-  width:100%;
-  border-radius:14px;
-  font-size:20px;
-  cursor:pointer;
-  transition:0.3s;
-}
-.buybtn:hover{transform:scale(1.05)}
-
-.review-head, .faq-head{
-  cursor:pointer;
-  font-size:20px;
-  margin-bottom:10px;
-}
-.review-box, .faq-box{display:none}
-.review{
-  background:#1e1e1e;
-  padding:15px;
-  border-radius:12px;
-  margin-bottom:10px;
-}
-.offer li{margin:8px 0}
-.trust p{margin:6px 0}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customizable Hoodie</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- optional -->
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin:0; padding:0; }
+    .container { width: 90%; max-width: 1200px; margin: auto; padding: 20px; display: flex; flex-wrap: wrap; }
+    .product-gallery { flex: 1; min-width: 300px; margin-right: 20px; }
+    .product-gallery img { width: 100%; max-width: 400px; border-radius: 10px; }
+    .thumbs { display: flex; margin-top: 10px; gap: 10px; }
+    .thumbs img { width: 80px; cursor: pointer; border-radius: 5px; border: 1px solid #ccc; }
+    .product-info { flex: 1; min-width: 300px; }
+    h1 { margin-bottom: 10px; }
+    .price { font-size: 24px; color: #e60000; margin: 10px 0; }
+    .original-price { text-decoration: line-through; color: #555; font-size: 18px; margin-left: 10px; }
+    ul.features { margin: 10px 0; padding-left: 20px; }
+    form { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+    label { font-weight: bold; }
+    input, select { padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; width: 100%; }
+    button.add-to-cart { padding: 12px; background: #000; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+    button.add-to-cart:hover { background: #e60000; }
+    .product-details { margin-top: 40px; padding: 20px; background: #fff; border-radius: 10px; }
+    footer { text-align: center; padding: 20px; margin-top: 40px; background: #222; color: #fff; }
+    @media(max-width: 768px){
+      .container { flex-direction: column; }
+      .product-gallery, .product-info { margin-right: 0; }
+    }
+  </style>
 </head>
-
 <body>
-<div class="container">
 
-<!-- IMAGES (YOUR IMAGE) -->
-<div class="box">
-<span class="badge">🔥 50% OFF</span>
-<h1>Premium Streetwear Hoodie</h1>
+  <!-- Header -->
+  <header style="padding: 20px; background: #000; color: #fff; text-align:center;">
+    <h2>Your Store</h2>
+  </header>
 
-<div class="slider">
-  <img id="mainImg" src="hoodie1.avif">
-</div>
+  <!-- Product Section -->
+  <main class="container">
 
-<div class="thumb">
-  <img src="hoodie1.avif" onclick="changeImg(this.src)">
-  <img src="hoodie1.avif" onclick="changeImg(this.src)">
-  <img src="hoodie1.avif" onclick="changeImg(this.src)">
-</div>
-</div>
+    <!-- Images -->
+    <div class="product-gallery">
+      <img id="mainImage" src="/images/hoodie-main.jpg" alt="Customizable Hoodie">
+      <div class="thumbs">
+        <img onclick="changeImage('/images/hoodie-1.jpg')" src="/images/hoodie-1.jpg" alt="">
+        <img onclick="changeImage('/images/hoodie-2.jpg')" src="/images/hoodie-2.jpg" alt="">
+        <img onclick="changeImage('/images/hoodie-3.jpg')" src="/images/hoodie-3.jpg" alt="">
+      </div>
+    </div>
 
-<!-- BUY SECTION -->
-<div class="box">
-<p class="price">₹499 <span class="old">₹999</span></p>
+    <!-- Product Info -->
+    <div class="product-info">
+      <h1>Customizable Hoodie – 320GSM</h1>
+      <p class="price">₹1,149.00 <span class="original-price">₹2,399.00</span></p>
 
-<h3>Select Color</h3>
-<div class="colors">
-<button class="black" onclick="setColor('Black')">Black</button>
-<button class="grey" onclick="setColor('Grey')">Grey</button>
-<button class="red" onclick="setColor('Red')">Red</button>
-</div>
+      <ul class="features">
+        <li>Heavyweight 320GSM cotton</li>
+        <li>Unisex relaxed fit</li>
+        <li>Fade-resistant print</li>
+        <li>COD available</li>
+      </ul>
 
-<h3>Quantity</h3>
-<select id="qty" onchange="updatePrice()">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-</select>
+      <!-- Customization Form -->
+      <form id="customizeForm">
+        <label for="size">Size:</label>
+        <select id="size" name="size">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
 
-<p id="total"></p>
+        <label for="color">Color:</label>
+        <select id="color" name="color">
+          <option value="Black">Black</option>
+          <option value="OffWhite">Off White</option>
+        </select>
 
-<button class="buybtn" onclick="buyNow()">BUY NOW</button>
-</div>
+        <label for="custName">Print Your Name *</label>
+        <input type="text" id="custName" name="custName" placeholder="Enter your name">
 
-<!-- DESCRIPTION -->
-<div class="box">
-<h3>Description</h3>
-<p>
-Premium cotton hoodie with soft fleece inside.  
-Perfect for winter, college & streetwear.  
-Unisex fit • Fade-proof print • Limited stock.
-</p>
-</div>
+        <label for="custBranch">Print Your Branch *</label>
+        <input type="text" id="custBranch" name="custBranch" placeholder="Enter branch">
 
-<!-- OFFERS -->
-<div class="box">
-<h3>🎁 Offers</h3>
-<ul class="offer">
-<li>✅ Free Delivery All Over India</li>
-<li>✅ Cash on Delivery Available</li>
-<li>✅ 7 Days Replacement</li>
-<li>✅ Winter Special Price</li>
-</ul>
-</div>
+        <label for="custBatch">Print Your Batch *</label>
+        <input type="text" id="custBatch" name="custBatch" placeholder="Enter batch">
 
-<!-- TRUST -->
-<div class="box trust">
-<h3>Why Shop With Us?</h3>
-<p>⭐ 4.8/5 Rating (2,341 reviews)</p>
-<p>🚚 10,000+ Orders Delivered</p>
-<p>💵 COD + UPI Available</p>
-<p>🔐 Secure Payments</p>
-</div>
+        <label for="custCollege">Print Your College *</label>
+        <input type="text" id="custCollege" name="custCollege" placeholder="Enter college name">
 
-<!-- FEATURES -->
-<div class="box">
-<h3>Product Features</h3>
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
-  <div>🧵 Premium Cotton</div>
-  <div>❄ Winter Wear</div>
-  <div>👕 Unisex Fit</div>
-  <div>🧼 Machine Wash</div>
-</div>
-</div>
+        <button type="submit" class="add-to-cart">Add to Cart</button>
+      </form>
 
-<!-- REVIEWS -->
-<div class="box">
-<div class="review-head" onclick="toggleReviews()">⭐ Customer Reviews (Tap to open)</div>
-<div class="review-box" id="reviews">
-  <div class="review">Aman ⭐⭐⭐⭐⭐<br>Looks premium, worth more than price</div>
-  <div class="review">Zoya ⭐⭐⭐⭐⭐<br>Soft fabric, loved it ❤️</div>
-  <div class="review">Rohit ⭐⭐⭐⭐<br>Good fit & fast delivery</div>
-</div>
-</div>
+      <p style="margin-top:10px;">Estimated delivery: Within 5‑7 business days</p>
+    </div>
 
-<!-- FAQ -->
-<div class="box">
-<div class="faq-head" onclick="toggleFAQ()">❓ FAQs (Tap to open)</div>
-<div class="faq-box" id="faq">
-<p><b>Delivery Time?</b><br>3–5 working days.</p>
-<p><b>Is COD available?</b><br>Yes, across India.</p>
-<p><b>Return policy?</b><br>7 days replacement.</p>
-</div>
-</div>
+  </main>
 
-</div>
+  <!-- Description -->
+  <section class="product-details container">
+    <h2>About This Hoodie</h2>
+    <p>
+      This customizable hoodie lets you add your name, branch, batch, and college to make it truly yours. Heavyweight 320GSM cotton ensures comfort, durability, and style.
+    </p>
+  </section>
 
-<script>
-let selectedColor="Black";
-let price=499;
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Your Store. All rights reserved.
+  </footer>
 
-function changeImg(src){
-  document.getElementById("mainImg").src=src;
-}
-function setColor(c){
-  selectedColor=c;
-  alert("Color selected: "+c);
-}
-function updatePrice(){
-  let q=document.getElementById("qty").value;
-  document.getElementById("total").innerHTML="Total: ₹"+(price*q);
-}
-updatePrice();
+  <!-- JS for thumbnail click -->
+  <script>
+    function changeImage(src) {
+      document.getElementById("mainImage").src = src;
+    }
+  </script>
 
-function toggleReviews(){
- let r=document.getElementById("reviews");
- r.style.display=r.style.display==="block"?"none":"block";
-}
-function toggleFAQ(){
- let f=document.getElementById("faq");
- f.style.display=f.style.display==="block"?"none":"block";
-}
-function buyNow(){
- let q=document.getElementById("qty").value;
- window.location.href=
- `buy.html?product=Premium Hoodie&price=${price}&qty=${q}&color=${selectedColor}`;
-}
-</script>
 </body>
 </html>
