@@ -2,185 +2,178 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MQ Threads | Premium Hoodie</title>
+<title>Premium Hoodie | MQ Threads</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box;font-family:Arial}
-body{margin:0;background:#0b0b0b;color:white}
-
-header{
-background:black;
-padding:15px;
-text-align:center;
-font-size:20px;
-letter-spacing:2px;
-border-bottom:2px solid #ff2a2a;
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#000;
+color:white;
 }
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:#000;
+border-bottom:1px solid #222;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav h2{color:#00ff9d;margin:0}
+nav a{color:white;margin-left:20px;text-decoration:none}
 
 .container{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
-padding:20px;
+padding:30px;
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:30px;
-}
-
-.slider img{
-width:100%;
-border-radius:15px;
-animation:fade 1s;
-}
-
-@keyframes fade{
-from{opacity:0}
-to{opacity:1}
-}
-
-.thumbs{
-display:flex;
-gap:10px;
-margin-top:10px;
-}
-.thumbs img{
-width:70px;
-height:70px;
-object-fit:cover;
-border-radius:8px;
-cursor:pointer;
-opacity:.6;
-}
-.thumbs img:hover{opacity:1}
-
-.price{
-font-size:28px;
-color:#00ff9d;
-}
-.old{
-text-decoration:line-through;
-color:gray;
-font-size:18px;
-}
-
-.select, .qty{
-margin:15px 0;
-}
-
-select,input{
-padding:10px;
-width:100%;
-border-radius:8px;
-border:none;
-font-size:16px;
-}
-
-button{
-width:100%;
-padding:15px;
-background:#ff2a2a;
-color:white;
-border:none;
-font-size:18px;
-border-radius:10px;
-cursor:pointer;
-margin-top:15px;
-transition:.3s;
-}
-button:hover{transform:scale(1.03);background:#ff4444}
-
-.features{
-margin-top:20px;
-line-height:1.8;
-color:#ccc;
-}
-
-.badge{
-background:gold;
-color:black;
-display:inline-block;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-margin-bottom:10px;
+gap:40px;
 }
 
 @media(max-width:800px){
 .container{grid-template-columns:1fr}
 }
+
+.slider{
+position:relative;
+overflow:hidden;
+border-radius:20px;
+box-shadow:0 0 30px rgba(0,255,150,0.08);
+}
+
+.slider img{
+width:100%;
+display:none;
+}
+
+.slider img.active{display:block}
+
+.badge{
+position:absolute;
+top:15px;
+left:15px;
+background:red;
+padding:6px 12px;
+border-radius:8px;
+font-weight:bold;
+}
+
+.details h1{margin-top:0;font-size:32px}
+
+.price{
+font-size:26px;
+color:#00ff9d;
+font-weight:bold;
+}
+
+.old{
+text-decoration:line-through;
+opacity:0.6;
+margin-left:10px;
+}
+
+select,input{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:#111;
+color:white;
+border:1px solid #333;
+border-radius:8px;
+}
+
+.buy-btn{
+margin-top:20px;
+padding:14px;
+width:100%;
+background:#00ff9d;
+color:black;
+border:none;
+font-size:18px;
+font-weight:bold;
+border-radius:12px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.buy-btn:hover{transform:scale(1.05)}
+
 </style>
 </head>
 
 <body>
 
-<header>MQ THREADS – PREMIUM HOODIE</header>
+<nav>
+<h2>MQ Threads</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="checkout.html">Checkout</a>
+</div>
+</nav>
 
 <div class="container">
 
-<!-- LEFT -->
-<div>
 <div class="slider">
-<img id="mainImg" src="images/hoodie1.jpg">
+<div class="badge">30% OFF</div>
+<img src="images/hoodie.jpg" class="active">
+<img src="images/hoodie2.jpg">
+<img src="images/hoodie3.jpg">
 </div>
 
-<div class="thumbs">
-<img src="images/hoodie1.jpg" onclick="changeImg(this)">
-<img src="images/hoodie2.jpg" onclick="changeImg(this)">
-<img src="images/hoodie3.jpg" onclick="changeImg(this)">
-</div>
-</div>
+<div class="details">
+<h1>Premium Printed Hoodie</h1>
+<p>Ultra soft cotton fleece. Street fit. Unisex.</p>
 
-<!-- RIGHT -->
 <div>
-<div class="badge">🔥 Trending</div>
-<h2>Premium Printed Hoodie</h2>
+<span class="price">₹499</span>
+<span class="old">₹699</span>
+</div>
 
-<p class="price">₹499 <span class="old">₹999</span></p>
-<p>50% OFF – Limited Stock</p>
-
-<div class="select">
-<label>Size</label>
+<label>Select Size</label>
 <select id="size">
 <option>S</option>
-<option>M</option>
+<option selected>M</option>
 <option>L</option>
 <option>XL</option>
-<option>XXL</option>
 </select>
-</div>
 
-<div class="qty">
 <label>Quantity</label>
 <input type="number" id="qty" value="1" min="1">
+
+<button class="buy-btn" onclick="goCheckout()">
+Buy Now
+</button>
+
+<p style="margin-top:15px;opacity:0.7">
+Free Shipping • COD & UPI Available • 7 Day Replacement
+</p>
 </div>
 
-<button onclick="buyNow()">BUY NOW</button>
-
-<div class="features">
-✔ Premium Cotton Blend<br>
-✔ Unisex Fit<br>
-✔ Winter Wear<br>
-✔ COD Available<br>
-✔ 7 Days Replacement
-</div>
-</div>
 </div>
 
 <script>
-function changeImg(el){
-document.getElementById("mainImg").src = el.src;
-}
+let index = 0;
+const imgs = document.querySelectorAll(".slider img");
 
-function buyNow(){
-let size = document.getElementById("size").value;
-let qty = document.getElementById("qty").value;
+setInterval(()=>{
+imgs[index].classList.remove("active");
+index = (index+1)%imgs.length;
+imgs[index].classList.add("active");
+},3000);
 
-localStorage.setItem("product","Premium Hoodie");
-localStorage.setItem("price","499");
-localStorage.setItem("size",size);
-localStorage.setItem("qty",qty);
-
-window.location.href="buy.html";
+function goCheckout(){
+localStorage.setItem("product","Premium Printed Hoodie");
+localStorage.setItem("size",document.getElementById("size").value);
+localStorage.setItem("qty",document.getElementById("qty").value);
+localStorage.setItem("price",499);
+window.location.href="checkout.html";
 }
 </script>
 
