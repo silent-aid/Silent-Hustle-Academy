@@ -3,6 +3,7 @@
 <head>
 <title>Premium Hoodie | MQ Threads</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 body{
 margin:0;
@@ -10,30 +11,65 @@ font-family:Arial, sans-serif;
 background:#000;
 color:white;
 }
+
 nav{
 padding:15px 20px;
 border-bottom:1px solid #222;
 display:flex;
 justify-content:space-between;
+align-items:center;
 }
+
 nav a{color:white;text-decoration:none;margin-left:15px}
+
 .container{
-max-width:900px;
+max-width:1000px;
 margin:auto;
 padding:20px;
-display:flex;
-flex-wrap:wrap;
+display:grid;
+grid-template-columns:1fr 1fr;
 gap:30px;
+animation:fade 0.8s ease;
 }
-.img-box img{
-width:100%;
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:800px){
+.container{grid-template-columns:1fr}
+}
+
+.slider{
+position:relative;
+overflow:hidden;
 border-radius:12px;
 }
-.details{
-flex:1;
-min-width:250px;
+
+.slider img{
+width:100%;
+display:none;
+cursor:zoom-in;
+transition:0.3s;
 }
-.price{color:#00ff9d;font-size:24px;font-weight:bold}
+
+.slider img.active{display:block}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:red;
+padding:6px 10px;
+border-radius:6px;
+font-weight:bold;
+}
+
+.details h2{margin-top:0}
+.price{color:#00ff9d;font-size:26px;font-weight:bold}
+.old{opacity:0.6;text-decoration:line-through;margin-left:10px}
+
 select,input{
 width:100%;
 padding:10px;
@@ -43,6 +79,7 @@ color:white;
 border:1px solid #333;
 border-radius:6px;
 }
+
 button{
 margin-top:15px;
 padding:12px;
@@ -52,6 +89,23 @@ border:none;
 font-size:18px;
 font-weight:bold;
 border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{transform:scale(1.05)}
+
+.reviews{
+margin-top:30px;
+background:#111;
+padding:15px;
+border-radius:10px;
+}
+
+.review{
+border-bottom:1px solid #222;
+padding:10px 0;
+font-size:14px;
 }
 </style>
 </head>
@@ -62,19 +116,27 @@ border-radius:8px;
 <b>MQ Threads</b>
 <div>
 <a href="index.html">Home</a>
-<a href="checkout.html">Checkout</a>
+<a href="buy.html">Checkout</a>
 </div>
 </nav>
 
 <div class="container">
 
-<div class="img-box">
-<img src="images/hoodie.jpg">
+<div class="slider">
+<div class="badge">30% OFF</div>
+<img src="images/hoodie.jpg" class="active" onclick="zoom(this)">
+<img src="images/hoodie2.jpg" onclick="zoom(this)">
+<img src="images/hoodie3.jpg" onclick="zoom(this)">
 </div>
 
 <div class="details">
 <h2>Premium Printed Hoodie</h2>
-<p class="price">₹499</p>
+<p>Street fit • Soft cotton • Unisex</p>
+
+<div>
+<span class="price">₹499</span>
+<span class="old">₹699</span>
+</div>
 
 <label>Size</label>
 <select id="size">
@@ -88,24 +150,52 @@ border-radius:8px;
 <input type="number" id="qty" value="1" min="1">
 
 <button onclick="buyNow()">Buy Now</button>
+
+<div class="reviews">
+<h3>Customer Reviews ⭐⭐⭐⭐⭐</h3>
+<div class="review">Rahul – Very premium quality 🔥</div>
+<div class="review">Ayesha – Worth the price</div>
+<div class="review">Zaid – Looks exactly like photos</div>
 </div>
 
+</div>
 </div>
 
 <script>
+// Slider
+let index = 0;
+const imgs = document.querySelectorAll(".slider img");
+
+setInterval(()=>{
+imgs[index].classList.remove("active");
+index = (index+1)%imgs.length;
+imgs[index].classList.add("active");
+},3000);
+
+// Zoom
+function zoom(img){
+img.style.transform = "scale(1.5)";
+img.style.cursor="zoom-out";
+img.onclick = ()=> {
+img.style.transform="scale(1)";
+img.style.cursor="zoom-in";
+img.onclick = ()=> zoom(img);
+};
+}
+
+// Connect to buy.html
 function buyNow(){
-var size = document.getElementById("size").value;
-var qty = document.getElementById("qty").value;
+let size = document.getElementById("size").value;
+let qty = document.getElementById("qty").value;
 
 localStorage.setItem("product","Premium Printed Hoodie");
 localStorage.setItem("size",size);
 localStorage.setItem("qty",qty);
 localStorage.setItem("price","499");
 
-window.location.href = "checkout.html";
+window.location.href = "buy.html";
 }
 </script>
 
 </body>
 </html>
-
