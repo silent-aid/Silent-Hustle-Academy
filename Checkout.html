@@ -1,112 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>Secure Checkout - MQ Threads</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body {
+body{
 font-family: 'Segoe UI', sans-serif;
-background: linear-gradient(135deg,#000,#111);
-color: white;
-padding: 20px;
-margin: 0;
+background: radial-gradient(circle at top,#000,#050505);
+color:white;
+margin:0;
+padding:20px;
 }
 
-.marquee {
-background: red;
-color: white;
-padding: 10px;
-font-weight: bold;
-text-align: center;
-white-space: nowrap;
-overflow: hidden;
-animation: slideText 15s linear infinite;
+.marquee{
+background:linear-gradient(90deg,red,#ff0055);
+padding:10px;
+text-align:center;
+font-weight:bold;
+animation:slide 15s linear infinite;
+white-space:nowrap;
+overflow:hidden;
 }
 
-@keyframes slideText {
-0% { transform: translateX(100%); }
-100% { transform: translateX(-100%); }
+@keyframes slide{
+0%{transform:translateX(100%)}
+100%{transform:translateX(-100%)}
 }
 
-form {
-max-width: 550px;
-margin: 30px auto;
-background: #111;
-padding: 30px;
-border-radius: 16px;
-box-shadow: 0 0 25px rgba(0,255,150,0.1);
-animation: fadeIn 0.8s ease;
+form{
+max-width:600px;
+margin:30px auto;
+background:#0e0e0e;
+padding:30px;
+border-radius:18px;
+box-shadow:0 0 40px rgba(0,255,150,0.08);
+animation:pop 0.7s ease;
 }
 
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
+@keyframes pop{
+from{opacity:0;transform:scale(0.95)}
+to{opacity:1;transform:scale(1)}
 }
 
-h2{text-align:center}
-
-label {
-display: block;
-margin-top: 15px;
-font-weight: 600;
-}
-
-input, select, textarea {
-width: 100%;
-padding: 11px;
-margin-top: 6px;
-background: #222;
-color: white;
-border: 1px solid #555;
-border-radius: 8px;
-}
+h2{text-align:center;margin-bottom:10px}
 
 .summary{
 background:#000;
+border:1px solid #222;
 padding:15px;
-border-radius:10px;
-margin-bottom:15px;
-border:1px solid #333;
-line-height:1.6;
+border-radius:12px;
+margin-bottom:20px;
+line-height:1.7;
 }
 
-button {
-margin-top: 25px;
-padding: 14px;
+label{display:block;margin-top:14px;font-weight:600}
+
+input,select,textarea{
 width:100%;
-background: #00ff9d;
-color: black;
-border: none;
-font-size: 18px;
-font-weight: bold;
-border-radius: 10px;
-cursor: pointer;
-transition: 0.3s;
+padding:11px;
+margin-top:6px;
+background:#1a1a1a;
+color:white;
+border:1px solid #444;
+border-radius:8px;
 }
 
-button:hover {
-transform: scale(1.03);
-background: #00ffaa;
+.payment-box{
+display:flex;
+gap:10px;
+margin-top:10px;
 }
 
-#otherCityField { display: none; }
+.payment-box div{
+flex:1;
+border:1px solid #333;
+padding:12px;
+border-radius:10px;
+cursor:pointer;
+text-align:center;
+transition:0.3s;
+}
+
+.payment-box div:hover{
+border-color:#00ff9d;
+transform:scale(1.03);
+}
+
+.active-pay{
+border-color:#00ff9d;
+background:#002f22;
+}
+
+.upi-info{
+margin-top:10px;
+padding:10px;
+background:#000;
+border-radius:10px;
+border:1px dashed #00ff9d;
+display:none;
+}
+
+button{
+margin-top:25px;
+width:100%;
+padding:14px;
+background:#00ff9d;
+border:none;
+font-size:18px;
+font-weight:bold;
+border-radius:12px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.04);
+background:#00ffaa;
+}
 </style>
 </head>
 
 <body>
 
 <div class="marquee">
-🔥 Free Delivery | COD Available | Premium Streetwear
+🔥 Free Delivery | COD & UPI Accepted | Premium Streetwear
 </div>
 
 <form id="orderForm">
-<h2>Secure Checkout</h2>
+<h2>MQ Threads Checkout</h2>
+<p style="text-align:center;opacity:0.7">Almost there. Complete your order 👇</p>
 
-<div class="summary" id="summaryBox">
-Loading order...
-</div>
+<div class="summary" id="summaryBox"></div>
 
 <label>Full Name
 <input type="text" name="name" required>
@@ -116,72 +142,51 @@ Loading order...
 <input type="email" name="email" required>
 </label>
 
-<label>Phone Number
+<label>Phone
 <input type="tel" name="phone" required>
 </label>
 
-<label>WhatsApp Number
+<label>WhatsApp
 <input type="tel" name="whatsapp" required>
 </label>
 
-<label>Product
-<input type="text" name="product" id="productField" readonly>
-</label>
-
-<label>Size
-<input type="text" name="size" id="sizeField" readonly>
-</label>
-
-<label>Quantity
-<input type="text" name="qty" id="qtyField" readonly>
-</label>
-
-<label>Total Price
-<input type="text" name="price" id="priceField" readonly>
-</label>
-
 <label>City
-<select name="city" id="citySelect" required>
-<option value="">Select City</option>
-<option>Hyderabad</option>
-<option>Delhi</option>
-<option>Mumbai</option>
-<option>Bengaluru</option>
-<option>Chennai</option>
-<option>Kolkata</option>
-<option>Pune</option>
-<option>Ahmedabad</option>
-<option>Jaipur</option>
-<option>Indore</option>
-<option value="Other">Other</option>
-</select>
+<input type="text" name="city" required>
 </label>
-
-<div id="otherCityField">
-<label>Enter City
-<input type="text" id="otherCityInput">
-</label>
-</div>
 
 <label>Full Address
 <textarea name="address" required></textarea>
 </label>
 
-<button type="submit">Place Order</button>
+<!-- Hidden product fields -->
+<input type="hidden" name="product" id="productField">
+<input type="hidden" name="size" id="sizeField">
+<input type="hidden" name="qty" id="qtyField">
+<input type="hidden" name="price" id="priceField">
+<input type="hidden" name="payment" id="paymentField">
+
+<label>Select Payment Method</label>
+<div class="payment-box">
+<div id="codBox">Cash on Delivery</div>
+<div id="upiBox">UPI (PhonePe / GPay)</div>
+</div>
+
+<div class="upi-info" id="upiInfo">
+Pay to UPI ID:<br>
+<b>9121783895@fam</b><br>
+After payment, place order.
+</div>
+
+<button type="submit">Confirm Order</button>
 </form>
 
 <script>
 // Load from hoodie.html
 let product = localStorage.getItem("product") || "Premium Hoodie";
 let size = localStorage.getItem("size") || "M";
-let qty = localStorage.getItem("qty") || 1;
-let price = localStorage.getItem("price") || 499;
+let qty = parseInt(localStorage.getItem("qty") || 1);
+let price = parseInt(localStorage.getItem("price") || 499);
 let total = price * qty;
-
-document.getElementById("productField").value = product;
-document.getElementById("sizeField").value = size;
-document.getElementById("qtyField").value = qty;
-document.getElementById("priceField").value = "₹"+total;
 
 document.getElementById("summaryBox").innerHTML = `
 <b>Product:</b> ${product}<br>
@@ -190,36 +195,51 @@ document.getElementById("summaryBox").innerHTML = `
 <b>Total:</b> ₹${total}
 `;
 
-// City logic
-const citySelect = document.getElementById('citySelect');
-const otherCityField = document.getElementById('otherCityField');
-const otherCityInput = document.getElementById('otherCityInput');
+document.getElementById("productField").value = product;
+document.getElementById("sizeField").value = size;
+document.getElementById("qtyField").value = qty;
+document.getElementById("priceField").value = total;
 
-citySelect.addEventListener('change', () => {
-if (citySelect.value === 'Other') {
-otherCityField.style.display = 'block';
-otherCityInput.required = true;
-} else {
-otherCityField.style.display = 'none';
-otherCityInput.required = false;
-}
-});
+// Payment logic
+let paymentMethod = "";
+const codBox = document.getElementById("codBox");
+const upiBox = document.getElementById("upiBox");
+const upiInfo = document.getElementById("upiInfo");
+const paymentField = document.getElementById("paymentField");
 
-// Submit to Gmail (Google Sheet)
-document.getElementById('orderForm').addEventListener('submit', function(e){
+codBox.onclick = () => {
+paymentMethod="COD";
+codBox.classList.add("active-pay");
+upiBox.classList.remove("active-pay");
+upiInfo.style.display="none";
+paymentField.value="COD";
+};
+
+upiBox.onclick = () => {
+paymentMethod="UPI";
+upiBox.classList.add("active-pay");
+codBox.classList.remove("active-pay");
+upiInfo.style.display="block";
+paymentField.value="UPI - 9121783895@fam";
+};
+
+// Submit
+document.getElementById("orderForm").addEventListener("submit", e=>{
 e.preventDefault();
-const formData = new FormData(this);
 
-if (citySelect.value === 'Other') {
-formData.set('city', otherCityInput.value);
+if(!paymentMethod){
+alert("Please select payment method");
+return;
 }
 
-fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec", {
-method: "POST",
-body: formData
+const formData = new FormData(e.target);
+
+fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",{
+method:"POST",
+body:formData
 })
 .then(()=> window.location.href="thank-you.html")
-.catch(()=> alert("Submission failed"));
+.catch(()=> alert("Order failed"));
 });
 </script>
 
