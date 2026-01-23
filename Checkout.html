@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Secure Checkout - MQ Threads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<style>
+body {
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg,#000,#111);
+color: white;
+padding: 20px;
+margin: 0;
+}
+
+.marquee {
+background: red;
+color: white;
+padding: 10px;
+font-weight: bold;
+text-align: center;
+white-space: nowrap;
+overflow: hidden;
+animation: slideText 15s linear infinite;
+}
+
+@keyframes slideText {
+0% { transform: translateX(100%); }
+100% { transform: translateX(-100%); }
+}
+
+form {
+max-width: 550px;
+margin: 30px auto;
+background: #111;
+padding: 30px;
+border-radius: 16px;
+box-shadow: 0 0 25px rgba(0,255,150,0.1);
+animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+h2{text-align:center}
+
+label {
+display: block;
+margin-top: 15px;
+font-weight: 600;
+}
+
+input, select, textarea {
+width: 100%;
+padding: 11px;
+margin-top: 6px;
+background: #222;
+color: white;
+border: 1px solid #555;
+border-radius: 8px;
+}
+
+.summary{
+background:#000;
+padding:15px;
+border-radius:10px;
+margin-bottom:15px;
+border:1px solid #333;
+line-height:1.6;
+}
+
+button {
+margin-top: 25px;
+padding: 14px;
+width:100%;
+background: #00ff9d;
+color: black;
+border: none;
+font-size: 18px;
+font-weight: bold;
+border-radius: 10px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+button:hover {
+transform: scale(1.03);
+background: #00ffaa;
+}
+
+#otherCityField { display: none; }
+</style>
+</head>
+
+<body>
+
+<div class="marquee">
+🔥 Free Delivery | COD Available | Premium Streetwear
+</div>
+
+<form id="orderForm">
+<h2>Secure Checkout</h2>
+
+<div class="summary" id="summaryBox">
+Loading order...
+</div>
+
+<label>Full Name
+<input type="text" name="name" required>
+</label>
+
+<label>Email
+<input type="email" name="email" required>
+</label>
+
+<label>Phone Number
+<input type="tel" name="phone" required>
+</label>
+
+<label>WhatsApp Number
+<input type="tel" name="whatsapp" required>
+</label>
+
+<label>Product
+<input type="text" name="product" id="productField" readonly>
+</label>
+
+<label>Size
+<input type="text" name="size" id="sizeField" readonly>
+</label>
+
+<label>Quantity
+<input type="text" name="qty" id="qtyField" readonly>
+</label>
+
+<label>Total Price
+<input type="text" name="price" id="priceField" readonly>
+</label>
+
+<label>City
+<select name="city" id="citySelect" required>
+<option value="">Select City</option>
+<option>Hyderabad</option>
+<option>Delhi</option>
+<option>Mumbai</option>
+<option>Bengaluru</option>
+<option>Chennai</option>
+<option>Kolkata</option>
+<option>Pune</option>
+<option>Ahmedabad</option>
+<option>Jaipur</option>
+<option>Indore</option>
+<option value="Other">Other</option>
+</select>
+</label>
+
+<div id="otherCityField">
+<label>Enter City
+<input type="text" id="otherCityInput">
+</label>
+</div>
+
+<label>Full Address
+<textarea name="address" required></textarea>
+</label>
+
+<button type="submit">Place Order</button>
+</form>
+
+<script>
+// Load from hoodie.html
+let product = localStorage.getItem("product") || "Premium Hoodie";
+let size = localStorage.getItem("size") || "M";
+let qty = localStorage.getItem("qty") || 1;
+let price = localStorage.getItem("price") || 499;
+let total = price * qty;
+
+document.getElementById("productField").value = product;
+document.getElementById("sizeField").value = size;
+document.getElementById("qtyField").value = qty;
+document.getElementById("priceField").value = "₹"+total;
+
+document.getElementById("summaryBox").innerHTML = `
+<b>Product:</b> ${product}<br>
+<b>Size:</b> ${size}<br>
+<b>Quantity:</b> ${qty}<br>
+<b>Total:</b> ₹${total}
+`;
+
+// City logic
+const citySelect = document.getElementById('citySelect');
+const otherCityField = document.getElementById('otherCityField');
+const otherCityInput = document.getElementById('otherCityInput');
+
+citySelect.addEventListener('change', () => {
+if (citySelect.value === 'Other') {
+otherCityField.style.display = 'block';
+otherCityInput.required = true;
+} else {
+otherCityField.style.display = 'none';
+otherCityInput.required = false;
+}
+});
+
+// Submit to Gmail (Google Sheet)
+document.getElementById('orderForm').addEventListener('submit', function(e){
+e.preventDefault();
+const formData = new FormData(this);
+
+if (citySelect.value === 'Other') {
+formData.set('city', otherCityInput.value);
+}
+
+fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec", {
+method: "POST",
+body: formData
+})
+.then(()=> window.location.href="thank-you.html")
+.catch(()=> alert("Submission failed"));
+});
+</script>
+
+</body>
+</html>
