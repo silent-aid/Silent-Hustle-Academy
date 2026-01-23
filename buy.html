@@ -19,8 +19,6 @@ background:linear-gradient(90deg,#ff0000,#ff0066);
 padding:10px;
 text-align:center;
 font-weight:600;
-white-space:nowrap;
-overflow:hidden;
 }
 
 .container{
@@ -30,35 +28,38 @@ margin:30px auto;
 
 .card{
 background:linear-gradient(180deg,#141414,#0d0d0d);
-padding:24px;
-border-radius:20px;
-box-shadow:0 20px 50px rgba(0,0,0,.7);
-margin-bottom:20px;
+padding:26px;
+border-radius:22px;
+box-shadow:0 25px 60px rgba(0,0,0,.8);
+margin-bottom:22px;
 }
 
 h2{text-align:center;margin:0}
 .sub{text-align:center;opacity:.7;margin-bottom:15px}
 
-.summary-grid{
+.grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:12px;
-margin-top:10px;
 }
-.summary-box{
+
+.box{
 background:#1c1c1c;
 padding:14px;
 border-radius:14px;
+text-align:center;
 }
 
-.price-box{
-background:#000;
-border:1px solid #222;
-padding:16px;
-border-radius:16px;
-margin-top:10px;
-line-height:1.8;
+.price-grid{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:12px;
+margin-top:12px;
 }
+
+.mrp{background:#2a2a2a}
+.discount{background:linear-gradient(45deg,#ff0066,#ff9900)}
+.total{background:linear-gradient(45deg,#00ff9d,#00ffaa);color:#000;font-weight:700}
 
 label{display:block;margin-top:14px;font-weight:600}
 input,textarea{
@@ -103,56 +104,46 @@ display:none;
 button{
 margin-top:25px;
 width:100%;
-padding:16px;
+padding:18px;
 background:linear-gradient(45deg,#00ff9d,#00ffaa);
 border:none;
 font-size:18px;
 font-weight:700;
-border-radius:16px;
+border-radius:18px;
 cursor:pointer;
 }
-button:active{transform:scale(.98)}
 </style>
 </head>
 
 <body>
 
 <div class="marquee">
-🔥 Free Delivery | COD & UPI Available | Premium Streetwear
+🔥 Free Delivery | COD & UPI | Limited Edition Drop
 </div>
 
 <div class="container">
+
 <div class="card">
-<h2>Secure Checkout</h2>
-<p class="sub">Complete your order in 30 seconds</p>
+<h2>Order Summary</h2>
+<p class="sub">Review your premium order</p>
 
-<div class="summary-grid">
-<div class="summary-box">
-<b>Product</b><br>
-<span id="pName"></span>
-</div>
-<div class="summary-box">
-<b>Color</b><br>
-<span id="pColor"></span>
-</div>
-<div class="summary-box">
-<b>Quantity</b><br>
-<span id="pQty"></span>
-</div>
-<div class="summary-box">
-<b>Size</b><br>
-Free Size
-</div>
+<div class="grid">
+<div class="box">🧥 <b id="pName"></b></div>
+<div class="box">🎨 Color: <b id="pColor"></b></div>
+<div class="box">📦 Qty: <b id="pQty"></b></div>
+<div class="box">🚚 Free Delivery</div>
 </div>
 
-<div class="price-box">
-MRP: ₹999<br>
-Discount: -₹500<br>
-<b style="font-size:20px">Total: ₹<span id="pTotal"></span></b>
+<div class="price-grid">
+<div class="box mrp">MRP<br>₹999</div>
+<div class="box discount">🔥 You Save<br>₹500</div>
+<div class="box total">Total<br>₹<span id="pTotal"></span></div>
 </div>
 </div>
 
 <div class="card">
+<h2>Delivery Details</h2>
+
 <form id="orderForm">
 <label>Full Name
 <input type="text" name="name" required>
@@ -180,24 +171,23 @@ Discount: -₹500<br>
 <input type="hidden" name="color" id="colorField">
 <input type="hidden" name="payment" id="paymentField">
 
-<label>Select Payment</label>
+<label>Payment Method</label>
 <div class="payment-box">
 <div id="codBox">Cash on Delivery</div>
 <div id="upiBox">UPI</div>
 </div>
 
 <div class="upi-info" id="upiInfo">
-Pay to: <b>9121783895@fam</b><br>
-Then click confirm.
+Pay to UPI ID:<br>
+<b>9121783895@fam</b>
 </div>
 
-<button type="submit">Confirm Order</button>
+<button type="submit">Place Order</button>
 </form>
 </div>
 </div>
 
 <script>
-// From product page
 let product = localStorage.getItem("product") || "Premium Hoodie";
 let qty = parseInt(localStorage.getItem("qty") || 1);
 let price = parseInt(localStorage.getItem("price") || 499);
@@ -205,19 +195,16 @@ let color = localStorage.getItem("color") || "Black";
 
 let total = price * qty;
 
-// UI
 pName.innerText = product;
 pQty.innerText = qty;
 pColor.innerText = color;
 pTotal.innerText = total;
 
-// Hidden fields
 productField.value = product;
 qtyField.value = qty;
 priceField.value = total;
 colorField.value = color;
 
-// Payment
 let paymentMethod="";
 codBox.onclick=()=>{
 paymentMethod="COD";
@@ -234,18 +221,18 @@ upiInfo.style.display="block";
 paymentField.value="UPI";
 }
 
-// Submit
 orderForm.addEventListener("submit",e=>{
 e.preventDefault();
-if(!paymentMethod){alert("Select payment");return;}
+if(!paymentMethod){alert("Select payment method");return;}
 
 fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",{
 method:"POST",
 body:new FormData(orderForm)
 })
-.then(()=>location.href="thank-you.html")
-.catch(()=>alert("Order failed"));
+.then(()=> window.location.href="thank-you.html")
+.catch(()=> alert("Order failed"));
 });
 </script>
+
 </body>
 </html>
