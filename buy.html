@@ -23,10 +23,10 @@ body {
 
 .card {
   background:#141414;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 0 25px rgba(255,255,255,0.05);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:18px;
+  box-shadow:0 0 30px rgba(0,0,0,0.7);
 }
 
 h2 {margin-bottom:10px;}
@@ -34,11 +34,11 @@ h2 {margin-bottom:10px;}
 .payment-option {
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:14px;
+  gap:14px;
+  padding:16px;
   border:2px solid #333;
-  border-radius:12px;
-  margin:10px 0;
+  border-radius:14px;
+  margin:12px 0;
   cursor:pointer;
   transition:0.3s;
 }
@@ -46,15 +46,18 @@ h2 {margin-bottom:10px;}
 .payment-option.active {
   border-color:#00ff99;
   background:#0f1f1a;
+  box-shadow:0 0 15px rgba(0,255,153,0.3);
 }
 
 .payment-option i {
-  font-size:26px;
+  font-size:28px;
 }
 
 .discount {
+  margin-left:auto;
   color:#00ff99;
-  font-size:14px;
+  font-size:13px;
+  font-weight:600;
 }
 
 input, select, textarea {
@@ -66,19 +69,26 @@ input, select, textarea {
   outline:none;
   background:#1f1f1f;
   color:#fff;
+  font-size:14px;
 }
 
 button {
   width:100%;
-  padding:16px;
+  padding:18px;
   background:linear-gradient(135deg,#00ff99,#00ccff);
   border:none;
-  border-radius:14px;
+  border-radius:16px;
   color:#000;
   font-size:18px;
-  font-weight:600;
-  margin-top:15px;
+  font-weight:700;
+  margin-top:18px;
   cursor:pointer;
+  box-shadow:0 5px 20px rgba(0,255,200,0.4);
+  transition:0.3s;
+}
+
+button:hover {
+  transform:scale(1.04);
 }
 </style>
 </head>
@@ -86,12 +96,14 @@ button {
 <body>
 <div class="container">
 
+<!-- ORDER SUMMARY -->
 <div class="card">
 <h2>Order Summary</h2>
-<p>Premium Hoodie – MQ Threads</p>
-<p id="priceText">Price: ₹499</p>
+<p><b>Product:</b> Premium Hoodie – MQ Threads</p>
+<p id="priceText"><b>Total:</b> ₹499</p>
 </div>
 
+<!-- PAYMENT -->
 <div class="card">
 <h2>Payment Method</h2>
 
@@ -101,46 +113,54 @@ Cash on Delivery
 </div>
 
 <div class="payment-option" onclick="selectPayment('upi')" id="upiBox">
-<i class="fa-solid fa-credit-card"></i>
-UPI / Online Payment  
-<span class="discount">(₹50 OFF)</span>
+<i class="fa-solid fa-mobile-screen"></i>
+UPI / Online Payment
+<span class="discount">₹50 OFF</span>
 </div>
 </div>
 
+<!-- SHIPPING -->
 <div class="card">
 <h2>Shipping Details</h2>
-<input type="text" id="name" placeholder="Full Name" required>
-<input type="tel" id="phone" placeholder="Phone Number" required>
+
+<input type="text" id="name" placeholder="Full Name *">
+<input type="tel" id="phone" placeholder="Phone Number *">
 <input type="email" id="email" placeholder="Email">
 
 <select id="state">
-<option>Select State</option>
-<option>Maharashtra</option>
-<option>Delhi</option>
-<option>Karnataka</option>
-<option>Tamil Nadu</option>
-<option>Gujarat</option>
-<option>Uttar Pradesh</option>
-<option>Bihar</option>
-<option>West Bengal</option>
-<option>Rajasthan</option>
-<option>Punjab</option>
-<option>Haryana</option>
-<option>Madhya Pradesh</option>
-<option>Telangana</option>
+<option>Select State *</option>
 <option>Andhra Pradesh</option>
-<option>Kerala</option>
+<option>Arunachal Pradesh</option>
 <option>Assam</option>
-<option>Odisha</option>
-<option>Jharkhand</option>
+<option>Bihar</option>
 <option>Chhattisgarh</option>
+<option>Delhi</option>
 <option>Goa</option>
-<option>Uttarakhand</option>
+<option>Gujarat</option>
+<option>Haryana</option>
 <option>Himachal Pradesh</option>
-<option>Jammu & Kashmir</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
 </select>
 
-<textarea id="address" placeholder="Full Address"></textarea>
+<textarea id="address" placeholder="Full Address *"></textarea>
 
 <button onclick="placeOrder()">Order Now</button>
 </div>
@@ -150,6 +170,9 @@ UPI / Online Payment
 <script>
 let payment = "cod";
 let price = 499;
+
+// YOUR REAL FAMPAY UPI
+let upiId = "9121783895@fam";
 
 function selectPayment(method){
   payment = method;
@@ -163,25 +186,31 @@ function selectPayment(method){
     document.getElementById("codBox").classList.add("active");
     price = 499;
   }
-  document.getElementById("priceText").innerText = "Price: ₹" + price;
+
+  document.getElementById("priceText").innerHTML = "<b>Total:</b> ₹" + price;
 }
 
 function placeOrder(){
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
+  let state = document.getElementById("state").value;
+  let address = document.getElementById("address").value;
 
-  if(!name || !phone){
-    alert("Please fill required fields");
+  if(!name || !phone || state==="Select State *" || !address){
+    alert("Please fill all required fields");
     return;
   }
 
   if(payment === "upi"){
-    // Replace with your UPI ID
-    let upiId = "yourupi@bank";
     let link = `upi://pay?pa=${upiId}&pn=MQ%20Threads&am=${price}&cu=INR`;
     window.location.href = link;
+
+    setTimeout(()=>{
+      window.location.href = "thankyou.html";
+    },3000);
+
   } else {
-    alert("Order placed successfully! Pay on delivery 🚚");
+    window.location.href = "thankyou.html";
   }
 }
 </script>
