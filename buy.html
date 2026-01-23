@@ -1,164 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Secure Checkout | MQ Threads</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top,#000,#050505);
-  color: white;
-  margin: 0;
-  padding: 20px;
-}
-
-.marquee {
-  background: linear-gradient(90deg,#ff0000,#ff0055);
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  animation: slide 15s linear infinite;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-@keyframes slide {
-  0% {transform: translateX(100%)}
-  100% {transform: translateX(-100%)}
-}
-
-.container {
-  max-width: 520px;
-  margin: auto;
-}
-
-.card {
-  background: #111;
-  border-radius: 18px;
-  padding: 22px;
-  margin-bottom: 18px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.7);
-}
-
-h2 { margin-top:0; }
-
-label {
-  display:block;
-  margin-top:14px;
-  font-weight:600;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  background: #1f1f1f;
-  color: white;
-  border: 1px solid #333;
-  border-radius: 10px;
-  font-size:14px;
-}
-
-button {
-  margin-top: 22px;
-  width:100%;
-  padding: 16px;
-  background: linear-gradient(135deg,#00ff99,#00ccff);
-  border: none;
-  font-size: 18px;
-  font-weight: 700;
-  border-radius: 14px;
-  cursor: pointer;
-  color:#000;
-  box-shadow:0 5px 20px rgba(0,255,200,0.4);
-  transition:0.3s;
-}
-
-button:hover { transform: scale(1.04); }
-
-.summary-box {
-  background:#000;
-  border:1px solid #222;
-  padding:14px;
-  border-radius:12px;
-  line-height:1.8;
-}
-
-.offer-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.offer {
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:Poppins, sans-serif;
   background:#0b0b0b;
-  border:1px solid #222;
-  padding:10px;
-  border-radius:10px;
-  font-size:13px;
+  color:#fff;
 }
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:15px;
+}
+.card{
+  background:#141414;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 0 15px rgba(255,255,255,0.05);
+}
+h2{font-size:18px;margin-bottom:10px;}
 
-.payment-option {
+.payment-option{
   display:flex;
   align-items:center;
   gap:12px;
-  padding:14px;
+  padding:12px;
   border:2px solid #333;
   border-radius:12px;
-  margin-top:10px;
+  margin:10px 0;
   cursor:pointer;
-  transition:0.3s;
 }
-
-.payment-option.active {
+.payment-option.active{
   border-color:#00ff99;
   background:#0f1f1a;
 }
+.payment-option i{font-size:24px;}
 
-.payment-option i { font-size:24px; }
+.discount{color:#00ff99;font-size:13px;}
 
-.discount {
-  margin-left:auto;
-  color:#00ff99;
-  font-size:13px;
+input,select,textarea{
+  width:100%;
+  padding:11px;
+  margin:6px 0;
+  border-radius:10px;
+  border:none;
+  background:#1f1f1f;
+  color:#fff;
+  font-size:14px;
 }
 
-#otherCityField { display:none; }
+button{
+  width:100%;
+  padding:14px;
+  background:linear-gradient(135deg,#00ff99,#00ccff);
+  border:none;
+  border-radius:14px;
+  color:#000;
+  font-size:16px;
+  font-weight:600;
+  margin-top:12px;
+}
+.price{
+  font-size:16px;
+  margin-top:6px;
+}
+.green{color:#00ff99;}
 </style>
 </head>
 
 <body>
-
-<div class="marquee">
-🔥 MQ THREADS | PREMIUM STREETWEAR | FREE DELIVERY ALL OVER INDIA 🇮🇳
-</div>
-
 <div class="container">
 
-<!-- ORDER SUMMARY -->
 <div class="card">
 <h2>Order Summary</h2>
-<div class="summary-box" id="summaryBox">
-Select product to view details.
-</div>
-</div>
-
-<!-- TRUST -->
-<div class="card">
-<h2>Why MQ Threads?</h2>
-<div class="offer-grid">
-<div class="offer">⭐ 4.8/5 Customer Rating</div>
-<div class="offer">🚚 Free Delivery</div>
-<div class="offer">💵 COD Available</div>
-<div class="offer">🔐 Secure Payments</div>
-</div>
+<p>Premium Hoodie – MQ Threads</p>
+<p class="price" id="priceText">Price: ₹499</p>
+<p class="discount" id="discountText" style="display:none;">UPI Discount Applied: -₹50</p>
 </div>
 
-<!-- PAYMENT -->
 <div class="card">
 <h2>Payment Method</h2>
 
@@ -170,141 +98,98 @@ Cash on Delivery
 <div class="payment-option" onclick="selectPayment('upi')" id="upiBox">
 <i class="fa-solid fa-mobile-screen"></i>
 UPI / Online Payment
-<span class="discount">₹50 OFF</span>
+<span class="discount">(₹50 OFF)</span>
+</div>
+
+<div style="display:flex;gap:10px;margin-top:10px;">
+<i class="fa-brands fa-google-pay"></i>
+<i class="fa-brands fa-cc-paypal"></i>
+<i class="fa-solid fa-qrcode"></i>
 </div>
 </div>
 
-<!-- FORM -->
 <div class="card">
 <h2>Shipping Details</h2>
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="tel" id="phone" placeholder="Phone Number" required>
+<input type="email" id="email" placeholder="Email">
 
-<form id="orderForm">
-<label>Full Name
-<input type="text" name="name" required>
-</label>
-
-<label>Email
-<input type="email" name="email" required>
-</label>
-
-<label>Phone Number
-<input type="tel" name="phone" required>
-</label>
-
-<label>WhatsApp Number
-<input type="tel" name="whatsapp" required>
-</label>
-
-<label>Choose Product
-<select name="product" id="productSelect" required>
-<option value="">-- Select Product --</option>
-<option value="Premium Hoodie">Premium Hoodie</option>
-<option value="Oversized T-Shirt">Oversized T-Shirt</option>
-<option value="Streetwear Combo">Streetwear Combo</option>
+<select id="state">
+<option value="">Select State</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Delhi</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
 </select>
-</label>
 
-<label>Price
-<input type="text" id="priceDisplay" name="price" readonly>
-</label>
+<textarea id="address" placeholder="Full Address"></textarea>
 
-<label>City
-<select name="city" id="citySelect" required>
-<option value="">-- Select Your City --</option>
-<option>Mumbai</option><option>Delhi</option><option>Bangalore</option>
-<option>Hyderabad</option><option>Chennai</option><option>Pune</option>
-<option>Kolkata</option><option>Ahmedabad</option><option>Jaipur</option>
-<option value="Other">Other</option>
-</select>
-</label>
-
-<div id="otherCityField">
-<label>Enter Your City
-<input type="text" id="otherCityInput">
-</label>
-</div>
-
-<label>Full Address
-<textarea name="address" required></textarea>
-</label>
-
-<input type="hidden" name="payment" id="paymentField" value="COD">
-
-<button type="submit">Place Order</button>
-</form>
+<button onclick="placeOrder()">Order Now</button>
 </div>
 
 </div>
 
 <script>
-let payment = "cod";
-
-const productPrices = {
-  "Premium Hoodie": 499,
-  "Oversized T-Shirt": 399,
-  "Streetwear Combo": 799
-};
-
-const productSelect = document.getElementById('productSelect');
-const priceDisplay = document.getElementById('priceDisplay');
-const summaryBox = document.getElementById('summaryBox');
-
-productSelect.addEventListener('change', () => {
-  let p = productSelect.value;
-  let price = productPrices[p] || "";
-  priceDisplay.value = price;
-  summaryBox.innerHTML = `
-  <b>Product:</b> ${p}<br>
-  <b>Price:</b> ₹${price}<br>
-  <b>Payment:</b> ${payment.toUpperCase()}
-  `;
-});
+let payment="cod";
+let price=499;
 
 function selectPayment(method){
-  payment = method;
-  document.getElementById("codBox").classList.remove("active");
-  document.getElementById("upiBox").classList.remove("active");
+  payment=method;
+  codBox.classList.remove("active");
+  upiBox.classList.remove("active");
 
   if(method==="upi"){
-    document.getElementById("upiBox").classList.add("active");
-    document.getElementById("paymentField").value="UPI";
-  } else {
-    document.getElementById("codBox").classList.add("active");
-    document.getElementById("paymentField").value="COD";
+    upiBox.classList.add("active");
+    price=449;
+    discountText.style.display="block";
+  }else{
+    codBox.classList.add("active");
+    price=499;
+    discountText.style.display="none";
   }
+  priceText.innerText="Price: ₹"+price;
 }
 
-// City logic
-const citySelect = document.getElementById('citySelect');
-const otherCityField = document.getElementById('otherCityField');
-const otherCityInput = document.getElementById('otherCityInput');
+function placeOrder(){
+  let name=name.value;
+  let phone=document.getElementById("phone").value;
+  let state=document.getElementById("state").value;
 
-citySelect.addEventListener('change', () => {
-  if (citySelect.value === 'Other') {
-    otherCityField.style.display = 'block';
-    otherCityInput.required = true;
-  } else {
-    otherCityField.style.display = 'none';
-    otherCityInput.required = false;
-  }
-});
-
-// EMAIL SYSTEM (UNCHANGED)
-document.getElementById('orderForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const formData = new FormData(this);
-
-  if (citySelect.value === 'Other') {
-    formData.set('city', otherCityInput.value.trim());
+  if(!name || !phone || !state){
+    alert("Fill all required fields");
+    return;
   }
 
-  const url = "https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec";
-
-  fetch(url,{method:"POST",body:formData})
-  .then(()=> window.location.href="thankyou.html")
-  .catch(()=> alert("Order failed. Try again."));
-});
+  if(payment==="upi"){
+    let upiId="9121783895@fam";
+    let link=`upi://pay?pa=${upiId}&pn=MQ%20Threads&am=${price}&cu=INR`;
+    window.location.href=link;
+    setTimeout(()=>{
+      window.location.href="thankyou.html";
+    },3000);
+  }else{
+    window.location.href="thankyou.html";
+  }
+}
 </script>
-
 </body>
 </html>
