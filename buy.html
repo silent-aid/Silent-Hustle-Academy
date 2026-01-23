@@ -161,34 +161,32 @@ cursor:pointer;
 <select id="state">
 <option value="">Select State *</option>
 <option>Andhra Pradesh</option>
-<option>Arunachal Pradesh</option>
-<option>Assam</option>
-<option>Bihar</option>
-<option>Chhattisgarh</option>
-<option>Goa</option>
-<option>Gujarat</option>
-<option>Haryana</option>
-<option>Himachal Pradesh</option>
-<option>Jharkhand</option>
+<option>Telangana</option>
+<option>Maharashtra</option>
+<option>Delhi</option>
+<option>Uttar Pradesh</option>
+<option>West Bengal</option>
+<option>Tamil Nadu</option>
 <option>Karnataka</option>
+<option>Gujarat</option>
+<option>Rajasthan</option>
+<option>Punjab</option>
+<option>Bihar</option>
 <option>Kerala</option>
 <option>Madhya Pradesh</option>
-<option>Maharashtra</option>
-<option>Manipur</option>
-<option>Meghalaya</option>
-<option>Mizoram</option>
-<option>Nagaland</option>
 <option>Odisha</option>
-<option>Punjab</option>
-<option>Rajasthan</option>
-<option>Sikkim</option>
-<option>Tamil Nadu</option>
-<option>Telangana</option>
-<option>Tripura</option>
-<option>Uttar Pradesh</option>
+<option>Assam</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Haryana</option>
+<option>Jharkhand</option>
+<option>Jammu & Kashmir</option>
 <option>Uttarakhand</option>
-<option>West Bengal</option>
-<option>Delhi</option>
+</select>
+
+<!-- CITY -->
+<select id="city">
+<option value="">Select City *</option>
 </select>
 
 <textarea id="address" placeholder="Full Address *"></textarea>
@@ -203,6 +201,44 @@ let payment="cod";
 let basePrice=499;
 let finalPrice=499;
 let qty=1;
+
+const cities={
+"Andhra Pradesh":["Hyderabad","Vijayawada","Visakhapatnam","Guntur"],
+"Telangana":["Hyderabad","Warangal","Karimnagar","Nizamabad"],
+"Maharashtra":["Mumbai","Pune","Nagpur","Nashik"],
+"Delhi":["New Delhi","Rohini","Dwarka","Saket"],
+"Uttar Pradesh":["Noida","Lucknow","Kanpur","Agra"],
+"West Bengal":["Kolkata","Howrah","Asansol"],
+"Tamil Nadu":["Chennai","Coimbatore","Madurai"],
+"Karnataka":["Bangalore","Mysore","Hubli"],
+"Gujarat":["Ahmedabad","Surat","Vadodara"],
+"Rajasthan":["Jaipur","Jodhpur","Udaipur"],
+"Punjab":["Ludhiana","Amritsar"],
+"Bihar":["Patna","Gaya"],
+"Kerala":["Kochi","Trivandrum"],
+"Madhya Pradesh":["Indore","Bhopal"],
+"Odisha":["Bhubaneswar","Cuttack"],
+"Assam":["Guwahati","Silchar"],
+"Chhattisgarh":["Raipur","Bilaspur"],
+"Goa":["Panaji","Margao"],
+"Haryana":["Gurgaon","Faridabad"],
+"Jharkhand":["Ranchi","Jamshedpur"],
+"Jammu & Kashmir":["Srinagar","Jammu"],
+"Uttarakhand":["Dehradun","Haridwar"]
+};
+
+document.getElementById("state").addEventListener("change",function(){
+let citySel=document.getElementById("city");
+citySel.innerHTML="<option value=''>Select City *</option>";
+let s=this.value;
+if(cities[s]){
+cities[s].forEach(c=>{
+let o=document.createElement("option");
+o.value=c;o.textContent=c;
+citySel.appendChild(o);
+});
+}
+});
 
 function updateUI(){
 document.getElementById("qtyText").innerText=qty;
@@ -230,36 +266,30 @@ updateUI();
 function placeOrder(){
 let name=document.getElementById("name").value.trim();
 let phone=document.getElementById("phone").value.trim();
-let email=document.getElementById("email").value.trim();
 let state=document.getElementById("state").value;
+let city=document.getElementById("city").value;
 let address=document.getElementById("address").value.trim();
 
-if(!name||!phone||!state||!address){
+if(!name||!phone||!state||!city||!address){
 alert("Please fill all required fields");
 return;
 }
 
-// send to your gmail
 let data=new FormData();
 data.append("name",name);
 data.append("phone",phone);
-data.append("email",email);
-data.append("product","Premium Hoodie");
-data.append("qty",qty);
-data.append("price",finalPrice);
-data.append("payment",payment);
 data.append("state",state);
+data.append("city",city);
 data.append("address",address);
+data.append("payment",payment);
 
 fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",
 {method:"POST",body:data});
 
-// redirect
 if(payment==="upi"){
 let upi="9121783895@fam";
 let link=`upi://pay?pa=${upi}&pn=MQ%20Threads&am=${finalPrice}&cu=INR`;
-alert("Redirecting to UPI App...");
-setTimeout(()=>{ window.location.href=link; },500);
+window.location.href=link;
 }else{
 window.location.href="thankyou.html";
 }
