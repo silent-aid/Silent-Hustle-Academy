@@ -45,7 +45,7 @@ margin-top:12px;
 .total{background:linear-gradient(45deg,#00ff9d,#00ffaa);color:#000;font-weight:700}
 
 label{display:block;margin-top:14px;font-weight:600}
-input,textarea{
+input,textarea,select{
 width:100%;
 padding:12px;
 margin-top:6px;
@@ -85,6 +85,17 @@ border-radius:14px;
 border:1px dashed #00ff9d;
 display:none;
 text-align:center;
+}
+
+.upi-apps a{
+display:inline-block;
+margin:8px;
+padding:10px 16px;
+border-radius:12px;
+background:#1c1c1c;
+color:white;
+text-decoration:none;
+font-weight:600;
 }
 
 button{
@@ -131,8 +142,39 @@ cursor:pointer;
 
 <form id="orderForm">
 <label>Full Name<input type="text" name="name" required></label>
+<label>Email<input type="email" name="email" required></label>
 <label>Phone<input type="tel" name="phone" required></label>
 <label>WhatsApp<input type="tel" name="whatsapp" required></label>
+
+<label>State
+<select name="state" required>
+<option value="">Select State</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Delhi</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+</select>
+</label>
+
 <label>City<input type="text" name="city" required></label>
 <label>Full Address<textarea name="address" required></textarea></label>
 
@@ -144,16 +186,20 @@ cursor:pointer;
 
 <label>Payment Method</label>
 <div class="payment-box">
-<div class="pay-option" id="codBox">Cash on Delivery</div>
-<div class="pay-option" id="upiBox">UPI (₹50 OFF)</div>
+<div class="pay-option" id="codBox">📦 Cash on Delivery</div>
+<div class="pay-option" id="upiBox">💳 UPI (₹50 OFF)</div>
 </div>
 
 <div class="upi-info" id="upiInfo">
-Pay using:<br><br>
-📱 PhonePe<br>
-📱 Google Pay<br>
-📱 Paytm<br><br>
-UPI ID: <b>9121783895@fam</b>
+Pay using any app:<br><br>
+
+<div class="upi-apps">
+<a href="upi://pay?pa=9121783895@fam&pn=MQThreads&am=0">📱 PhonePe</a>
+<a href="upi://pay?pa=9121783895@fam&pn=MQThreads&am=0">📱 Google Pay</a>
+<a href="upi://pay?pa=9121783895@fam&pn=MQThreads&am=0">📱 Paytm</a>
+</div>
+
+<br>UPI ID: <b>9121783895@fam</b>
 </div>
 
 <button type="submit">Place Order</button>
@@ -212,7 +258,7 @@ orderForm.addEventListener("submit",e=>{
 e.preventDefault();
 if(!paymentMethod){alert("Select payment method");return;}
 
-fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",{
+fetch("YOUR_GOOGLE_SCRIPT_URL",{
 method:"POST",
 body:new FormData(orderForm)
 })
