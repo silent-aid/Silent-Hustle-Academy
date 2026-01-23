@@ -1,84 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>Premium Hoodie | MQ Threads</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{
 margin:0;
-font-family:'Segoe UI',sans-serif;
+font-family:Arial, sans-serif;
 background:#000;
 color:white;
 }
-
 nav{
+padding:15px 20px;
+border-bottom:1px solid #222;
 display:flex;
 justify-content:space-between;
-align-items:center;
-padding:15px 25px;
-background:#000;
-border-bottom:1px solid #222;
-position:sticky;
-top:0;
-z-index:1000;
 }
-
-nav h2{color:#00ff9d;margin:0}
-nav a{color:white;margin-left:20px;text-decoration:none}
-
+nav a{color:white;text-decoration:none;margin-left:15px}
 .container{
-max-width:1100px;
+max-width:900px;
 margin:auto;
-padding:30px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
+padding:20px;
+display:flex;
+flex-wrap:wrap;
+gap:30px;
 }
-
-@media(max-width:800px){
-.container{grid-template-columns:1fr}
-}
-
-.slider{
-position:relative;
-overflow:hidden;
-border-radius:20px;
-box-shadow:0 0 30px rgba(0,255,150,0.08);
-}
-
-.slider img{
+.img-box img{
 width:100%;
-display:none;
+border-radius:12px;
 }
-
-.slider img.active{display:block}
-
-.badge{
-position:absolute;
-top:15px;
-left:15px;
-background:red;
-padding:6px 12px;
-border-radius:8px;
-font-weight:bold;
+.details{
+flex:1;
+min-width:250px;
 }
-
-.details h1{margin-top:0;font-size:32px}
-
-.price{
-font-size:26px;
-color:#00ff9d;
-font-weight:bold;
-}
-
-.old{
-text-decoration:line-through;
-opacity:0.6;
-margin-left:10px;
-}
-
+.price{color:#00ff9d;font-size:24px;font-weight:bold}
 select,input{
 width:100%;
 padding:10px;
@@ -86,32 +41,25 @@ margin-top:10px;
 background:#111;
 color:white;
 border:1px solid #333;
-border-radius:8px;
+border-radius:6px;
 }
-
-.buy-btn{
-margin-top:20px;
-padding:14px;
+button{
+margin-top:15px;
+padding:12px;
 width:100%;
 background:#00ff9d;
-color:black;
 border:none;
 font-size:18px;
 font-weight:bold;
-border-radius:12px;
-cursor:pointer;
-transition:0.3s;
+border-radius:8px;
 }
-
-.buy-btn:hover{transform:scale(1.05)}
-
 </style>
 </head>
 
 <body>
 
 <nav>
-<h2>MQ Threads</h2>
+<b>MQ Threads</b>
 <div>
 <a href="index.html">Home</a>
 <a href="checkout.html">Checkout</a>
@@ -120,23 +68,15 @@ transition:0.3s;
 
 <div class="container">
 
-<div class="slider">
-<div class="badge">30% OFF</div>
-<img src="images/hoodie.jpg" class="active">
-<img src="images/hoodie2.jpg">
-<img src="images/hoodie3.jpg">
+<div class="img-box">
+<img src="images/hoodie.jpg">
 </div>
 
 <div class="details">
-<h1>Premium Printed Hoodie</h1>
-<p>Ultra soft cotton fleece. Street fit. Unisex.</p>
+<h2>Premium Printed Hoodie</h2>
+<p class="price">₹499</p>
 
-<div>
-<span class="price">₹499</span>
-<span class="old">₹699</span>
-</div>
-
-<label>Select Size</label>
+<label>Size</label>
 <select id="size">
 <option>S</option>
 <option selected>M</option>
@@ -147,35 +87,25 @@ transition:0.3s;
 <label>Quantity</label>
 <input type="number" id="qty" value="1" min="1">
 
-<button class="buy-btn" onclick="goCheckout()">
-Buy Now
-</button>
-
-<p style="margin-top:15px;opacity:0.7">
-Free Shipping • COD & UPI Available • 7 Day Replacement
-</p>
+<button onclick="buyNow()">Buy Now</button>
 </div>
 
 </div>
 
 <script>
-let index = 0;
-const imgs = document.querySelectorAll(".slider img");
+function buyNow(){
+var size = document.getElementById("size").value;
+var qty = document.getElementById("qty").value;
 
-setInterval(()=>{
-imgs[index].classList.remove("active");
-index = (index+1)%imgs.length;
-imgs[index].classList.add("active");
-},3000);
-
-function goCheckout(){
 localStorage.setItem("product","Premium Printed Hoodie");
-localStorage.setItem("size",document.getElementById("size").value);
-localStorage.setItem("qty",document.getElementById("qty").value);
-localStorage.setItem("price",499);
-window.location.href="checkout.html";
+localStorage.setItem("size",size);
+localStorage.setItem("qty",qty);
+localStorage.setItem("price","499");
+
+window.location.href = "checkout.html";
 }
 </script>
 
 </body>
 </html>
+
