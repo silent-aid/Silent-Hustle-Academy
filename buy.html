@@ -1,122 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Checkout | MQ Threads</title>
+<title>Secure Checkout | MQ Threads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
-body{margin:0;font-family:system-ui;background:#0b0b0b;color:#fff}
-.wrap{max-width:420px;margin:auto;padding:12px}
-.box{background:#141414;border-radius:12px;padding:14px;margin-bottom:10px}
-h3{margin:6px 0}
-.opt{padding:12px;border:2px solid #333;border-radius:10px;margin:8px 0}
-.opt.active{border:#00ff99 2px solid;background:#0f1f1a}
-input,select,textarea{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:none;background:#1f1f1f;color:#fff}
-button{width:100%;padding:14px;background:#00ff99;color:#000;border:none;border-radius:10px;font-weight:600}
-.green{color:#00ff99}
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#0b0b0b;
+color:#fff;
+}
+
+.banner{
+background:linear-gradient(90deg,#00ff99,#00ccff);
+color:#000;
+padding:10px;
+text-align:center;
+font-weight:700;
+}
+
+.container{
+max-width:480px;
+margin:auto;
+padding:15px;
+}
+
+.card{
+background:#141414;
+border-radius:16px;
+padding:18px;
+margin-bottom:14px;
+box-shadow:0 0 20px rgba(0,0,0,0.6);
+}
+
+h2{margin:0 0 10px}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+margin:6px 0;
+}
+
+.highlight{
+background:#102a22;
+border:1px solid #00ff99;
+padding:10px;
+border-radius:10px;
+color:#00ff99;
+text-align:center;
+margin-bottom:10px;
+font-size:14px;
+}
+
+.payment-option{
+display:flex;
+align-items:center;
+gap:12px;
+padding:14px;
+border:2px solid #333;
+border-radius:12px;
+margin:10px 0;
+cursor:pointer;
+transition:0.3s;
+}
+
+.payment-option.active{
+border-color:#00ff99;
+background:#0f1f1a;
+}
+
+.payment-option i{
+font-size:24px;
+}
+
+.apps{
+display:flex;
+gap:10px;
+margin-top:6px;
+font-size:22px;
+opacity:0.8;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+margin:8px 0;
+border-radius:10px;
+border:none;
+background:#1f1f1f;
+color:#fff;
+}
+
+button{
+width:100%;
+padding:16px;
+background:linear-gradient(135deg,#00ff99,#00ccff);
+border:none;
+border-radius:14px;
+color:#000;
+font-size:18px;
+font-weight:600;
+margin-top:10px;
+cursor:pointer;
+}
 </style>
 </head>
 
 <body>
-<div class="wrap">
 
-<div class="box">
-<h3>Order</h3>
-<p>MQ Threads Hoodie</p>
-<p id="price">Price: ₹499</p>
-<p id="disc" class="green" style="display:none">UPI Discount -₹50</p>
+<div class="banner">
+🔥 Pay via UPI & Get Flat ₹50 OFF – Limited Offer
 </div>
 
-<div class="box">
-<h3>Payment</h3>
-<div class="opt active" id="cod" onclick="pay('cod')">Cash on Delivery</div>
-<div class="opt" id="upi" onclick="pay('upi')">UPI (GPay / PhonePe / Paytm)</div>
+<div class="container">
+
+<div class="card">
+<h2>Order Summary</h2>
+<div class="summary-row"><span>Product</span><b>Premium Hoodie</b></div>
+<div class="summary-row"><span>Quantity</span><b id="qtyText">1</b></div>
+<div class="summary-row"><span>Price</span><b id="priceText">₹499</b></div>
+<hr>
+<div class="summary-row"><span>Total</span><b id="totalText">₹499</b></div>
 </div>
 
-<div class="box">
-<h3>Details</h3>
-<input id="name" placeholder="Name">
-<input id="phone" placeholder="Phone">
+<div class="card">
+<h2>Payment Method</h2>
+
+<div class="highlight" id="discountBox" style="display:none">
+🎉 ₹50 OFF applied for UPI payment
+</div>
+
+<div class="payment-option active" id="codBox" onclick="selectPayment('cod')">
+<i class="fa-solid fa-truck"></i> Cash on Delivery
+</div>
+
+<div class="payment-option" id="upiBox" onclick="selectPayment('upi')">
+<i class="fa-solid fa-bolt"></i> UPI / Online Payment
+<div class="apps">
+<i class="fa-brands fa-google-pay"></i>
+<i class="fa-brands fa-paypal"></i>
+<i class="fa-solid fa-mobile"></i>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Shipping Details</h2>
+<input id="name" placeholder="Full Name" required>
+<input id="phone" placeholder="Phone Number" required>
 <input id="email" placeholder="Email">
 
 <select id="state">
-<option value="">State</option>
-<option>Maharashtra</option><option>Delhi</option><option>Karnataka</option>
-<option>Tamil Nadu</option><option>Telangana</option><option>Gujarat</option>
-<option>Uttar Pradesh</option><option>Bihar</option><option>West Bengal</option>
-<option>Rajasthan</option><option>Punjab</option><option>Kerala</option>
-<option>Madhya Pradesh</option><option>Odisha</option><option>Assam</option>
-<option>Jharkhand</option><option>Chhattisgarh</option>
-<option>Jammu & Kashmir</option><option>Ladakh</option>
-<option>Chandigarh</option><option>Puducherry</option>
+<option value="">Select State</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+<option>Delhi</option>
 </select>
-
-<select id="city">
-<option value="">City</option>
-<option>Mumbai</option><option>Delhi</option><option>Bangalore</option>
-<option>Hyderabad</option><option>Chennai</option><option>Pune</option>
-<option>Ahmedabad</option><option>Jaipur</option><option>Indore</option>
-<option>Bhopal</option><option>Patna</option><option>Kolkata</option>
-<option>Lucknow</option><option>Noida</option><option>Gurgaon</option>
-<option>Faridabad</option><option>Surat</option><option>Rajkot</option>
-</select>
-
-<input type="date" id="date">
 
 <textarea id="address" placeholder="Full Address"></textarea>
 
-<button onclick="order()">Order Now</button>
+<button onclick="placeOrder()">Place Order</button>
 </div>
 
 </div>
 
 <script>
-let mode="cod",price=499;
+let payment="cod";
+let basePrice=499;
+let finalPrice=499;
+let qty=1;
 
-function pay(t){
-mode=t;
-cod.classList.remove("active");
-upi.classList.remove("active");
-if(t=="upi"){
-upi.classList.add("active");
-price=449;
-disc.style.display="block";
+function updateUI(){
+document.getElementById("qtyText").innerText=qty;
+document.getElementById("priceText").innerText="₹"+finalPrice;
+document.getElementById("totalText").innerText="₹"+finalPrice;
+}
+
+function selectPayment(type){
+payment=type;
+document.getElementById("codBox").classList.remove("active");
+document.getElementById("upiBox").classList.remove("active");
+
+if(type==="upi"){
+finalPrice=basePrice-50;
+document.getElementById("upiBox").classList.add("active");
+document.getElementById("discountBox").style.display="block";
 }else{
-cod.classList.add("active");
-price=499;
-disc.style.display="none";
+finalPrice=basePrice;
+document.getElementById("codBox").classList.add("active");
+document.getElementById("discountBox").style.display="none";
 }
-priceText="Price: ₹"+price;
-price.innerText=priceText;
-}
-
-function order(){
-if(!name.value||!phone.value||!state.value||!city.value){
-alert("Fill all fields");return;
+updateUI();
 }
 
+function placeOrder(){
+let name=nameInput=name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+let state=document.getElementById("state").value;
+let address=document.getElementById("address").value;
+
+if(!name||!phone||!state||!address){
+alert("Please fill all required fields");
+return;
+}
+
+// SEND TO YOUR EMAIL (GOOGLE SCRIPT)
 let data=new FormData();
-data.append("name",name.value);
-data.append("phone",phone.value);
-data.append("email",email.value);
-data.append("state",state.value);
-data.append("city",city.value);
-data.append("date",date.value);
-data.append("address",address.value);
-data.append("payment",mode);
-data.append("amount",price);
+data.append("name",name);
+data.append("phone",phone);
+data.append("email",email);
+data.append("product","Premium Hoodie");
+data.append("qty",qty);
+data.append("price",finalPrice);
+data.append("payment",payment);
+data.append("state",state);
+data.append("address",address);
 
-// YOUR GOOGLE SCRIPT URL (EMAIL)
 fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",
-{ method:"POST", body:data });
+{method:"POST",body:data});
 
-if(mode=="upi"){
-let upiId="9121783895@fam";
-window.location.href=`upi://pay?pa=${upiId}&pn=MQ%20Threads&am=${price}&cu=INR`;
+// UPI OPEN
+if(payment==="upi"){
+let upi="9121783895@fam";
+let link=`upi://pay?pa=${upi}&pn=MQ%20Threads&am=${finalPrice}&cu=INR`;
+window.location.href=link;
+}else{
+window.location.href="thankyou.html";
 }
-
-setTimeout(()=>{window.location="thankyou.html"},2500);
 }
 </script>
+
 </body>
 </html>
