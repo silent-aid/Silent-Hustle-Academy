@@ -1,80 +1,219 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Premium Hoodie | MQ Threads</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{margin:0;font-family:Arial;background:#111;color:#fff}
-.container{max-width:1100px;margin:auto;padding:20px}
-.slider img{width:100%;border-radius:15px;transition:0.4s}
-.slider img:hover{transform:scale(1.1)}
-.price{font-size:28px}
-.old{color:#999;text-decoration:line-through}
-.btn{background:#ff3b3b;padding:15px 30px;color:#fff;border:none;border-radius:8px;font-size:18px}
-.reviews{margin-top:30px}
-.review{background:#1c1c1c;padding:15px;border-radius:10px;margin:10px 0}
-.badge{background:gold;color:#000;padding:5px 10px;border-radius:5px}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0b0b0b;
+  color:#fff;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+.box{
+  background:#141414;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+.badge{
+  background:#ffcc00;
+  color:#000;
+  padding:6px 12px;
+  border-radius:6px;
+  font-weight:bold;
+  display:inline-block;
+}
+.slider img{
+  width:100%;
+  border-radius:15px;
+  transition:0.4s;
+}
+.slider img:hover{
+  transform:scale(1.08);
+}
+.thumb img{
+  width:80px;
+  border-radius:10px;
+  margin:6px;
+  cursor:pointer;
+  opacity:0.7;
+}
+.thumb img:hover{opacity:1}
+
+.price{
+  font-size:32px;
+}
+.old{
+  text-decoration:line-through;
+  color:#888;
+  font-size:18px;
+}
+
+.colors button{
+  padding:10px 15px;
+  margin:6px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.black{background:#000;color:#fff}
+.grey{background:#777;color:#000}
+.red{background:#b11212;color:#fff}
+
+select{
+  padding:12px;
+  border-radius:8px;
+  width:100%;
+  font-size:16px;
+}
+
+.buybtn{
+  background:#ff3b3b;
+  color:#fff;
+  padding:18px;
+  border:none;
+  width:100%;
+  border-radius:12px;
+  font-size:20px;
+  cursor:pointer;
+}
+.buybtn:hover{background:#ff1f1f}
+
+.review-head{
+  cursor:pointer;
+  font-size:20px;
+}
+.review-box{
+  display:none;
+  margin-top:15px;
+}
+.review{
+  background:#1e1e1e;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+.offer li{margin:8px 0}
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-<span class="badge">50% OFF</span>
-<h1>Premium Printed Hoodie</h1>
+<!-- PRODUCT IMAGES -->
+<div class="box">
+<span class="badge">🔥 50% OFF</span>
+<h1>Premium Streetwear Hoodie</h1>
 
 <div class="slider">
-  <img id="mainImg" src="images/hoodie1.jpg">
+<img id="mainImg" src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf">
 </div>
 
-<div>
-  <img src="images/hoodie1.jpg" width="80" onclick="changeImg(this.src)">
-  <img src="images/hoodie2.jpg" width="80" onclick="changeImg(this.src)">
-  <img src="images/hoodie3.jpg" width="80" onclick="changeImg(this.src)">
+<div class="thumb">
+<img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf" onclick="changeImg(this.src)">
+<img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990" onclick="changeImg(this.src)">
+<img src="https://images.unsplash.com/photo-1618354691271-2048f8c8e7fa" onclick="changeImg(this.src)">
+</div>
 </div>
 
+<!-- PRODUCT INFO -->
+<div class="box">
 <p class="price">₹499 <span class="old">₹999</span></p>
 
-<select id="qty">
-  <option value="1">1 Qty</option>
-  <option value="2">2 Qty</option>
-  <option value="3">3 Qty</option>
+<h3>Select Color</h3>
+<div class="colors">
+<button class="black" onclick="setColor('Black')">Black</button>
+<button class="grey" onclick="setColor('Grey')">Grey</button>
+<button class="red" onclick="setColor('Red')">Red</button>
+</div>
+
+<h3>Quantity</h3>
+<select id="qty" onchange="updatePrice()">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
 </select>
 
-<br><br>
-<button class="btn" onclick="buyNow()">Buy Now</button>
+<p id="total"></p>
 
+<button class="buybtn" onclick="buyNow()">BUY NOW</button>
+</div>
+
+<!-- DESCRIPTION -->
+<div class="box">
 <h3>Description</h3>
 <p>
-Premium cotton hoodie. Soft inside. Perfect for winter & streetwear.
-Unisex fit. Limited stock.
+Premium cotton hoodie with soft fleece inside.  
+Perfect for winter, college & streetwear.  
+Unisex fit • Fade-proof print • Limited stock.
 </p>
+</div>
 
-<h3>Offers</h3>
-<ul>
-<li>Free Delivery</li>
-<li>Cash on Delivery Available</li>
-<li>7 Days Replacement</li>
+<!-- OFFERS -->
+<div class="box">
+<h3>🎁 Offers</h3>
+<ul class="offer">
+<li>✅ Free Delivery All Over India</li>
+<li>✅ Cash on Delivery Available</li>
+<li>✅ 7 Days Replacement</li>
+<li>✅ Winter Special Price</li>
 </ul>
+</div>
 
-<div class="reviews">
-<h3>Customer Reviews ⭐⭐⭐⭐⭐</h3>
-<div class="review">Aman: Quality is insane 🔥</div>
-<div class="review">Zoya: Looks premium, worth 499</div>
-<div class="review">Rohit: Fast delivery, nice fit</div>
+<!-- REVIEWS -->
+<div class="box">
+<div class="review-head" onclick="toggleReviews()">⭐ Customer Reviews (Tap to open)</div>
+<div class="review-box" id="reviews">
+  <div class="review">Aman ⭐⭐⭐⭐⭐<br>Looks premium, worth more than price</div>
+  <div class="review">Zoya ⭐⭐⭐⭐⭐<br>Soft fabric, loved it ❤️</div>
+  <div class="review">Rohit ⭐⭐⭐⭐<br>Good fit & fast delivery</div>
+</div>
 </div>
 
 </div>
 
 <script>
+let selectedColor = "Black";
+let price = 499;
+
 function changeImg(src){
   document.getElementById("mainImg").src = src;
 }
 
+function setColor(c){
+  selectedColor = c;
+  alert("Color selected: " + c);
+}
+
+function updatePrice(){
+  let qty = document.getElementById("qty").value;
+  document.getElementById("total").innerHTML =
+    "Total: ₹" + (price * qty);
+}
+updatePrice();
+
+function toggleReviews(){
+  let r = document.getElementById("reviews");
+  r.style.display = r.style.display === "block" ? "none" : "block";
+}
+
 function buyNow(){
   let qty = document.getElementById("qty").value;
-  window.location.href = `buy.html?product=Hoodie&price=499&qty=${qty}`;
+  window.location.href =
+  `buy.html?product=Hoodie&price=${price}&qty=${qty}&color=${selectedColor}`;
 }
 </script>
+
 </body>
 </html>
