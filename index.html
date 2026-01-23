@@ -2,248 +2,167 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>MQ Threads | Premium Streetwear</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MQ Threads — Minimal Streetwear</title>
 
 <style>
-:root{
-  --bg:#f6f6f6;
-  --card:#ffffff;
-  --black:#111;
-  --grey:#777;
-  --accent:#000;
-  --gold:#c6a75e;
-}
-
-*{
-  box-sizing:border-box;
-  font-family:Inter,system-ui,-apple-system;
-}
-
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--black);
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#000;
+color:white;
 }
 
-/* HEADER */
-header{
-  background:#fff;
-  padding:14px 16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #eaeaea;
-  position:sticky;
-  top:0;
-  z-index:100;
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:#000;
+border-bottom:1px solid #222;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-header h1{
-  font-size:18px;
-  letter-spacing:2px;
+nav h2{
+margin:0;
+color:#00ff9d;
 }
 
-header a{
-  font-size:14px;
-  text-decoration:none;
-  color:#000;
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+font-weight:500;
 }
 
-/* HERO */
 .hero{
-  padding:40px 20px;
-  text-align:center;
+min-height:70vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+url("images/hero.jpg") center/cover;
+padding:40px;
 }
 
-.hero h2{
-  font-size:26px;
-  margin-bottom:10px;
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
 }
 
 .hero p{
-  font-size:14px;
-  color:#555;
+opacity:0.8;
+font-size:18px;
 }
 
 .hero button{
-  margin-top:16px;
-  padding:14px 24px;
-  border:none;
-  background:#000;
-  color:#fff;
-  border-radius:30px;
-  font-size:14px;
-}
-<section style="padding:60px 20px;text-align:center;background:#000;">
-  <h2 style="font-size:32px;">Featured Product</h2>
-  <p style="opacity:0.7;">Our best selling hoodie</p>
-
-  <div style="max-width:300px;margin:30px auto;background:#111;border-radius:16px;padding:15px;box-shadow:0 0 20px rgba(0,255,150,0.1)">
-    <img src="images/hoodie.jpg" style="width:100%;border-radius:12px">
-    <h3>Premium Printed Hoodie</h3>
-    <p style="color:#00ff9d;font-size:20px;">₹499</p>
-    <a href="hoodie.html">
-      <button style="padding:10px 20px;border:none;border-radius:8px;background:#00ff9d;font-weight:bold;">
-        View Product
-      </button>
-    </a>
-  </div>
-</section>
-  
-/* PRODUCTS */
-.section{
-  padding:20px;
+margin-top:20px;
+padding:12px 28px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#00ff9d;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
 }
 
-.section h3{
-  font-size:18px;
-  margin-bottom:12px;
+.hero button:hover{
+transform:scale(1.05);
 }
 
-.products{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
+.featured{
+padding:60px 20px;
+text-align:center;
 }
 
-/* PRODUCT CARD */
 .card{
-  background:#fff;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
+max-width:320px;
+margin:30px auto;
+background:#111;
+border-radius:18px;
+padding:15px;
+box-shadow:0 0 30px rgba(0,255,150,0.08);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
 }
 
 .card img{
-  width:100%;
-  display:block;
+width:100%;
+border-radius:14px;
 }
 
-.card .info{
-  padding:10px;
-}
-
-.card h4{
-  font-size:14px;
-  margin:0 0 4px;
-}
-
-.card .price{
-  font-size:14px;
-  font-weight:700;
-}
-
-.card .old{
-  font-size:12px;
-  color:#999;
-  text-decoration:line-through;
-  margin-left:6px;
+.price{
+color:#00ff9d;
+font-size:22px;
+font-weight:bold;
 }
 
 .card button{
-  margin-top:8px;
-  width:100%;
-  padding:10px;
-  border:none;
-  background:#000;
-  color:#fff;
-  border-radius:8px;
-  font-size:13px;
+margin-top:10px;
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#00ff9d;
+font-weight:bold;
+cursor:pointer;
 }
 
-/* BANNER */
-.banner{
-  margin:20px;
-  padding:20px;
-  background:#000;
-  color:#fff;
-  border-radius:18px;
-  text-align:center;
-}
-
-.banner h3{
-  margin:0 0 6px;
-}
-
-.banner p{
-  font-size:13px;
-  color:#ccc;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  font-size:12px;
-  color:#777;
-  padding:20px;
+.footer{
+text-align:center;
+padding:25px;
+border-top:1px solid #222;
+opacity:0.6;
+font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>MQ THREADS</h1>
-  <a href="cart.html">Cart 🛒</a>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <h2>Minimal. Meaningful. Bold.</h2>
-  <p>Premium streetwear crafted for doers.</p>
-  <button onclick="location.href='#products'">Shop Now</button>
-</section>
-
-<!-- PRODUCTS -->
-<section class="section" id="products">
-  <h3>Featured Drops</h3>
-
-  <div class="products">
-
-    <!-- PRODUCT 1 -->
-    <div class="card">
-      <img src="https://drive.google.com/uc?id=1481MDsqUOklkHnUnDfBQ2ockDw8Omz3h">
-      <div class="info">
-        <h4>Stop Dreaming, Start Doing</h4>
-        <div>
-          <span class="price">₹499</span>
-          <span class="old">₹799</span>
-        </div>
-        <button onclick="openProduct()">View Product</button>
-      </div>
-    </div>
-
-    <!-- PRODUCT 2 (Sample) -->
-    <div class="card">
-      <img src="https://via.placeholder.com/400x500?text=Coming+Soon">
-      <div class="info">
-        <h4>Next Drop Incoming</h4>
-        <div>
-          <span class="price">₹—</span>
-        </div>
-        <button disabled style="background:#aaa">Coming Soon</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- BRAND BANNER -->
-<div class="banner">
-  <h3>Why MQ Threads?</h3>
-  <p>Designed with purpose. Printed after order. Zero compromise.</p>
+<nav>
+<h2>MQ Threads</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="hoodie.html">Hoodie</a>
+<a href="checkout.html">Checkout</a>
 </div>
+</nav>
 
-<footer>
-  © 2026 MQ Threads • Built with purpose
-</footer>
+<section class="hero">
+<div>
+<h1>Premium Streetwear</h1>
+<p>Minimal. Bold. Made for the culture.</p>
+<button onclick="window.location.href='hoodie.html'">
+Shop Hoodie
+</button>
+</div>
+</section>
 
-<script>
-function openProduct(){
-  window.location.href = "product.html";
-}
-</script>
+<section class="featured">
+<h2>Featured Product</h2>
+<p style="opacity:0.7">Our best selling hoodie</p>
+
+<div class="card">
+<img src="images/hoodie.jpg" alt="Premium Hoodie">
+<h3>Premium Printed Hoodie</h3>
+<p class="price">₹499</p>
+<button onclick="window.location.href='hoodie.html'">
+View Product
+</button>
+</div>
+</section>
+
+<div class="footer">
+© 2026 MQ Threads. All rights reserved.
+</div>
 
 </body>
 </html>
