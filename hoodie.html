@@ -1,112 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Premium Hoodie | MQ Threads</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family: 'Segoe UI', sans-serif;
 background:#000;
 color:white;
 }
 
 nav{
+position:sticky;
+top:0;
+background:#000;
 padding:15px 20px;
 border-bottom:1px solid #222;
 display:flex;
 justify-content:space-between;
-align-items:center;
+z-index:1000;
 }
 
 nav a{color:white;text-decoration:none;margin-left:15px}
 
-.container{
-max-width:1000px;
+.main{
+max-width:1200px;
 margin:auto;
 padding:20px;
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:30px;
-animation:fade 0.8s ease;
+gap:40px;
 }
 
-@keyframes fade{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-@media(max-width:800px){
-.container{grid-template-columns:1fr}
+@media(max-width:900px){
+.main{grid-template-columns:1fr}
 }
 
 .slider{
 position:relative;
 overflow:hidden;
-border-radius:12px;
+border-radius:20px;
 }
 
-.slider img{
-width:100%;
+.slide{
 display:none;
-cursor:zoom-in;
-transition:0.3s;
+animation:fade 0.6s ease;
 }
 
-.slider img.active{display:block}
+.slide img{
+width:100%;
+border-radius:20px;
+}
+
+.slide.active{display:block}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
+.dots{
+text-align:center;
+margin-top:10px;
+}
+
+.dot{
+display:inline-block;
+width:10px;
+height:10px;
+background:#444;
+border-radius:50%;
+margin:0 5px;
+cursor:pointer;
+}
+
+.dot.active{background:#00ff9d}
 
 .badge{
 position:absolute;
-top:10px;
-left:10px;
+top:15px;
+left:15px;
 background:red;
-padding:6px 10px;
-border-radius:6px;
+padding:6px 12px;
+border-radius:8px;
 font-weight:bold;
 }
 
-.details h2{margin-top:0}
-.price{color:#00ff9d;font-size:26px;font-weight:bold}
-.old{opacity:0.6;text-decoration:line-through;margin-left:10px}
+.price{
+font-size:28px;
+color:#00ff9d;
+font-weight:bold;
+}
+
+.old{
+text-decoration:line-through;
+opacity:0.6;
+margin-left:10px;
+}
 
 select,input{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:10px;
 background:#111;
 color:white;
 border:1px solid #333;
-border-radius:6px;
+border-radius:8px;
 }
 
-button{
-margin-top:15px;
-padding:12px;
+.buy{
+margin-top:20px;
+padding:15px;
 width:100%;
 background:#00ff9d;
 border:none;
 font-size:18px;
 font-weight:bold;
-border-radius:8px;
+border-radius:12px;
 cursor:pointer;
 transition:0.3s;
 }
 
-button:hover{transform:scale(1.05)}
+.buy:hover{transform:scale(1.04)}
 
-.reviews{
-margin-top:30px;
-background:#111;
-padding:15px;
-border-radius:10px;
+.section{
+margin-top:40px;
 }
 
 .review{
 border-bottom:1px solid #222;
-padding:10px 0;
-font-size:14px;
+padding:12px 0;
 }
+
 </style>
 </head>
 
@@ -120,23 +148,47 @@ font-size:14px;
 </div>
 </nav>
 
-<div class="container">
+<div class="main">
 
+<!-- LEFT: SLIDER -->
+<div>
 <div class="slider">
 <div class="badge">30% OFF</div>
-<img src="images/hoodie.jpg" class="active" onclick="zoom(this)">
-<img src="images/hoodie2.jpg" onclick="zoom(this)">
-<img src="images/hoodie3.jpg" onclick="zoom(this)">
+
+<div class="slide active">
+<img src="images/hoodie.jpg">
+</div>
+<div class="slide">
+<img src="images/hoodie2.jpg">
+</div>
+<div class="slide">
+<img src="images/hoodie3.jpg">
+</div>
 </div>
 
-<div class="details">
-<h2>Premium Printed Hoodie</h2>
-<p>Street fit • Soft cotton • Unisex</p>
+<div class="dots">
+<span class="dot active" onclick="showSlide(0)"></span>
+<span class="dot" onclick="showSlide(1)"></span>
+<span class="dot" onclick="showSlide(2)"></span>
+</div>
+</div>
+
+<!-- RIGHT: DETAILS -->
+<div>
+<h1>Premium Printed Hoodie</h1>
+<p>Unisex streetwear hoodie made from ultra-soft cotton fleece. Perfect for winters and everyday wear.</p>
 
 <div>
 <span class="price">₹499</span>
 <span class="old">₹699</span>
 </div>
+
+<p style="opacity:0.8">
+✔ Soft cotton fleece<br>
+✔ Regular street fit<br>
+✔ Breathable & warm<br>
+✔ Machine washable
+</p>
 
 <label>Size</label>
 <select id="size">
@@ -149,51 +201,42 @@ font-size:14px;
 <label>Quantity</label>
 <input type="number" id="qty" value="1" min="1">
 
-<button onclick="buyNow()">Buy Now</button>
+<button class="buy" onclick="buyNow()">Buy Now</button>
 
-<div class="reviews">
+<div class="section">
 <h3>Customer Reviews ⭐⭐⭐⭐⭐</h3>
-<div class="review">Rahul – Very premium quality 🔥</div>
-<div class="review">Ayesha – Worth the price</div>
-<div class="review">Zaid – Looks exactly like photos</div>
+<div class="review">Amaan – Looks premium, cloth is thick 🔥</div>
+<div class="review">Sana – Fits perfectly, loved it</div>
+<div class="review">Rahul – Worth the price 100%</div>
 </div>
 
 </div>
 </div>
 
 <script>
-// Slider
-let index = 0;
-const imgs = document.querySelectorAll(".slider img");
+let current = 0;
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
 
-setInterval(()=>{
-imgs[index].classList.remove("active");
-index = (index+1)%imgs.length;
-imgs[index].classList.add("active");
-},3000);
-
-// Zoom
-function zoom(img){
-img.style.transform = "scale(1.5)";
-img.style.cursor="zoom-out";
-img.onclick = ()=> {
-img.style.transform="scale(1)";
-img.style.cursor="zoom-in";
-img.onclick = ()=> zoom(img);
-};
+function showSlide(n){
+slides[current].classList.remove("active");
+dots[current].classList.remove("active");
+current = n;
+slides[current].classList.add("active");
+dots[current].classList.add("active");
 }
 
-// Connect to buy.html
+setInterval(()=>{
+let next = (current+1)%slides.length;
+showSlide(next);
+},4000);
+
 function buyNow(){
-let size = document.getElementById("size").value;
-let qty = document.getElementById("qty").value;
-
 localStorage.setItem("product","Premium Printed Hoodie");
-localStorage.setItem("size",size);
-localStorage.setItem("qty",qty);
+localStorage.setItem("size",document.getElementById("size").value);
+localStorage.setItem("qty",document.getElementById("qty").value);
 localStorage.setItem("price","499");
-
-window.location.href = "buy.html";
+window.location.href="buy.html";
 }
 </script>
 
