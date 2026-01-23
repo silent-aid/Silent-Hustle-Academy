@@ -107,7 +107,8 @@ data.append("payment",mode);
 data.append("amount",price);
 
 // YOUR GOOGLE SCRIPT URL (EMAIL)
-fetch("YOUR_GOOGLE_SCRIPT_URL",{method:"POST",body:data});
+fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",
+{ method:"POST", body:data });
 
 if(mode=="upi"){
 let upiId="9121783895@fam";
