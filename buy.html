@@ -2,236 +2,188 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Secure Checkout | MQ Threads</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body{
-font-family:Poppins,system-ui;
-background:radial-gradient(circle at top,#000,#050505);
-color:white;
-margin:0;
-padding:20px;
+body {
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background:#0b0b0b;
+  color:#fff;
 }
 
-.marquee{
-background:linear-gradient(90deg,#ff0000,#ff0066);
-padding:10px;
-text-align:center;
-font-weight:600;
+.container {
+  max-width:480px;
+  margin:auto;
+  padding:20px;
 }
 
-.container{
-max-width:720px;
-margin:30px auto;
+.card {
+  background:#141414;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 0 25px rgba(255,255,255,0.05);
 }
 
-.card{
-background:linear-gradient(180deg,#141414,#0d0d0d);
-padding:26px;
-border-radius:22px;
-box-shadow:0 25px 60px rgba(0,0,0,.8);
-margin-bottom:22px;
+h2 {margin-bottom:10px;}
+
+.payment-option {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border:2px solid #333;
+  border-radius:12px;
+  margin:10px 0;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-h2{text-align:center;margin:0}
-.sub{text-align:center;opacity:.7;margin-bottom:15px}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
+.payment-option.active {
+  border-color:#00ff99;
+  background:#0f1f1a;
 }
 
-.box{
-background:#1c1c1c;
-padding:14px;
-border-radius:14px;
-text-align:center;
+.payment-option i {
+  font-size:26px;
 }
 
-.price-grid{
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:12px;
-margin-top:12px;
+.discount {
+  color:#00ff99;
+  font-size:14px;
 }
 
-.mrp{background:#2a2a2a}
-.discount{background:linear-gradient(45deg,#ff0066,#ff9900)}
-.total{background:linear-gradient(45deg,#00ff9d,#00ffaa);color:#000;font-weight:700}
-
-label{display:block;margin-top:14px;font-weight:600}
-input,textarea{
-width:100%;
-padding:12px;
-margin-top:6px;
-background:#1a1a1a;
-color:white;
-border:1px solid #333;
-border-radius:10px;
+input, select, textarea {
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  background:#1f1f1f;
+  color:#fff;
 }
 
-.payment-box{
-display:flex;
-gap:12px;
-margin-top:12px;
-}
-.payment-box div{
-flex:1;
-background:#1a1a1a;
-border:1px solid #333;
-padding:14px;
-border-radius:14px;
-cursor:pointer;
-text-align:center;
-font-weight:600;
-}
-.active-pay{
-border-color:#00ff9d;
-background:#003326;
-}
-
-.upi-info{
-margin-top:10px;
-padding:12px;
-background:#000;
-border-radius:12px;
-border:1px dashed #00ff9d;
-display:none;
-}
-
-button{
-margin-top:25px;
-width:100%;
-padding:18px;
-background:linear-gradient(45deg,#00ff9d,#00ffaa);
-border:none;
-font-size:18px;
-font-weight:700;
-border-radius:18px;
-cursor:pointer;
+button {
+  width:100%;
+  padding:16px;
+  background:linear-gradient(135deg,#00ff99,#00ccff);
+  border:none;
+  border-radius:14px;
+  color:#000;
+  font-size:18px;
+  font-weight:600;
+  margin-top:15px;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
-
-<div class="marquee">
-🔥 Free Delivery | COD & UPI | Limited Edition Drop
-</div>
-
 <div class="container">
 
 <div class="card">
 <h2>Order Summary</h2>
-<p class="sub">Review your premium order</p>
-
-<div class="grid">
-<div class="box">🧥 <b id="pName"></b></div>
-<div class="box">🎨 Color: <b id="pColor"></b></div>
-<div class="box">📦 Qty: <b id="pQty"></b></div>
-<div class="box">🚚 Free Delivery</div>
+<p>Premium Hoodie – MQ Threads</p>
+<p id="priceText">Price: ₹499</p>
 </div>
 
-<div class="price-grid">
-<div class="box mrp">MRP<br>₹999</div>
-<div class="box discount">🔥 You Save<br>₹500</div>
-<div class="box total">Total<br>₹<span id="pTotal"></span></div>
+<div class="card">
+<h2>Payment Method</h2>
+
+<div class="payment-option active" onclick="selectPayment('cod')" id="codBox">
+<i class="fa-solid fa-truck"></i>
+Cash on Delivery
+</div>
+
+<div class="payment-option" onclick="selectPayment('upi')" id="upiBox">
+<i class="fa-solid fa-credit-card"></i>
+UPI / Online Payment  
+<span class="discount">(₹50 OFF)</span>
 </div>
 </div>
 
 <div class="card">
-<h2>Delivery Details</h2>
+<h2>Shipping Details</h2>
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="tel" id="phone" placeholder="Phone Number" required>
+<input type="email" id="email" placeholder="Email">
 
-<form id="orderForm">
-<label>Full Name
-<input type="text" name="name" required>
-</label>
+<select id="state">
+<option>Select State</option>
+<option>Maharashtra</option>
+<option>Delhi</option>
+<option>Karnataka</option>
+<option>Tamil Nadu</option>
+<option>Gujarat</option>
+<option>Uttar Pradesh</option>
+<option>Bihar</option>
+<option>West Bengal</option>
+<option>Rajasthan</option>
+<option>Punjab</option>
+<option>Haryana</option>
+<option>Madhya Pradesh</option>
+<option>Telangana</option>
+<option>Andhra Pradesh</option>
+<option>Kerala</option>
+<option>Assam</option>
+<option>Odisha</option>
+<option>Jharkhand</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Uttarakhand</option>
+<option>Himachal Pradesh</option>
+<option>Jammu & Kashmir</option>
+</select>
 
-<label>Phone
-<input type="tel" name="phone" required>
-</label>
+<textarea id="address" placeholder="Full Address"></textarea>
 
-<label>WhatsApp
-<input type="tel" name="whatsapp" required>
-</label>
-
-<label>City
-<input type="text" name="city" required>
-</label>
-
-<label>Full Address
-<textarea name="address" required></textarea>
-</label>
-
-<input type="hidden" name="product" id="productField">
-<input type="hidden" name="qty" id="qtyField">
-<input type="hidden" name="price" id="priceField">
-<input type="hidden" name="color" id="colorField">
-<input type="hidden" name="payment" id="paymentField">
-
-<label>Payment Method</label>
-<div class="payment-box">
-<div id="codBox">Cash on Delivery</div>
-<div id="upiBox">UPI</div>
+<button onclick="placeOrder()">Order Now</button>
 </div>
 
-<div class="upi-info" id="upiInfo">
-Pay to UPI ID:<br>
-<b>9121783895@fam</b>
-</div>
-
-<button type="submit">Place Order</button>
-</form>
-</div>
 </div>
 
 <script>
-let product = localStorage.getItem("product") || "Premium Hoodie";
-let qty = parseInt(localStorage.getItem("qty") || 1);
-let price = parseInt(localStorage.getItem("price") || 499);
-let color = localStorage.getItem("color") || "Black";
+let payment = "cod";
+let price = 499;
 
-let total = price * qty;
+function selectPayment(method){
+  payment = method;
+  document.getElementById("codBox").classList.remove("active");
+  document.getElementById("upiBox").classList.remove("active");
 
-pName.innerText = product;
-pQty.innerText = qty;
-pColor.innerText = color;
-pTotal.innerText = total;
-
-productField.value = product;
-qtyField.value = qty;
-priceField.value = total;
-colorField.value = color;
-
-let paymentMethod="";
-codBox.onclick=()=>{
-paymentMethod="COD";
-codBox.classList.add("active-pay");
-upiBox.classList.remove("active-pay");
-upiInfo.style.display="none";
-paymentField.value="COD";
-}
-upiBox.onclick=()=>{
-paymentMethod="UPI";
-upiBox.classList.add("active-pay");
-codBox.classList.remove("active-pay");
-upiInfo.style.display="block";
-paymentField.value="UPI";
+  if(method==="upi"){
+    document.getElementById("upiBox").classList.add("active");
+    price = 449;
+  } else {
+    document.getElementById("codBox").classList.add("active");
+    price = 499;
+  }
+  document.getElementById("priceText").innerText = "Price: ₹" + price;
 }
 
-orderForm.addEventListener("submit",e=>{
-e.preventDefault();
-if(!paymentMethod){alert("Select payment method");return;}
+function placeOrder(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
 
-fetch("https://script.google.com/macros/s/AKfycbxisICLhzPNqqXPnFdBcAZkiz2iuLvmoIy-kvbzXf5e4JtVyr7jKpuUldWQT9iWlex4/exec",{
-method:"POST",
-body:new FormData(orderForm)
-})
-.then(()=> window.location.href="thank-you.html")
-.catch(()=> alert("Order failed"));
-});
+  if(!name || !phone){
+    alert("Please fill required fields");
+    return;
+  }
+
+  if(payment === "upi"){
+    // Replace with your UPI ID
+    let upiId = "yourupi@bank";
+    let link = `upi://pay?pa=${upiId}&pn=MQ%20Threads&am=${price}&cu=INR`;
+    window.location.href = link;
+  } else {
+    alert("Order placed successfully! Pay on delivery 🚚");
+  }
+}
 </script>
 
 </body>
