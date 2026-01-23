@@ -1,244 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>Premium Hoodie | MQ Threads</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
-body{
-margin:0;
-font-family: 'Segoe UI', sans-serif;
-background:#000;
-color:white;
-}
-
-nav{
-position:sticky;
-top:0;
-background:#000;
-padding:15px 20px;
-border-bottom:1px solid #222;
-display:flex;
-justify-content:space-between;
-z-index:1000;
-}
-
-nav a{color:white;text-decoration:none;margin-left:15px}
-
-.main{
-max-width:1200px;
-margin:auto;
-padding:20px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-}
-
-@media(max-width:900px){
-.main{grid-template-columns:1fr}
-}
-
-.slider{
-position:relative;
-overflow:hidden;
-border-radius:20px;
-}
-
-.slide{
-display:none;
-animation:fade 0.6s ease;
-}
-
-.slide img{
-width:100%;
-border-radius:20px;
-}
-
-.slide.active{display:block}
-
-@keyframes fade{
-from{opacity:0}
-to{opacity:1}
-}
-
-.dots{
-text-align:center;
-margin-top:10px;
-}
-
-.dot{
-display:inline-block;
-width:10px;
-height:10px;
-background:#444;
-border-radius:50%;
-margin:0 5px;
-cursor:pointer;
-}
-
-.dot.active{background:#00ff9d}
-
-.badge{
-position:absolute;
-top:15px;
-left:15px;
-background:red;
-padding:6px 12px;
-border-radius:8px;
-font-weight:bold;
-}
-
-.price{
-font-size:28px;
-color:#00ff9d;
-font-weight:bold;
-}
-
-.old{
-text-decoration:line-through;
-opacity:0.6;
-margin-left:10px;
-}
-
-select,input{
-width:100%;
-padding:12px;
-margin-top:10px;
-background:#111;
-color:white;
-border:1px solid #333;
-border-radius:8px;
-}
-
-.buy{
-margin-top:20px;
-padding:15px;
-width:100%;
-background:#00ff9d;
-border:none;
-font-size:18px;
-font-weight:bold;
-border-radius:12px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.buy:hover{transform:scale(1.04)}
-
-.section{
-margin-top:40px;
-}
-
-.review{
-border-bottom:1px solid #222;
-padding:12px 0;
-}
-
+body{margin:0;font-family:Arial;background:#111;color:#fff}
+.container{max-width:1100px;margin:auto;padding:20px}
+.slider img{width:100%;border-radius:15px;transition:0.4s}
+.slider img:hover{transform:scale(1.1)}
+.price{font-size:28px}
+.old{color:#999;text-decoration:line-through}
+.btn{background:#ff3b3b;padding:15px 30px;color:#fff;border:none;border-radius:8px;font-size:18px}
+.reviews{margin-top:30px}
+.review{background:#1c1c1c;padding:15px;border-radius:10px;margin:10px 0}
+.badge{background:gold;color:#000;padding:5px 10px;border-radius:5px}
 </style>
 </head>
 
 <body>
+<div class="container">
 
-<nav>
-<b>MQ Threads</b>
-<div>
-<a href="index.html">Home</a>
-<a href="buy.html">Checkout</a>
-</div>
-</nav>
-
-<div class="main">
-
-<!-- LEFT: SLIDER -->
-<div>
-<div class="slider">
-<div class="badge">30% OFF</div>
-
-<div class="slide active">
-<img src="images/hoodie.jpg">
-</div>
-<div class="slide">
-<img src="images/hoodie2.jpg">
-</div>
-<div class="slide">
-<img src="images/hoodie3.jpg">
-</div>
-</div>
-
-<div class="dots">
-<span class="dot active" onclick="showSlide(0)"></span>
-<span class="dot" onclick="showSlide(1)"></span>
-<span class="dot" onclick="showSlide(2)"></span>
-</div>
-</div>
-
-<!-- RIGHT: DETAILS -->
-<div>
+<span class="badge">50% OFF</span>
 <h1>Premium Printed Hoodie</h1>
-<p>Unisex streetwear hoodie made from ultra-soft cotton fleece. Perfect for winters and everyday wear.</p>
 
-<div>
-<span class="price">₹499</span>
-<span class="old">₹699</span>
+<div class="slider">
+  <img id="mainImg" src="images/hoodie1.jpg">
 </div>
 
-<p style="opacity:0.8">
-✔ Soft cotton fleece<br>
-✔ Regular street fit<br>
-✔ Breathable & warm<br>
-✔ Machine washable
-</p>
+<div>
+  <img src="images/hoodie1.jpg" width="80" onclick="changeImg(this.src)">
+  <img src="images/hoodie2.jpg" width="80" onclick="changeImg(this.src)">
+  <img src="images/hoodie3.jpg" width="80" onclick="changeImg(this.src)">
+</div>
 
-<label>Size</label>
-<select id="size">
-<option>S</option>
-<option selected>M</option>
-<option>L</option>
-<option>XL</option>
+<p class="price">₹499 <span class="old">₹999</span></p>
+
+<select id="qty">
+  <option value="1">1 Qty</option>
+  <option value="2">2 Qty</option>
+  <option value="3">3 Qty</option>
 </select>
 
-<label>Quantity</label>
-<input type="number" id="qty" value="1" min="1">
+<br><br>
+<button class="btn" onclick="buyNow()">Buy Now</button>
 
-<button class="buy" onclick="buyNow()">Buy Now</button>
+<h3>Description</h3>
+<p>
+Premium cotton hoodie. Soft inside. Perfect for winter & streetwear.
+Unisex fit. Limited stock.
+</p>
 
-<div class="section">
+<h3>Offers</h3>
+<ul>
+<li>Free Delivery</li>
+<li>Cash on Delivery Available</li>
+<li>7 Days Replacement</li>
+</ul>
+
+<div class="reviews">
 <h3>Customer Reviews ⭐⭐⭐⭐⭐</h3>
-<div class="review">Amaan – Looks premium, cloth is thick 🔥</div>
-<div class="review">Sana – Fits perfectly, loved it</div>
-<div class="review">Rahul – Worth the price 100%</div>
+<div class="review">Aman: Quality is insane 🔥</div>
+<div class="review">Zoya: Looks premium, worth 499</div>
+<div class="review">Rohit: Fast delivery, nice fit</div>
 </div>
 
-</div>
 </div>
 
 <script>
-let current = 0;
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
-
-function showSlide(n){
-slides[current].classList.remove("active");
-dots[current].classList.remove("active");
-current = n;
-slides[current].classList.add("active");
-dots[current].classList.add("active");
+function changeImg(src){
+  document.getElementById("mainImg").src = src;
 }
-
-setInterval(()=>{
-let next = (current+1)%slides.length;
-showSlide(next);
-},4000);
 
 function buyNow(){
-localStorage.setItem("product","Premium Printed Hoodie");
-localStorage.setItem("size",document.getElementById("size").value);
-localStorage.setItem("qty",document.getElementById("qty").value);
-localStorage.setItem("price","499");
-window.location.href="buy.html";
+  let qty = document.getElementById("qty").value;
+  window.location.href = `buy.html?product=Hoodie&price=499&qty=${qty}`;
 }
 </script>
-
 </body>
 </html>
