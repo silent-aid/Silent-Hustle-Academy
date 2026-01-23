@@ -8,7 +8,7 @@
 <style>
 body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
   background:#0b0b0b;
   color:#fff;
 }
@@ -20,83 +20,83 @@ body{
 .box{
   background:#141414;
   border-radius:18px;
-  padding:20px;
+  padding:25px;
   margin-bottom:25px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+  box-shadow:0 10px 35px rgba(0,0,0,0.6);
+  animation: fadeUp 0.6s ease;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
 }
 .badge{
-  background:#ffcc00;
+  background:linear-gradient(45deg,#ffcc00,#ff8800);
   color:#000;
-  padding:6px 12px;
-  border-radius:6px;
+  padding:6px 14px;
+  border-radius:8px;
   font-weight:bold;
   display:inline-block;
 }
 .slider img{
   width:100%;
-  border-radius:15px;
+  border-radius:18px;
   transition:0.4s;
 }
-.slider img:hover{
-  transform:scale(1.08);
-}
+.slider img:hover{transform:scale(1.08)}
 .thumb img{
   width:80px;
   border-radius:10px;
   margin:6px;
   cursor:pointer;
   opacity:0.7;
+  transition:0.3s;
 }
-.thumb img:hover{opacity:1}
-
-.price{
-  font-size:32px;
-}
-.old{
-  text-decoration:line-through;
-  color:#888;
-  font-size:18px;
-}
+.thumb img:hover{opacity:1;transform:scale(1.1)}
+.price{font-size:34px}
+.old{text-decoration:line-through;color:#888;font-size:18px}
 
 .colors button{
-  padding:10px 15px;
+  padding:10px 16px;
   margin:6px;
   border:none;
   border-radius:20px;
   cursor:pointer;
   font-weight:bold;
+  transition:0.3s;
 }
 .black{background:#000;color:#fff}
 .grey{background:#777;color:#000}
 .red{background:#b11212;color:#fff}
+.colors button:hover{transform:scale(1.1)}
 
 select{
   padding:12px;
-  border-radius:8px;
+  border-radius:10px;
   width:100%;
   font-size:16px;
+  background:#1e1e1e;
+  color:#fff;
+  border:none;
 }
-
 .buybtn{
-  background:#ff3b3b;
+  background:linear-gradient(45deg,#ff3b3b,#ff0000);
   color:#fff;
   padding:18px;
   border:none;
   width:100%;
-  border-radius:12px;
+  border-radius:14px;
   font-size:20px;
   cursor:pointer;
+  transition:0.3s;
 }
-.buybtn:hover{background:#ff1f1f}
+.buybtn:hover{transform:scale(1.05)}
 
-.review-head{
+.review-head, .faq-head{
   cursor:pointer;
   font-size:20px;
+  margin-bottom:10px;
 }
-.review-box{
-  display:none;
-  margin-top:15px;
-}
+.review-box, .faq-box{display:none}
 .review{
   background:#1e1e1e;
   padding:15px;
@@ -104,14 +104,14 @@ select{
   margin-bottom:10px;
 }
 .offer li{margin:8px 0}
+.trust p{margin:6px 0}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<!-- PRODUCT IMAGES -->
+<!-- IMAGES -->
 <div class="box">
 <span class="badge">🔥 50% OFF</span>
 <h1>Premium Streetwear Hoodie</h1>
@@ -127,7 +127,7 @@ select{
 </div>
 </div>
 
-<!-- PRODUCT INFO -->
+<!-- BUY -->
 <div class="box">
 <p class="price">₹499 <span class="old">₹999</span></p>
 
@@ -171,6 +171,26 @@ Unisex fit • Fade-proof print • Limited stock.
 </ul>
 </div>
 
+<!-- TRUST -->
+<div class="box trust">
+<h3>Why Shop With Us?</h3>
+<p>⭐ 4.8/5 Rating (2,341 reviews)</p>
+<p>🚚 10,000+ Orders Delivered</p>
+<p>💵 COD + UPI Available</p>
+<p>🔐 Secure Payments</p>
+</div>
+
+<!-- FEATURES -->
+<div class="box">
+<h3>Product Features</h3>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
+  <div>🧵 Premium Cotton</div>
+  <div>❄ Winter Wear</div>
+  <div>👕 Unisex Fit</div>
+  <div>🧼 Machine Wash</div>
+</div>
+</div>
+
 <!-- REVIEWS -->
 <div class="box">
 <div class="review-head" onclick="toggleReviews()">⭐ Customer Reviews (Tap to open)</div>
@@ -181,39 +201,48 @@ Unisex fit • Fade-proof print • Limited stock.
 </div>
 </div>
 
+<!-- FAQ -->
+<div class="box">
+<div class="faq-head" onclick="toggleFAQ()">❓ FAQs (Tap to open)</div>
+<div class="faq-box" id="faq">
+<p><b>Delivery Time?</b><br>3–5 working days.</p>
+<p><b>Is COD available?</b><br>Yes, across India.</p>
+<p><b>Return policy?</b><br>7 days replacement.</p>
+</div>
+</div>
+
 </div>
 
 <script>
-let selectedColor = "Black";
-let price = 499;
+let selectedColor="Black";
+let price=499;
 
 function changeImg(src){
-  document.getElementById("mainImg").src = src;
+  document.getElementById("mainImg").src=src;
 }
-
 function setColor(c){
-  selectedColor = c;
-  alert("Color selected: " + c);
+  selectedColor=c;
+  alert("Color selected: "+c);
 }
-
 function updatePrice(){
-  let qty = document.getElementById("qty").value;
-  document.getElementById("total").innerHTML =
-    "Total: ₹" + (price * qty);
+  let q=document.getElementById("qty").value;
+  document.getElementById("total").innerHTML="Total: ₹"+(price*q);
 }
 updatePrice();
 
 function toggleReviews(){
-  let r = document.getElementById("reviews");
-  r.style.display = r.style.display === "block" ? "none" : "block";
+ let r=document.getElementById("reviews");
+ r.style.display=r.style.display==="block"?"none":"block";
 }
-
+function toggleFAQ(){
+ let f=document.getElementById("faq");
+ f.style.display=f.style.display==="block"?"none":"block";
+}
 function buyNow(){
-  let qty = document.getElementById("qty").value;
-  window.location.href =
-  `buy.html?product=Hoodie&price=${price}&qty=${qty}&color=${selectedColor}`;
+ let q=document.getElementById("qty").value;
+ window.location.href=
+ `buy.html?product=Premium Hoodie&price=${price}&qty=${q}&color=${selectedColor}`;
 }
 </script>
-
 </body>
 </html>
