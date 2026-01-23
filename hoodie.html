@@ -8,7 +8,7 @@
 <style>
 body{
   margin:0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   background:#0b0b0b;
   color:#fff;
 }
@@ -18,120 +18,134 @@ body{
   padding:20px;
 }
 .box{
-  background:#141414;
-  border-radius:18px;
-  padding:25px;
-  margin-bottom:25px;
-  box-shadow:0 10px 35px rgba(0,0,0,0.6);
-  animation: fadeUp 0.6s ease;
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
+  background:linear-gradient(180deg,#141414,#0f0f0f);
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:28px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.7);
 }
 .badge{
   background:linear-gradient(45deg,#ffcc00,#ff8800);
   color:#000;
   padding:6px 14px;
   border-radius:8px;
-  font-weight:bold;
+  font-weight:600;
   display:inline-block;
 }
+h1,h3{margin:12px 0}
 .slider img{
   width:100%;
   border-radius:18px;
-  transition:0.4s;
 }
-.slider img:hover{transform:scale(1.08)}
+.thumb{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
 .thumb img{
-  width:80px;
-  border-radius:10px;
-  margin:6px;
+  width:70px;
+  border-radius:12px;
   cursor:pointer;
-  opacity:0.7;
-  transition:0.3s;
+  opacity:.7;
 }
-.thumb img:hover{opacity:1;transform:scale(1.1)}
-.price{font-size:34px}
-.old{text-decoration:line-through;color:#888;font-size:18px}
+.thumb img:hover{opacity:1}
+.price{font-size:36px;font-weight:600}
+.old{text-decoration:line-through;color:#777;font-size:18px}
 
 .colors button{
-  padding:10px 16px;
+  padding:10px 18px;
   margin:6px;
   border:none;
-  border-radius:20px;
+  border-radius:25px;
   cursor:pointer;
-  font-weight:bold;
-  transition:0.3s;
+  font-weight:600;
 }
 .black{background:#000;color:#fff}
 .grey{background:#777;color:#000}
 .red{background:#b11212;color:#fff}
-.colors button:hover{transform:scale(1.1)}
 
 select{
-  padding:12px;
-  border-radius:10px;
+  padding:14px;
+  border-radius:12px;
   width:100%;
   font-size:16px;
   background:#1e1e1e;
   color:#fff;
   border:none;
 }
+
 .buybtn{
   background:linear-gradient(45deg,#ff3b3b,#ff0000);
   color:#fff;
-  padding:18px;
+  padding:20px;
   border:none;
   width:100%;
-  border-radius:14px;
+  border-radius:16px;
   font-size:20px;
+  font-weight:600;
   cursor:pointer;
-  transition:0.3s;
 }
-.buybtn:hover{transform:scale(1.05)}
 
-.review-head, .faq-head{
-  cursor:pointer;
-  font-size:20px;
-  margin-bottom:10px;
-}
-.review-box, .faq-box{display:none}
+.buybtn:active{transform:scale(.98)}
+
 .review{
-  background:#1e1e1e;
-  padding:15px;
+  background:#1c1c1c;
+  padding:14px;
   border-radius:12px;
   margin-bottom:10px;
 }
-.offer li{margin:8px 0}
-.trust p{margin:6px 0}
+
+.faq-item{
+  background:#1c1c1c;
+  padding:16px;
+  border-radius:14px;
+  margin-bottom:10px;
+}
+
+.accordion{
+  cursor:pointer;
+  font-size:20px;
+  font-weight:600;
+}
+.panel{
+  display:none;
+  margin-top:15px;
+}
+
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.trust-grid div{
+  background:#1c1c1c;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+}
 </style>
 </head>
 
 <body>
 <div class="container">
 
-<!-- IMAGES -->
 <div class="box">
-<span class="badge">🔥 50% OFF</span>
+<span class="badge">🔥 Limited Drop</span>
 <h1>Premium Streetwear Hoodie</h1>
-
 <div class="slider">
 <img id="mainImg" src="images/hoodie2.png">
 </div>
-
 <div class="thumb">
-<img src="images/hoodie1.avif">
-<img src="images/hoodie2.png">
-<img src="images/hoodie3.png">
+<img src="images/hoodie1.avif" onclick="changeImg(this.src)">
+<img src="images/hoodie2.png" onclick="changeImg(this.src)">
+<img src="images/hoodie3.png" onclick="changeImg(this.src)">
 </div>
 </div>
 
-<!-- BUY -->
 <div class="box">
 <p class="price">₹499 <span class="old">₹999</span></p>
 
-<h3>Select Color</h3>
+<h3>Color</h3>
 <div class="colors">
 <button class="black" onclick="setColor('Black')">Black</button>
 <button class="grey" onclick="setColor('Grey')">Grey</button>
@@ -140,74 +154,55 @@ select{
 
 <h3>Quantity</h3>
 <select id="qty" onchange="updatePrice()">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
+<option>1</option><option>2</option><option>3</option>
 </select>
 
 <p id="total"></p>
-
 <button class="buybtn" onclick="buyNow()">BUY NOW</button>
 </div>
 
-<!-- DESCRIPTION -->
 <div class="box">
 <h3>Description</h3>
 <p>
-Premium cotton hoodie with soft fleece inside.  
-Perfect for winter, college & streetwear.  
-Unisex fit • Fade-proof print • Limited stock.
+Crafted from premium cotton fleece for ultimate comfort.
+Designed for modern streetwear lovers.
+Fade-proof print • Heavy GSM • Winter essential.
 </p>
 </div>
 
-<!-- OFFERS -->
-<div class="box">
-<h3>🎁 Offers</h3>
-<ul class="offer">
-<li>✅ Free Delivery All Over India</li>
-<li>✅ Cash on Delivery Available</li>
-<li>✅ 7 Days Replacement</li>
-<li>✅ Winter Special Price</li>
-</ul>
+<div class="box trust-grid">
+<div>⭐ 4.8/5 Rating</div>
+<div>🚚 10,000+ Orders</div>
+<div>💵 COD + UPI</div>
+<div>🔐 Secure Checkout</div>
 </div>
 
-<!-- TRUST -->
-<div class="box trust">
-<h3>Why Shop With Us?</h3>
-<p>⭐ 4.8/5 Rating (2,341 reviews)</p>
-<p>🚚 10,000+ Orders Delivered</p>
-<p>💵 COD + UPI Available</p>
-<p>🔐 Secure Payments</p>
-</div>
-
-<!-- FEATURES -->
 <div class="box">
-<h3>Product Features</h3>
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
-  <div>🧵 Premium Cotton</div>
-  <div>❄ Winter Wear</div>
-  <div>👕 Unisex Fit</div>
-  <div>🧼 Machine Wash</div>
+<div class="accordion" onclick="toggle('reviews')">⭐ Customer Reviews</div>
+<div class="panel" id="reviews">
+<div class="review">Aman ⭐⭐⭐⭐⭐ – Looks like Zara quality</div>
+<div class="review">Zoya ⭐⭐⭐⭐⭐ – Super soft inside</div>
+<div class="review">Rahul ⭐⭐⭐⭐ – Worth more than ₹499</div>
+<div class="review">Imran ⭐⭐⭐⭐⭐ – Hoodie is thick & premium</div>
+<div class="review">Sneha ⭐⭐⭐⭐⭐ – Perfect winter fit</div>
+<div class="review">Kunal ⭐⭐⭐⭐ – Fast delivery</div>
+<div class="review">Arjun ⭐⭐⭐⭐⭐ – Everyone asked where I bought it</div>
+<div class="review">Fatima ⭐⭐⭐⭐⭐ – Best hoodie I own</div>
+<div class="review">Nikhil ⭐⭐⭐⭐ – Good stitching</div>
+<div class="review">Ayesha ⭐⭐⭐⭐⭐ – Looks luxury</div>
+<div class="review">Rohan ⭐⭐⭐⭐ – Comfortable daily wear</div>
+<div class="review">Mehak ⭐⭐⭐⭐⭐ – Buying second one</div>
 </div>
 </div>
 
-<!-- REVIEWS -->
 <div class="box">
-<div class="review-head" onclick="toggleReviews()">⭐ Customer Reviews (Tap to open)</div>
-<div class="review-box" id="reviews">
-  <div class="review">Aman ⭐⭐⭐⭐⭐<br>Looks premium, worth more than price</div>
-  <div class="review">Zoya ⭐⭐⭐⭐⭐<br>Soft fabric, loved it ❤️</div>
-  <div class="review">Rohit ⭐⭐⭐⭐<br>Good fit & fast delivery</div>
-</div>
-</div>
-
-<!-- FAQ -->
-<div class="box">
-<div class="faq-head" onclick="toggleFAQ()">❓ FAQs (Tap to open)</div>
-<div class="faq-box" id="faq">
-<p><b>Delivery Time?</b><br>3–5 working days.</p>
-<p><b>Is COD available?</b><br>Yes, across India.</p>
-<p><b>Return policy?</b><br>7 days replacement.</p>
+<div class="accordion" onclick="toggle('faq')">❓ FAQs</div>
+<div class="panel" id="faq">
+<div class="faq-item"><b>Delivery time?</b><br>3–5 working days.</div>
+<div class="faq-item"><b>Is COD available?</b><br>Yes all over India.</div>
+<div class="faq-item"><b>Return policy?</b><br>7 days replacement.</div>
+<div class="faq-item"><b>Fabric?</b><br>Premium cotton fleece.</div>
+<div class="faq-item"><b>Unisex?</b><br>Yes for men & women.</div>
 </div>
 </div>
 
@@ -218,26 +213,22 @@ let selectedColor="Black";
 let price=499;
 
 function changeImg(src){
-  document.getElementById("mainImg").src=src;
+ document.getElementById("mainImg").src=src;
 }
 function setColor(c){
-  selectedColor=c;
-  alert("Color selected: "+c);
+ selectedColor=c;
 }
 function updatePrice(){
-  let q=document.getElementById("qty").value;
-  document.getElementById("total").innerHTML="Total: ₹"+(price*q);
+ let q=document.getElementById("qty").value;
+ document.getElementById("total").innerHTML="Total: ₹"+(price*q);
 }
 updatePrice();
 
-function toggleReviews(){
- let r=document.getElementById("reviews");
- r.style.display=r.style.display==="block"?"none":"block";
+function toggle(id){
+ let el=document.getElementById(id);
+ el.style.display = el.style.display==="block"?"none":"block";
 }
-function toggleFAQ(){
- let f=document.getElementById("faq");
- f.style.display=f.style.display==="block"?"none":"block";
-}
+
 function buyNow(){
  let q=document.getElementById("qty").value;
  window.location.href=
