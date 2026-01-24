@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box}
 body{
 margin:0;
 font-family:'Segoe UI',sans-serif;
@@ -13,6 +14,17 @@ background:#000;
 color:white;
 }
 
+/* OFFER BAR */
+.offer-bar{
+background:#00ff9d;
+color:#000;
+text-align:center;
+padding:8px;
+font-weight:600;
+font-size:14px;
+}
+
+/* NAV */
 nav{
 display:flex;
 justify-content:space-between;
@@ -37,8 +49,9 @@ text-decoration:none;
 font-weight:500;
 }
 
+/* HERO */
 .hero{
-min-height:70vh;
+min-height:75vh;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -50,7 +63,7 @@ padding:40px;
 }
 
 .hero h1{
-font-size:42px;
+font-size:48px;
 margin-bottom:10px;
 }
 
@@ -61,10 +74,10 @@ font-size:18px;
 
 .hero button{
 margin-top:20px;
-padding:12px 28px;
+padding:14px 32px;
 font-size:18px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 background:#00ff9d;
 font-weight:bold;
 cursor:pointer;
@@ -75,14 +88,36 @@ transition:0.3s;
 transform:scale(1.05);
 }
 
+/* TRUST */
+.trust{
+display:flex;
+justify-content:space-around;
+padding:25px;
+background:#070707;
+text-align:center;
+font-size:14px;
+}
+
+.trust div{
+opacity:0.8;
+}
+
+/* PRODUCTS */
 .featured{
 padding:60px 20px;
 text-align:center;
 }
 
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+max-width:1100px;
+margin:auto;
+margin-top:40px;
+}
+
 .card{
-max-width:320px;
-margin:30px auto;
 background:#111;
 border-radius:18px;
 padding:15px;
@@ -105,19 +140,55 @@ font-size:22px;
 font-weight:bold;
 }
 
+.old{
+text-decoration:line-through;
+opacity:0.5;
+font-size:14px;
+}
+
 .card button{
 margin-top:10px;
-padding:10px 20px;
+padding:12px 22px;
 border:none;
-border-radius:8px;
+border-radius:10px;
 background:#00ff9d;
 font-weight:bold;
 cursor:pointer;
+width:100%;
 }
 
+/* GIFTS */
+.gifts{
+padding:60px 20px;
+background:#050505;
+text-align:center;
+}
+
+.gifts h2{
+margin-bottom:10px;
+}
+
+.gifts-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+max-width:900px;
+margin:auto;
+margin-top:30px;
+}
+
+.gift-box{
+background:#111;
+padding:25px;
+border-radius:14px;
+font-size:15px;
+opacity:0.9;
+}
+
+/* FOOTER */
 .footer{
 text-align:center;
-padding:25px;
+padding:30px;
 border-top:1px solid #222;
 opacity:0.6;
 font-size:14px;
@@ -127,11 +198,15 @@ font-size:14px;
 
 <body>
 
+<div class="offer-bar">
+🔥 LIMITED OFFER: Flat 50% OFF + Free Gift on Every Hoodie | COD Available
+</div>
+
 <nav>
 <h2>MQ Threads</h2>
 <div>
 <a href="index.html">Home</a>
-<a href="hoodie.html">Hoodie</a>
+<a href="hoodie.html">Shop</a>
 <a href="checkout.html">Checkout</a>
 </div>
 </nav>
@@ -140,28 +215,82 @@ font-size:14px;
 <div>
 <h1>Premium Streetwear</h1>
 <p>Minimal. Bold. Made for the culture.</p>
-<button onclick="window.location.href='hoodie.html'">
-Shop Hoodie
+<button onclick="document.getElementById('shop').scrollIntoView()">
+Shop Collection
 </button>
 </div>
 </section>
 
-<section class="featured">
-<h2>Featured Product</h2>
-<p style="opacity:0.7">Our best selling hoodie</p>
+<section class="trust">
+<div>🚚 Free Shipping</div>
+<div>💳 Cash on Delivery</div>
+<div>🔁 7-Day Replacement</div>
+<div>⭐ 4.8/5 Customer Reviews</div>
+</section>
 
+<section class="featured" id="shop">
+<h2>Our Hoodies</h2>
+<p style="opacity:0.7">Limited stock premium drops</p>
+
+<div class="products">
+
+<!-- Hoodie 1 -->
 <div class="card">
-<img src="images/hoodie.jpg" alt="Premium Hoodie">
+<img src="images/hoodie1.jpg">
 <h3>Premium Printed Hoodie</h3>
-<p class="price">₹499</p>
+<p>
+<span class="old">₹999</span><br>
+<span class="price">₹499</span>
+</p>
 <button onclick="window.location.href='hoodie.html'">
 View Product
 </button>
 </div>
+
+<!-- Hoodie 2 -->
+<div class="card">
+<img src="images/hoodie2.jpg">
+<h3>Urban Oversized Hoodie</h3>
+<p>
+<span class="old">₹1199</span><br>
+<span class="price">₹599</span>
+</p>
+<button onclick="window.location.href='hoodie2.html'">
+View Product
+</button>
+</div>
+
+<!-- Future hoodies -->
+<!-- Just copy this block and change link -->
+<!--
+<div class="card">
+<img src="images/hoodie3.jpg">
+<h3>Next Drop Hoodie</h3>
+<p><span class="price">₹699</span></p>
+<button onclick="window.location.href='hoodie3.html'">
+View Product
+</button>
+</div>
+-->
+
+</div>
+</section>
+
+<section class="gifts">
+<h2>Free Gifts With Every Order</h2>
+<p style="opacity:0.7">Because premium brand = premium experience</p>
+
+<div class="gifts-grid">
+<div class="gift-box">🎁 Free Mystery Sticker Pack</div>
+<div class="gift-box">🧾 Premium Brand Packaging</div>
+<div class="gift-box">🔥 Exclusive Discount Code</div>
+<div class="gift-box">⚡ Priority Processing</div>
+</div>
 </section>
 
 <div class="footer">
-© 2026 MQ Threads. All rights reserved.
+© 2026 MQ Threads. All rights reserved.<br>
+Privacy Policy • Terms • Refund Policy
 </div>
 
 </body>
