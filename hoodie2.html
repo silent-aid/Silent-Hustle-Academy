@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Premium Hoodie | MQ Threads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  background:#0b0b0b;
+  color:#fff;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+.box{
+  background:linear-gradient(180deg,#141414,#0f0f0f);
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:28px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.7);
+}
+.badge{
+  background:linear-gradient(45deg,#ffcc00,#ff8800);
+  color:#000;
+  padding:6px 14px;
+  border-radius:8px;
+  font-weight:600;
+  display:inline-block;
+}
+h1,h3{margin:12px 0}
+.slider img{
+  width:100%;
+  border-radius:18px;
+}
+.thumb{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+.thumb img{
+  width:70px;
+  border-radius:12px;
+  cursor:pointer;
+  opacity:.7;
+}
+.thumb img:hover{opacity:1}
+.price{font-size:36px;font-weight:600}
+.old{text-decoration:line-through;color:#777;font-size:18px}
+
+.colors button{
+  padding:10px 18px;
+  margin:6px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  font-weight:600;
+}
+.black{background:#000;color:#fff}
+.grey{background:#777;color:#000}
+.red{background:#b11212;color:#fff}
+
+select{
+  padding:14px;
+  border-radius:12px;
+  width:100%;
+  font-size:16px;
+  background:#1e1e1e;
+  color:#fff;
+  border:none;
+}
+
+.buybtn{
+  background:linear-gradient(45deg,#ff3b3b,#ff0000);
+  color:#fff;
+  padding:20px;
+  border:none;
+  width:100%;
+  border-radius:16px;
+  font-size:20px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.buybtn:active{transform:scale(.98)}
+
+.review{
+  background:#1c1c1c;
+  padding:14px;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+.faq-item{
+  background:#1c1c1c;
+  padding:16px;
+  border-radius:14px;
+  margin-bottom:10px;
+}
+
+.accordion{
+  cursor:pointer;
+  font-size:20px;
+  font-weight:600;
+}
+.panel{
+  display:none;
+  margin-top:15px;
+}
+
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.trust-grid div{
+  background:#1c1c1c;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="box">
+<span class="badge">🔥 Limited Drop</span>
+<h1>Premium Motivational Hoodie</h1>
+<div class="slider">
+<img id="mainImg" src="images/hoodie4.png">
+</div>
+<div class="thumb">
+<img src="images/hoodie4.png" onclick="changeImg(this.src)">
+<img src="images/hoodie5.png" onclick="changeImg(this.src)">
+<img src="images/hoodie6.png" onclick="changeImg(this.src)">
+</div>
+</div>
+
+<div class="box">
+<p class="price">₹1299 <span class="old">₹2999</span></p>
+
+<h3>Color</h3>
+<div class="colors">
+<button class="black" onclick="setColor('Black')">Black</button>
+</div>
+
+<h3>Quantity</h3>
+<select id="qty" onchange="updatePrice()">
+<option>1</option><option>2</option><option>3</option>
+</select>
+
+<p id="total"></p>
+<button class="buybtn" onclick="buyNow()">BUY NOW</button>
+</div>
+
+<div class="box">
+<h3>Description</h3>
+<p>
+Crafted from premium cotton fleece for ultimate comfort.
+Designed for modern streetwear lovers.
+Fade-proof print • Heavy GSM • Winter essential.
+</p>
+</div>
+
+<div class="box trust-grid">
+<div>⭐ 4.8/5 Rating</div>
+<div>🚚 10,000+ Orders</div>
+<div>💵 COD + UPI</div>
+<div>🔐 Secure Checkout</div>
+</div>
+
+<div class="box">
+<div class="accordion" onclick="toggle('reviews')">⭐ Customer Reviews</div>
+<div class="panel" id="reviews">
+<div class="review">Aman ⭐⭐⭐⭐⭐ – Looks like Zara quality</div>
+<div class="review">Zoya ⭐⭐⭐⭐⭐ – Super soft inside</div>
+<div class="review">Rahul ⭐⭐⭐⭐ – Worth more than ₹499</div>
+<div class="review">Imran ⭐⭐⭐⭐⭐ – Hoodie is thick & premium</div>
+<div class="review">Sneha ⭐⭐⭐⭐⭐ – Perfect winter fit</div>
+<div class="review">Kunal ⭐⭐⭐⭐ – Fast delivery</div>
+<div class="review">Arjun ⭐⭐⭐⭐⭐ – Everyone asked where I bought it</div>
+<div class="review">Fatima ⭐⭐⭐⭐⭐ – Best hoodie I own</div>
+<div class="review">Nikhil ⭐⭐⭐⭐ – Good stitching</div>
+<div class="review">Ayesha ⭐⭐⭐⭐⭐ – Looks luxury</div>
+<div class="review">Rohan ⭐⭐⭐⭐ – Comfortable daily wear</div>
+<div class="review">Mehak ⭐⭐⭐⭐⭐ – Buying second one</div>
+</div>
+</div>
+
+<div class="box">
+<div class="accordion" onclick="toggle('faq')">❓ FAQs</div>
+<div class="panel" id="faq">
+<div class="faq-item"><b>Delivery time?</b><br>3–5 working days.</div>
+<div class="faq-item"><b>Is COD available?</b><br>Yes all over India.</div>
+<div class="faq-item"><b>Return policy?</b><br>7 days replacement.</div>
+<div class="faq-item"><b>Fabric?</b><br>Premium cotton fleece.</div>
+<div class="faq-item"><b>Unisex?</b><br>Yes for men & women.</div>
+</div>
+</div>
+
+</div>
+
+<script>
+let selectedColor="Black";
+let price=499;
+
+function changeImg(src){
+ document.getElementById("mainImg").src=src;
+}
+function setColor(c){
+ selectedColor=c;
+}
+function updatePrice(){
+ let q=document.getElementById("qty").value;
+ document.getElementById("total").innerHTML="Total: ₹"+(price*q);
+}
+updatePrice();
+
+function toggle(id){
+ let el=document.getElementById(id);
+ el.style.display = el.style.display==="block"?"none":"block";
+}
+
+function buyNow(){
+ let q=document.getElementById("qty").value;
+ window.location.href=
+ `buy.html?product=Premium Hoodie&price=${price}&qty=${q}&color=${selectedColor}`;
+}
+</script>
+</body>
+</html>
