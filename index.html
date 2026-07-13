@@ -1,202 +1,546 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DUM HERITAGE | Authentic Royal Cuisine</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Georgia', serif;
-        }
-
-        body {
-            background: #0d0d0d;
-            color: white;
-        }
-
-        /* NAVBAR */
-
-        header {
-            width: 100%;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #111;
-            position: fixed;
-            top:0;
-            z-index:1000;
-        }
-
-        .logo {
-            font-size: 30px;
-            color: #d4af37;
-            font-weight:bold;
-        }
-
-        nav a {
-            color:white;
-            text-decoration:none;
-            margin-left:30px;
-            font-size:18px;
-        }
-
-        nav a:hover {
-            color:#d4af37;
-        }
+<title>DUM HERITAGE | Royal Cuisine</title>
 
 
-        /* HERO */
+<style>
 
-        .hero {
-            height:100vh;
-            background:
-            linear-gradient(
-            rgba(0,0,0,.65),
-            rgba(0,0,0,.8)
-            ),
-            url("hero.jpg");
+/* RESET */
 
-            background-size:cover;
-            background-position:center;
-
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            padding:20px;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Georgia,serif;
+}
 
 
-        .hero h1 {
-            font-size:70px;
-            color:#d4af37;
-        }
+body{
 
-        .hero p {
-            font-size:25px;
-            margin:20px 0;
-        }
+background:#080808;
+color:white;
+overflow-x:hidden;
 
-
-        .btn {
-            display:inline-block;
-            background:#d4af37;
-            color:black;
-            padding:15px 35px;
-            border-radius:30px;
-            text-decoration:none;
-            font-weight:bold;
-        }
-
-
-        /* SECTIONS */
-
-        section {
-            padding:80px 8%;
-            text-align:center;
-        }
-
-
-        h2 {
-            font-size:45px;
-            color:#d4af37;
-            margin-bottom:30px;
-        }
-
-
-        /* ABOUT */
-
-        .about p {
-            max-width:800px;
-            margin:auto;
-            font-size:20px;
-            line-height:1.7;
-        }
-
-
-        /* MENU */
-
-        .menu {
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:30px;
-        }
-
-
-        .card {
-
-            background:#1b1b1b;
-            padding:30px;
-            border-radius:15px;
-            border:1px solid #333;
-
-        }
-
-
-        .card h3 {
-            color:#d4af37;
-            margin-bottom:15px;
-        }
-
-
-        /* DRINK */
-
-        .drink {
-            background:#141414;
-        }
-
-
-        /* CONTACT */
-
-        .contact p {
-            font-size:20px;
-            margin:10px;
-        }
-
-
-        footer {
-
-            background:#000;
-            text-align:center;
-            padding:20px;
-            color:#aaa;
-
-        }
+}
 
 
 
-        @media(max-width:700px){
-
-            .hero h1{
-                font-size:45px;
-            }
-
-            nav{
-                display:none;
-            }
-
-        }
+/* LOADING SCREEN */
 
 
-    </style>
+.loader{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:#080808;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:hideLoader 1s ease 3s forwards;
+
+}
+
+
+.loader-box{
+
+text-align:center;
+
+}
+
+
+.loader img{
+
+width:120px;
+animation:logoPulse 2s infinite;
+
+}
+
+
+.loader h1{
+
+margin-top:20px;
+color:#d4af37;
+letter-spacing:5px;
+font-size:35px;
+
+}
+
+
+
+@keyframes logoPulse{
+
+0%,100%{
+
+transform:scale(1);
+
+}
+
+
+50%{
+
+transform:scale(1.1);
+
+}
+
+}
+
+
+
+@keyframes hideLoader{
+
+to{
+
+opacity:0;
+visibility:hidden;
+
+}
+
+}
+
+
+
+/* HEADER */
+
+
+header{
+
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+
+}
+
+
+
+.brand{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+
+
+.brand img{
+
+width:65px;
+height:65px;
+object-fit:contain;
+
+}
+
+
+
+.brand span{
+
+font-size:30px;
+font-weight:bold;
+color:#d4af37;
+
+}
+
+
+
+
+nav a{
+
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-size:18px;
+transition:.3s;
+
+}
+
+
+
+nav a:hover{
+
+color:#d4af37;
+
+}
+
+
+
+
+
+/* HERO */
+
+
+.hero{
+
+height:100vh;
+
+background:
+linear-gradient(
+rgba(0,0,0,.6),
+rgba(0,0,0,.85)
+),
+url("images/hero.jpg");
+
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+
+}
+
+
+
+.hero-content{
+
+animation:heroShow 2s ease;
+
+}
+
+
+
+.hero h1{
+
+font-size:75px;
+color:#d4af37;
+letter-spacing:5px;
+
+}
+
+
+
+.hero p{
+
+font-size:25px;
+margin:25px;
+
+}
+
+
+
+@keyframes heroShow{
+
+from{
+
+opacity:0;
+transform:translateY(60px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+
+
+
+.btn{
+
+background:#d4af37;
+color:black;
+padding:15px 40px;
+border-radius:40px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block;
+transition:.4s;
+
+}
+
+
+
+.btn:hover{
+
+background:white;
+transform:scale(1.1);
+
+}
+
+
+
+
+/* SECTIONS */
+
+
+section{
+
+padding:90px 8%;
+text-align:center;
+opacity:0;
+transform:translateY(50px);
+transition:1s;
+
+}
+
+
+.show{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+
+
+h2{
+
+font-size:45px;
+color:#d4af37;
+margin-bottom:40px;
+
+}
+
+
+
+
+
+/* ABOUT */
+
+
+.about p{
+
+max-width:800px;
+margin:auto;
+font-size:20px;
+line-height:1.8;
+
+}
+
+
+
+
+
+/* MENU */
+
+
+.menu{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+
+}
+
+
+
+.card{
+
+background:#151515;
+padding:20px;
+border-radius:20px;
+border:1px solid #333;
+transition:.5s;
+
+}
+
+
+
+.card:hover{
+
+transform:translateY(-15px);
+box-shadow:0 20px 40px rgba(212,175,55,.3);
+
+}
+
+
+
+.card img{
+
+width:100%;
+height:230px;
+object-fit:cover;
+border-radius:15px;
+
+}
+
+
+
+.card h3{
+
+color:#d4af37;
+font-size:25px;
+margin:20px;
+
+}
+
+
+
+
+
+
+/* GALLERY */
+
+
+.gallery-container{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+
+}
+
+
+
+.gallery-item{
+
+overflow:hidden;
+border-radius:20px;
+
+}
+
+
+
+.gallery-item img{
+
+width:100%;
+height:300px;
+object-fit:cover;
+transition:.5s;
+
+}
+
+
+
+.gallery-item img:hover{
+
+transform:scale(1.1);
+
+}
+
+
+
+
+
+
+
+/* WHATSAPP */
+
+
+.whatsapp{
+
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+padding:15px 25px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+z-index:2000;
+
+}
+
+
+
+
+
+footer{
+
+background:#000;
+padding:25px;
+text-align:center;
+color:#aaa;
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+
+.hero h1{
+
+font-size:45px;
+
+}
+
+
+nav{
+
+display:none;
+
+}
+
+}
+
+
+</style>
+
 
 </head>
+
 
 
 <body>
 
 
+
+<!-- LOADER -->
+
+
+<div class="loader">
+
+
+<div class="loader-box">
+
+
+<img src="images/logo.png">
+
+
+<h1>
+DUM HERITAGE
+</h1>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
 <header>
 
-<div class="logo">
+
+<div class="brand">
+
+<img src="images/logo.png">
+
+<span>
 DUM HERITAGE
+</span>
+
 </div>
+
 
 
 <nav>
@@ -204,7 +548,9 @@ DUM HERITAGE
 <a href="#home">Home</a>
 <a href="#about">About</a>
 <a href="#menu">Menu</a>
+<a href="#gallery">Gallery</a>
 <a href="#contact">Contact</a>
+
 
 </nav>
 
@@ -214,34 +560,42 @@ DUM HERITAGE
 
 
 
-<!-- HERO -->
 
-<section class="hero" id.webp="home">
 
-<div>
 
-<h1>DUM HERITAGE</h1>
+<section class="hero" id="home">
+
+
+<div class="hero-content">
+
+
+<h1>
+DUM HERITAGE
+</h1>
+
 
 <p>
-Where Royal Flavours Meet Tradition
+Royal Flavours • Timeless Tradition
 </p>
 
 
-<a class="btn" href="#menu">
+<a href="#menu" class="btn">
 Explore Menu
 </a>
 
 
 </div>
 
+
 </section>
 
 
 
 
-<!-- ABOUT -->
+
 
 <section class="about" id="about">
+
 
 <h2>
 Our Story
@@ -250,10 +604,8 @@ Our Story
 
 <p>
 
-DUM HERITAGE brings the timeless taste of royal Indian cuisine.
-Inspired by traditional Dum cooking techniques,
-we serve authentic flavours crafted with passion,
-premium ingredients and heritage recipes.
+DUM HERITAGE brings royal Indian cuisine with traditional Dum cooking techniques.
+Every dish is prepared with passion, heritage recipes and premium ingredients.
 
 </p>
 
@@ -264,9 +616,10 @@ premium ingredients and heritage recipes.
 
 
 
-<!-- MENU -->
+
 
 <section id="menu">
+
 
 <h2>
 Signature Menu
@@ -278,26 +631,31 @@ Signature Menu
 
 <div class="card">
 
+<img src="images/biryani.jpg">
+
 <h3>
 Royal Dum Biryani
 </h3>
 
 <p>
-Slow cooked aromatic rice with rich spices and authentic flavours.
+Slow cooked aromatic rice with royal spices.
 </p>
 
 </div>
 
 
 
+
 <div class="card">
+
+<img src="images/kebab.jpg">
 
 <h3>
 Heritage Kebabs
 </h3>
 
 <p>
-Juicy grilled delicacies prepared with royal marinades.
+Premium grilled delicacies.
 </p>
 
 </div>
@@ -305,66 +663,38 @@ Juicy grilled delicacies prepared with royal marinades.
 
 
 
-<div class="card">
-
-<h3>
-Traditional Curries
-</h3>
-
-<p>
-Classic recipes inspired by generations of cooking.
-</p>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- DRINKS -->
-
-<section class="drink">
-
-
-<h2>
-Heritage Drinks
-</h2>
-
-
-<div class="menu">
-
 
 <div class="card">
+
+<img src="images/mojito.jpg">
 
 <h3>
 Royal Mojito
 </h3>
 
 <p>
-Fresh mint, lime and refreshing flavours with a premium touch.
+Fresh mint and lime cooler.
 </p>
 
 </div>
+
+
 
 
 <div class="card">
 
+<img src="images/dessert.jpg">
+
 <h3>
-Special Coolers
+Shahi Dessert
 </h3>
 
 <p>
-Refreshing drinks crafted for every occasion.
+Traditional royal sweetness.
 </p>
 
 </div>
+
 
 
 </div>
@@ -377,10 +707,50 @@ Refreshing drinks crafted for every occasion.
 
 
 
-<!-- CONTACT -->
+
+<section id="gallery">
 
 
-<section class="contact" id="contact">
+<h2>
+Gallery
+</h2>
+
+
+<div class="gallery-container">
+
+
+<div class="gallery-item">
+<img src="images/biryani.jpg">
+</div>
+
+
+<div class="gallery-item">
+<img src="images/kebab.jpg">
+</div>
+
+
+<div class="gallery-item">
+<img src="images/mojito.jpg">
+</div>
+
+
+<div class="gallery-item">
+<img src="images/restaurant.jpg">
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section id="contact">
 
 
 <h2>
@@ -389,19 +759,13 @@ Visit Us
 
 
 <p>
-📍 Your Restaurant Location
+📍 Your Restaurant Address
 </p>
 
 
 <p>
-📞 +91 9121783895
+📞 +91 XXXXX XXXXX
 </p>
-
-
-<p>
-Follow DUM HERITAGE on Instagram & Facebook
-</p>
-
 
 
 </section>
@@ -409,11 +773,58 @@ Follow DUM HERITAGE on Instagram & Facebook
 
 
 
+
+<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX">
+
+WhatsApp Order
+
+</a>
+
+
+
+
+
 <footer>
 
-© 2026 DUM HERITAGE | All Rights Reserved
+© 2026 DUM HERITAGE
 
 </footer>
+
+
+
+
+
+<script>
+
+
+const sections=document.querySelectorAll("section");
+
+
+window.addEventListener("scroll",()=>{
+
+
+sections.forEach(sec=>{
+
+
+let top=sec.getBoundingClientRect().top;
+
+
+if(top < window.innerHeight-100){
+
+sec.classList.add("show");
+
+}
+
+
+});
+
+
+});
+
+
+
+</script>
+
 
 
 
